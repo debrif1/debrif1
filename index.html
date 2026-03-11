@@ -4,26 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>DebriF1 — La strategia che non vedi</title>
-
-<!-- PWA META -->
 <meta name="description" content="Strategia F1, dati e retroscena. Quello che i media non hanno tempo di approfondire.">
 <meta name="theme-color" content="#0D0D0D">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="DebriF1">
-
-<!-- PWA MANIFEST (inline) -->
-<link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22DebriF1%22%2C%22short_name%22%3A%22DebriF1%22%2C%22description%22%3A%22Strategia%20F1%2C%20dati%20e%20retroscena.%22%2C%22start_url%22%3A%22.%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%230D0D0D%22%2C%22theme_color%22%3A%22%230D0D0D%22%2C%22orientation%22%3A%22portrait%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22icon-192.png%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fpng%22%7D%2C%7B%22src%22%3A%22icon-512.png%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fpng%22%7D%5D%7D">
-
-<!-- APPLE TOUCH ICONS (generated at runtime via canvas) -->
-<link rel="apple-touch-icon" id="apple-touch-icon" sizes="180x180">
-
-<!-- OG META -->
 <meta property="og:title" content="DebriF1 — La strategia che non vedi">
 <meta property="og:description" content="Analisi post-gara, dati e retroscena F1. Ogni lunedì dopo il GP.">
 <meta property="og:type" content="website">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -837,6 +826,8 @@ function nextQuote() {
 showQuote(0);
 setInterval(nextQuote, 5000);
 
+</script>
+
 <!-- PWA INSTALL BANNER -->
 <div class="pwa-banner" id="pwa-banner">
   <div class="pwa-banner-icon"><canvas id="banner-icon" width="44" height="44"></canvas></div>
@@ -850,163 +841,90 @@ setInterval(nextQuote, 5000);
 
 <script>
 // ═══════════════════════════════════════════
-// PWA — ICON GENERATOR (Canvas)
+// PWA — ICONA CANVAS
 // ═══════════════════════════════════════════
-function generateIcon(canvas, size) {
-  const ctx = canvas.getContext('2d');
-  canvas.width = size;
-  canvas.height = size;
-  const r = size * 0.13; // border radius
-
-  // Background nero
-  ctx.fillStyle = '#0D0D0D';
-  roundRect(ctx, 0, 0, size, size, r);
-  ctx.fill();
-
-  // Bordo rosso bottom
-  ctx.fillStyle = '#D62828';
-  roundRect(ctx, 0, size * 0.88, size, size * 0.12, 0);
-  ctx.fill();
-
-  // Testo DEBRI
-  const fs1 = size * 0.22;
-  ctx.font = `800 ${fs1}px 'Arial Black', Arial, sans-serif`;
-  ctx.fillStyle = '#FFFFFF';
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'middle';
-  ctx.fillText('DEBRI', size / 2, size * 0.38);
-
-  // Testo F1 in rosso
-  const fs2 = size * 0.30;
-  ctx.font = `800 ${fs2}px 'Arial Black', Arial, sans-serif`;
-  ctx.fillStyle = '#D62828';
-  ctx.fillText('F1', size / 2, size * 0.66);
-}
-
-function roundRect(ctx, x, y, w, h, r) {
-  ctx.beginPath();
-  ctx.moveTo(x + r, y);
-  ctx.lineTo(x + w - r, y);
-  ctx.quadraticCurveTo(x + w, y, x + w, y + r);
-  ctx.lineTo(x + w, y + h - r);
-  ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
-  ctx.lineTo(x + r, y + h);
-  ctx.quadraticCurveTo(x, y + h, x, y + h - r);
-  ctx.lineTo(x, y + r);
-  ctx.quadraticCurveTo(x, y, x + r, y);
-  ctx.closePath();
-}
-
-// Genera icona nel banner
-generateIcon(document.getElementById('banner-icon'), 44);
-
-// Genera apple-touch-icon 180x180
-const appleCanvas = document.createElement('canvas');
-generateIcon(appleCanvas, 180);
-document.getElementById('apple-touch-icon').href = appleCanvas.toDataURL('image/png');
+(function() {
+  try {
+    function drawIcon(canvas, size) {
+      var ctx = canvas.getContext('2d');
+      canvas.width = size; canvas.height = size;
+      var r = size * 0.13;
+      // sfondo nero arrotondato
+      ctx.fillStyle = '#0D0D0D';
+      ctx.beginPath();
+      ctx.moveTo(r,0); ctx.lineTo(size-r,0); ctx.quadraticCurveTo(size,0,size,r);
+      ctx.lineTo(size,size-r); ctx.quadraticCurveTo(size,size,size-r,size);
+      ctx.lineTo(r,size); ctx.quadraticCurveTo(0,size,0,size-r);
+      ctx.lineTo(0,r); ctx.quadraticCurveTo(0,0,r,0); ctx.closePath(); ctx.fill();
+      // barra rossa in basso
+      ctx.fillStyle = '#D62828';
+      ctx.fillRect(0, size*0.87, size, size*0.13);
+      // testo DEBRI
+      ctx.fillStyle = '#FFFFFF'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.font = 'bold ' + Math.round(size*0.21) + 'px Arial Black, Arial, sans-serif';
+      ctx.fillText('DEBRI', size/2, size*0.38);
+      // testo F1 rosso
+      ctx.fillStyle = '#D62828';
+      ctx.font = 'bold ' + Math.round(size*0.30) + 'px Arial Black, Arial, sans-serif';
+      ctx.fillText('F1', size/2, size*0.66);
+    }
+    // banner icon
+    var bc = document.getElementById('banner-icon');
+    if (bc) drawIcon(bc, 44);
+    // apple touch icon
+    var ac = document.createElement('canvas');
+    drawIcon(ac, 180);
+    var link = document.createElement('link');
+    link.rel = 'apple-touch-icon'; link.sizes = '180x180';
+    link.href = ac.toDataURL('image/png');
+    document.head.appendChild(link);
+  } catch(e) {}
+})();
 
 // ═══════════════════════════════════════════
-// PWA — SERVICE WORKER (inline blob)
+// PWA — INSTALL BANNER
 // ═══════════════════════════════════════════
-const SW_CODE = `
-const CACHE = 'debrif1-v1';
-const PRECACHE = ['/'];
+(function() {
+  try {
+    var banner = document.getElementById('pwa-banner');
+    var installBtn = document.getElementById('pwa-install-btn');
+    var dismissBtn = document.getElementById('pwa-dismiss-btn');
+    var deferredPrompt = null;
+    var isStandalone = window.matchMedia('(display-mode: standalone)').matches || !!navigator.standalone;
+    var dismissed = sessionStorage.getItem('pwa-dismissed');
+    var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 
-self.addEventListener('install', e => {
-  e.waitUntil(
-    caches.open(CACHE).then(c => c.addAll(PRECACHE)).then(() => self.skipWaiting())
-  );
-});
+    if (isStandalone) { banner.style.display = 'none'; return; }
 
-self.addEventListener('activate', e => {
-  e.waitUntil(
-    caches.keys().then(keys =>
-      Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))
-    ).then(() => self.clients.claim())
-  );
-});
+    window.addEventListener('beforeinstallprompt', function(e) {
+      e.preventDefault();
+      deferredPrompt = e;
+      if (!dismissed) setTimeout(function(){ banner.classList.add('show'); }, 2500);
+    });
 
-self.addEventListener('fetch', e => {
-  // Network-first: prova sempre la rete, fallback alla cache
-  e.respondWith(
-    fetch(e.request)
-      .then(res => {
-        if (res && res.status === 200 && e.request.method === 'GET') {
-          const clone = res.clone();
-          caches.open(CACHE).then(c => c.put(e.request, clone));
-        }
-        return res;
-      })
-      .catch(() => caches.match(e.request))
-  );
-});
-`;
+    installBtn.addEventListener('click', function() {
+      if (deferredPrompt) {
+        banner.classList.remove('show');
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then(function(){ deferredPrompt = null; });
+      } else if (isIOS) {
+        alert('Per installare DebriF1su iPhone:\n\n1. Tocca il pulsante Condividi (□↑) in basso\n2. Scorri e tocca "Aggiungi alla schermata Home"\n3. Tocca "Aggiungi" in alto a destra');
+      }
+    });
 
-if ('serviceWorker' in navigator) {
-  const blob = new Blob([SW_CODE], { type: 'application/javascript' });
-  const swUrl = URL.createObjectURL(blob);
-  navigator.serviceWorker.register(swUrl).then(reg => {
-    console.log('[DebriF1] Service Worker registrato:', reg.scope);
-  }).catch(err => console.log('[DebriF1] SW error:', err));
-}
+    dismissBtn.addEventListener('click', function() {
+      banner.classList.remove('show');
+      sessionStorage.setItem('pwa-dismissed', '1');
+    });
 
-// ═══════════════════════════════════════════
-// PWA — INSTALL PROMPT
-// ═══════════════════════════════════════════
-let deferredPrompt = null;
-const banner = document.getElementById('pwa-banner');
-const installBtn = document.getElementById('pwa-install-btn');
-const dismissBtn = document.getElementById('pwa-dismiss-btn');
+    // Su iOS mostra il banner con istruzioni manuali
+    if (isIOS && !dismissed) {
+      setTimeout(function(){ banner.classList.add('show'); }, 3000);
+    }
+  } catch(e) {}
+})();
 
-// Mostra banner solo se non già installata e non già dismissata
-const dismissed = sessionStorage.getItem('pwa-dismissed');
-const isStandalone = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone;
-
-window.addEventListener('beforeinstallprompt', e => {
-  e.preventDefault();
-  deferredPrompt = e;
-  if (!isStandalone && !dismissed) {
-    setTimeout(() => banner.classList.add('show'), 2500);
-  }
-});
-
-installBtn.addEventListener('click', async () => {
-  if (!deferredPrompt) {
-    // iOS: mostra istruzioni manuali
-    showIOSInstructions();
-    return;
-  }
-  banner.classList.remove('show');
-  deferredPrompt.prompt();
-  const { outcome } = await deferredPrompt.userChoice;
-  console.log('[DebriF1] Install outcome:', outcome);
-  deferredPrompt = null;
-});
-
-dismissBtn.addEventListener('click', () => {
-  banner.classList.remove('show');
-  sessionStorage.setItem('pwa-dismissed', '1');
-});
-
-// iOS non supporta beforeinstallprompt — mostra istruzioni
-function showIOSInstructions() {
-  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-  if (!isIOS) return;
-  alert('Per installare DebriF1:\n1. Tocca il pulsante Condividi (□↑) in basso\n2. Scorri e tocca "Aggiungi alla schermata Home"\n3. Tocca "Aggiungi" in alto a destra');
-}
-
-// Su iOS mostra il banner comunque dopo 3 secondi
-const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-if (isIOS && !isStandalone && !dismissed) {
-  setTimeout(() => banner.classList.add('show'), 3000);
-}
-
-// Nascondi banner se già in standalone
-if (isStandalone) {
-  banner.style.display = 'none';
-}
-
-document.addEventListener('keydown', e => { if(e.key==='Escape'){closeModal();closeArticle();} });
+document.addEventListener('keydown', function(e){ if(e.key==='Escape'){closeModal();closeArticle();} });
 </script>
 </body>
 </html>
