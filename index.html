@@ -170,13 +170,13 @@ body{background:var(--bg);color:var(--dark);font-family:var(--body);font-size:16
 .modal-subtitle{font-family:var(--mono);font-size:10px;color:#666;letter-spacing:.04em}
 .modal-body{padding:28px 28px 40px;flex:1}
 .result-hero{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:24px}
-.result-stat{background:var(--bg);padding:14px 16px}
-.result-stat-label{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
-.result-stat-value{font-family:var(--display);font-size:20px;font-weight:800;color:var(--black);letter-spacing:-.3px;line-height:1.1}
+.result-stat{background:var(--bg);padding:10px 12px}
+.result-stat-label{font-family:var(--mono);font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+.result-stat-value{font-family:var(--display);font-size:16px;font-weight:800;color:var(--black);letter-spacing:-.3px;line-height:1.1}
 .result-stat-value.red{color:var(--red)}
 .results-table{width:100%;border-collapse:collapse;margin-bottom:24px}
-.results-table th{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:8px 10px;text-align:left;border-bottom:2px solid var(--black);background:var(--bg)}
-.results-table td{font-family:var(--mono);font-size:11px;padding:9px 10px;border-bottom:1px solid var(--border);vertical-align:middle}
+.results-table th{font-family:var(--mono);font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:6px 8px;text-align:left;border-bottom:2px solid var(--black);background:var(--bg)}
+.results-table td{font-family:var(--mono);font-size:10px;padding:7px 8px;border-bottom:1px solid var(--border);vertical-align:middle}
 .results-table tr:hover td{background:var(--bg)}
 .results-table tr.dnf td{opacity:.5}
 .result-pos{font-family:var(--display);font-size:13px;font-weight:800;color:var(--muted)}
@@ -786,12 +786,30 @@ function closeModal() {
 }
 
 function buildRaceModal(gp) {
-  const rows = AUS_RESULTS.map(r => {
-    const isDnf = typeof r.pos!=='number';
-    const pClass = r.pos===1?'p1':r.pos===2?'p2':r.pos===3?'p3':'';
-    return `<tr class="${isDnf?'dnf':''}"><td><span class="result-pos ${pClass}">${r.pos}</span></td><td><span class="tbar ${r.color}"></span><span class="result-driver">${r.name}<span class="result-team">${r.team}</span></span></td><td class="result-gap">${r.gap}${r.fl?'<br><span class="result-fl">⚡ Giro più veloce</span>':''}</td></tr>`;
+  function abbr(name) {
+    // prende le prime 3 lettere del cognome (ultima parola)
+    var parts = name.trim().split(' ');
+    return parts[parts.length - 1].substring(0, 3).toUpperCase();
+  }
+  var rows = AUS_RESULTS.map(function(r) {
+    var isDnf = typeof r.pos !== 'number';
+    var pClass = r.pos===1?'p1':r.pos===2?'p2':r.pos===3?'p3':'';
+    return '<tr class="'+(isDnf?'dnf':'')+'"><td><span class="result-pos '+pClass+'">'+r.pos+'</span></td>'
+      +'<td><span class="tbar '+r.color+'"></span><span class="result-driver">'+abbr(r.name)+'<span class="result-team">'+r.team+'</span></span></td>'
+      +'<td class="result-gap">'+r.gap+(r.fl?'<br><span class="result-fl">⚡ FL</span>':'')+'</td></tr>';
   }).join('');
-  return `<div class="result-hero"><div class="result-stat"><div class="result-stat-label">Vincitore</div><div class="result-stat-value">Russell</div></div><div class="result-stat"><div class="result-stat-label">Pole Position</div><div class="result-stat-value">Russell</div></div><div class="result-stat"><div class="result-stat-label">Giro più veloce</div><div class="result-stat-value red">Verstappen</div></div><div class="result-stat"><div class="result-stat-label">Giri totali</div><div class="result-stat-value">58</div></div><div class="result-stat"><div class="result-stat-label">Sorpassi</div><div class="result-stat-value">120</div></div><div class="result-stat"><div class="result-stat-label">Momento chiave</div><div class="result-stat-value red">Giro 11</div></div></div><div class="modal-section-title">Classifica completa</div><table class="results-table"><thead><tr><th>Pos</th><th>Pilota</th><th style="text-align:right">Distacco</th></tr></thead><tbody>${rows}</tbody></table><div class="modal-section-title">Il momento chiave</div><p style="font-size:14px;color:var(--mid);line-height:1.7;font-weight:300">Giro 11 — Virtual Safety Car per il ritiro di Hadjar. Mercedes entra con entrambe le macchine. Ferrari resta fuori. Questo è il momento in cui la gara è stata decisa. Leggi l'analisi completa nel <strong>Numero 03 di DebriF1</strong>.</p>`;
+  return '<div class="result-hero">'
+    +'<div class="result-stat"><div class="result-stat-label">Vincitore</div><div class="result-stat-value">RUS</div></div>'
+    +'<div class="result-stat"><div class="result-stat-label">Pole</div><div class="result-stat-value">RUS</div></div>'
+    +'<div class="result-stat"><div class="result-stat-label">Giro veloce</div><div class="result-stat-value red">VER</div></div>'
+    +'<div class="result-stat"><div class="result-stat-label">Giri</div><div class="result-stat-value">58</div></div>'
+    +'<div class="result-stat"><div class="result-stat-label">Sorpassi</div><div class="result-stat-value">120</div></div>'
+    +'<div class="result-stat"><div class="result-stat-label">Chiave</div><div class="result-stat-value red">Giro 11</div></div>'
+    +'</div>'
+    +'<div class="modal-section-title">Classifica completa</div>'
+    +'<table class="results-table"><thead><tr><th>Pos</th><th>Pilota</th><th style="text-align:right">Gap</th></tr></thead><tbody>'+rows+'</tbody></table>'
+    +'<div class="modal-section-title">Il momento chiave</div>'
+    +'<p style="font-size:12px;color:var(--mid);line-height:1.65;font-weight:300">Giro 11 — Virtual Safety Car per il ritiro di Hadjar. Mercedes entra con entrambe le macchine. Ferrari resta fuori. Questo è il momento in cui la gara è stata decisa. Leggi l\'analisi completa nel <strong>Numero 03 di DebriF1</strong>.</p>';
 }
 
 function buildCircuitModal(gp) {
