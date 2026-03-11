@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>DebriF1 — La strategia che non vedi</title>
 <meta name="description" content="Strategia F1, dati e retroscena. Quello che i media non hanno tempo di approfondire.">
 <meta name="theme-color" content="#0D0D0D">
@@ -113,8 +116,9 @@ body{background:var(--bg);color:var(--dark);font-family:var(--body);font-size:16
 .standings-row{display:flex;align-items:center;padding:10px 20px;border-bottom:1px solid var(--border);gap:12px;transition:background .1s}
 .standings-row:last-child{border-bottom:none}
 .standings-row:hover{background:var(--bg)}
-.pos{font-family:var(--display);font-size:14px;font-weight:800;color:var(--muted);width:20px;flex-shrink:0;text-align:center}
+.pos{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--muted);width:40px;min-width:40px;flex-shrink:0;text-align:left}
 .pos.p1{color:#B8963E}.pos.p2{color:#8A8A8A}.pos.p3{color:#A0674A}
+.pos.label{font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:.03em;color:var(--muted);line-height:1.2}
 .team-bar{width:3px;height:28px;border-radius:1px;flex-shrink:0}
 .driver-info{flex:1;min-width:0}
 .driver-name{font-family:var(--display);font-size:13px;font-weight:700;color:var(--black);letter-spacing:-.2px;line-height:1.2}
@@ -727,7 +731,7 @@ function buildStandingsHTML(drivers, constructors, roundLabel, showGap) {
     const pct = isDNS?0:Math.round((d.pts/maxD)*100);
     const fl = d.fl?`<span style="font-family:var(--mono);font-size:8px;color:var(--red);margin-left:4px">⚡FL</span>`:'';
     const right = showGap&&d.gap ? `<div class="driver-gap">${d.gap}</div>` : `<div class="driver-pts ${d.pts===0&&isDNS?'pts-zero':''}">${d.pts}</div>`;
-    return `<div class="standings-row" style="${isDNS?'opacity:0.5':''}"><div class="pos ${pClass}">${d.pos}</div><div class="team-bar ${d.color}"></div><div class="driver-info"><div class="driver-name">${d.name}${fl}</div><div class="driver-team">${d.team}</div><div class="pts-bar-wrap"><div class="pts-bar ${d.color}" style="width:${pct}%"></div></div></div>${right}</div>`;
+    return `<div class="standings-row" style="${isDNS?'opacity:0.5':''}"><div class="pos ${pClass}${isDNS?' label':''}">${d.pos}</div><div class="team-bar ${d.color}"></div><div class="driver-info"><div class="driver-name">${d.name}${fl}</div><div class="driver-team">${d.team}</div><div class="pts-bar-wrap"><div class="pts-bar ${d.color}" style="width:${pct}%"></div></div></div>${right}</div>`;
   }).join('');
   const cRows = constructors.map(c => {
     const pClass = c.pos===1?'p1':c.pos===2?'p2':c.pos===3?'p3':'';
