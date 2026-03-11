@@ -27,7 +27,7 @@
   --display:'Syne',sans-serif;--body:'IBM Plex Sans',system-ui,sans-serif;--mono:'IBM Plex Mono',monospace;
 }
 *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--dark);font-family:var(--body);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+body{background:var(--bg);color:var(--dark);font-family:var(--body);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;overscroll-behavior-y:contain}
 
 /* NAV */
 .nav{position:sticky;top:0;z-index:200;background:var(--black);border-bottom:2px solid var(--red);padding:0 40px;display:flex;justify-content:space-between;align-items:center;height:56px}
@@ -999,31 +999,34 @@ document.addEventListener('keydown', function(e){ if(e.key==='Escape'){closeModa
   var ptrText = document.getElementById('ptr-text');
   var startY = 0;
   var pulling = false;
-  var THRESHOLD = 80;
+  var triggered = false;
+  var THRESHOLD = 72;
 
   document.addEventListener('touchstart', function(e) {
-    // solo se siamo in cima alla pagina e nessun modal aperto
     if (window.scrollY === 0 && !document.body.classList.contains('modal-open')) {
       startY = e.touches[0].clientY;
       pulling = true;
+      triggered = false;
     }
   }, { passive: true });
 
   document.addEventListener('touchmove', function(e) {
     if (!pulling) return;
     var dy = e.touches[0].clientY - startY;
-    if (dy <= 0) { pulling = false; return; }
-    if (dy > 10) {
-      ptr.classList.add('visible');
-      if (dy >= THRESHOLD) {
-        ptrText.textContent = 'Rilascia per aggiornare';
-        ptr.style.borderBottom = '2px solid var(--red)';
-      } else {
-        ptrText.textContent = 'Trascina per aggiornare';
-        ptr.style.borderBottom = 'none';
-      }
+    if (dy <= 0) { pulling = false; ptr.classList.remove('visible'); return; }
+    // blocca il rubber band nativo di iOS
+    if (dy > 5) e.preventDefault();
+    ptr.classList.add('visible');
+    if (dy >= THRESHOLD) {
+      if (!triggered) { triggered = true; }
+      ptrText.textContent = 'Rilascia per aggiornare';
+      ptr.style.borderBottom = '2px solid var(--red)';
+    } else {
+      triggered = false;
+      ptrText.textContent = 'Trascina per aggiornare';
+      ptr.style.borderBottom = 'none';
     }
-  }, { passive: true });
+  }, { passive: false });
 
   document.addEventListener('touchend', function(e) {
     if (!pulling) return;
@@ -1032,7 +1035,7 @@ document.addEventListener('keydown', function(e){ if(e.key==='Escape'){closeModa
     if (dy >= THRESHOLD) {
       ptr.classList.add('refreshing');
       ptrText.textContent = 'Aggiornamento...';
-      setTimeout(function() { window.location.reload(); }, 600);
+      setTimeout(function() { window.location.reload(true); }, 600);
     } else {
       ptr.classList.remove('visible');
       ptr.style.borderBottom = 'none';
