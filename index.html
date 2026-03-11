@@ -320,7 +320,7 @@ body{background:var(--bg);color:var(--dark);font-family:var(--body);font-size:16
     <div class="articles-toolbar">
       <div class="toolbar-left">
         <h2>Tutti gli articoli</h2>
-        <span class="count">3 numeri · Stagione 2026</span>
+        <span class="count">4 numeri · Stagione 2026</span>
       </div>
       <div class="view-toggle">
         <button class="view-btn active" id="btn-grid" onclick="setView('grid')" title="Vista griglia">
@@ -339,6 +339,17 @@ body{background:var(--bg);color:var(--dark);font-family:var(--body);font-size:16
       <div class="article-card fade-up" onclick="openArticle(0)">
         <div class="preview-overlay">
           <div class="preview-label">// La pillola</div>
+          <p class="preview-text">Sulla carta era la squadra più attrezzata del 2026: budget illimitato, Newey, Honda, Alonso. In Australia ha qualificato diciassettesima con quasi 4 secondi di ritardo. Alonso si è ritirato per precauzione — non c'erano pezzi di ricambio. Newey ha attaccato Honda in conferenza stampa con il presidente HRC seduto accanto.</p>
+          <div class="preview-cta">Leggi l'analisi completa</div>
+        </div>
+        <div class="card-issue">N°04 · 17 Marzo 2026</div>
+        <span class="card-tag tag-red">Retroscena</span>
+        <h3 class="card-title">Newey ha attaccato Honda in pubblico. Con il presidente HRC seduto accanto.</h3>
+        <div class="card-meta"><span>Aston Martin · Honda · Newey</span><span class="card-read">Leggi →</span></div>
+      </div>
+      <div class="article-card fade-up" onclick="openArticle(1)">
+        <div class="preview-overlay">
+          <div class="preview-label">// La pillola</div>
           <p class="preview-text">Russell vince. Antonelli secondo. Leclerc terzo, Hamilton quarto. La gara si decide al giro 11 con una Virtual Safety Car: Mercedes entra con entrambe le macchine, Ferrari no. Il distacco finale è quasi tre secondi tra Russell e Antonelli, ma il margine reale era molto più ampio. Verstappen recupera 14 posizioni dal fondo. McLaren è irriconoscibile.</p>
           <div class="preview-cta">Leggi l'analisi completa</div>
         </div>
@@ -347,7 +358,7 @@ body{background:var(--bg);color:var(--dark);font-family:var(--body);font-size:16
         <h3 class="card-title">La gara è durata 11 giri. Il resto era gestione del danno.</h3>
         <div class="card-meta"><span>GP Australia · Round 1/24</span><span class="card-read">Leggi →</span></div>
       </div>
-      <div class="article-card fade-up" onclick="openArticle(1)">
+      <div class="article-card fade-up" onclick="openArticle(2)">
         <div class="preview-overlay">
           <div class="preview-label">// La pillola</div>
           <p class="preview-text">Il primo weekend del 2026 ha consegnato verdetti parziali ma già significativi. Mercedes è davanti — probabilmente di molto. Ferrari è seconda ma con un problema strategico cronico. Red Bull affronta la stagione più difficile dell'era Verstappen. McLaren, campione in carica, sembrava distante. La gerarchia è meno stabile di quanto sembri.</p>
@@ -358,7 +369,7 @@ body{background:var(--bg);color:var(--dark);font-family:var(--body);font-size:16
         <h3 class="card-title">Chi ha capito il 2026 e chi no. Il verdetto dopo Melbourne.</h3>
         <div class="card-meta"><span>Power ranking · Stagione 2026</span><span class="card-read">Leggi →</span></div>
       </div>
-      <div class="article-card fade-up" onclick="openArticle(2)">
+      <div class="article-card fade-up" onclick="openArticle(3)">
         <div class="preview-overlay">
           <div class="preview-label">// La pillola</div>
           <p class="preview-text">Il 2026 porta il cambiamento regolamentare più radicale nella storia moderna della F1: nuova aerodinamica attiva, 50% di potenza elettrica, addio al DRS, addio all'MGU-H. Le macchine sono più corte, più leggere, più difficili da guidare. In Australia si è visto che l'idea funziona — ma con effetti collaterali che nessuno aveva previsto completamente.</p>
@@ -373,7 +384,7 @@ body{background:var(--bg);color:var(--dark);font-family:var(--body);font-size:16
 
     <!-- LIST -->
     <div class="articles-list" id="articles-list">
-      <div class="article-list-row" onclick="openArticle(2)">
+      <div class="article-list-row" onclick="openArticle(3)">
         <div class="list-num">01</div>
         <div class="list-divider"></div>
         <div class="list-info">
@@ -383,7 +394,7 @@ body{background:var(--bg);color:var(--dark);font-family:var(--body);font-size:16
         </div>
         <div class="list-arrow">→</div>
       </div>
-      <div class="article-list-row" onclick="openArticle(1)">
+      <div class="article-list-row" onclick="openArticle(2)">
         <div class="list-num">02</div>
         <div class="list-divider"></div>
         <div class="list-info">
@@ -393,13 +404,23 @@ body{background:var(--bg);color:var(--dark);font-family:var(--body);font-size:16
         </div>
         <div class="list-arrow">→</div>
       </div>
-      <div class="article-list-row" onclick="openArticle(0)">
+      <div class="article-list-row" onclick="openArticle(1)">
         <div class="list-num">03</div>
         <div class="list-divider"></div>
         <div class="list-info">
           <div class="list-tag">Debrief post-gara · 10 Marzo 2026</div>
           <div class="list-title">La gara è durata 11 giri. Il resto era gestione del danno.</div>
           <div class="list-meta">GP Australia · Round 1/24</div>
+        </div>
+        <div class="list-arrow">→</div>
+      </div>
+      <div class="article-list-row" onclick="openArticle(0)">
+        <div class="list-num">04</div>
+        <div class="list-divider"></div>
+        <div class="list-info">
+          <div class="list-tag">Retroscena · 17 Marzo 2026</div>
+          <div class="list-title">Newey ha attaccato Honda in pubblico. Con il presidente HRC seduto accanto.</div>
+          <div class="list-meta">Aston Martin · Honda · Newey</div>
         </div>
         <div class="list-arrow">→</div>
       </div>
@@ -470,6 +491,43 @@ body{background:var(--bg);color:var(--dark);font-family:var(--body);font-size:16
 // ARTICLES DATA
 // ═══════════════════════════════════════════
 const ARTICLES = [
+  {
+    issue:"N°04 · 17 Marzo 2026", tag:"Retroscena", sub:"Aston Martin · Honda · Adrian Newey",
+    title:"Newey ha attaccato Honda in pubblico. Con il presidente HRC seduto accanto.",
+    pillola:"Budget illimitato. Newey. Honda. Alonso. Sulla carta era la squadra del 2026. In Australia ha qualificato diciassettesima — 3 secondi e 9 decimi dalla pole. Alonso si è ritirato non per un guasto: semplicemente non c'erano pezzi di ricambio. Il giovedì di Melbourne, in conferenza stampa, Newey ha detto che il telaio vale il Q3 e non più di un secondo dai top. Con Koji Watanabe, presidente di Honda Racing, seduto alla sua destra. Non è stato un incidente. Ha una storia lunga sei anni.",
+    sections:[
+      {title:"Come si arriva a questo punto", content:[
+        {type:"p",text:"Il 2 ottobre 2020, in piena pandemia, Honda annuncia il ritiro dalla Formula 1. Arriva come un fulmine. Nessuno se lo aspetta — Red Bull meno di tutti. La motivazione ufficiale è la transizione green. La traduzione reale: gli ingegneri migliori di Sakura vengono spostati su altri progetti. Honda non sviluppa più niente. Assembla, revisiona, spedisce. Punto."},
+        {type:"p",text:"Questo congelamento dura quattro anni. Quattro anni in cui i motoristi Honda non hanno niente da fare. Molti finiscono direttamente in Red Bull Powertrains — la divisione motori creata da Horner per rispondere all'addio di Honda. Honda ha formato i propri avversari. L'ibrido Red Bull 2026 è ancora il più efficiente in griglia. Non è un caso."},
+        {type:"h3",text:"Il ritorno. Il buco."},
+        {type:"p",text:"Il 23 maggio 2023 Honda annuncia il ritorno. Partner esclusivo dell'Aston Martin dal 2026. Il comunicato parla di partnership storica. Tutti gli altri costruttori avevano iniziato a progettare le power unit 2026 dall'inizio del 2022. Honda era ferma. Ritardo accumulato: <strong>almeno 18 mesi</strong>. L'Aston Martin non lo sapeva."},
+        {type:"h3",text:"Il volo per Tokyo"},
+        {type:"p",text:"A un certo punto Honda comunica che sono 'leggermente in ritardo'. Newey e Andy Cowell — ex responsabile dei motori Mercedes campioni del mondo, ora in Aston Martin — prendono un aereo. Quello che trovano a Tokyo non è un ritardo. Gli ingegneri Honda migliori stavano progettando pannelli solari."},
+        {type:"quote",text:"'Il telaio ha il potenziale per il Q3. Non più di un secondo dai vertici.' — Adrian Newey, giovedì di Melbourne"},
+        {type:"p",text:"Watanabe era seduto alla sua destra. Non ha risposto. Ha annuito. Il modo per dire con il massimo della cortesia: il problema non è mio. È il motore. È stata una delle conferenze stampa più imbarazzanti degli ultimi anni nel paddock."},
+      ]},
+      {title:"Le vibrazioni", content:[
+        {type:"p",text:"Il motore Honda 2026 vibra. Non in modo accettabile — in modo distruttivo. Specchietti che si spaccano in marcia. Cavi che si scollegano. Cedimenti idraulici. Problemi al cambio. E soprattutto: i pacchi batteria vengono sistematicamente distrutti."},
+        {type:"p",text:"Le batterie in F1 non sono componenti infiniti. Il budget cap limita la produzione. A Melbourne su quattro pacchi portati in Australia, <strong>due erano già compromessi prima delle prove libere</strong>. Non è un problema di performance. È un problema di sopravvivenza."},
+        {type:"h3",text:"I piloti"},
+        {type:"p",text:"Lance Stroll non riesce a guidare per più di 15 giri consecutivi. Fernando Alonso ha dichiarato di temere danni neurologici permanenti alle mani dopo 25 giri di esposizione. Non è una lamentela. È una dichiarazione medica."},
+        {type:"p",text:"Poche ore dopo, Alonso ha smorzato i toni: 'se la macchina vincesse, le vibrazioni passerebbero in secondo piano'. Retromarcia diplomatica. Ma la domanda nel paddock è un'altra: Newey stava sfogando frustrazione autentica, o stava costruendo deliberatamente un caso per ottenere dalla FIA concessioni tecniche straordinarie invocando la sicurezza? La seconda ipotesi è quella più credibile."},
+      ]},
+      {title:"I numeri", nums:[
+        {label:"Ritardo Honda sullo sviluppo",value:"~18 mesi",desc:"Rispetto a Ferrari, Mercedes, Red Bull"},
+        {label:"Qualifica Alonso — Australia",value:"17°",desc:"A 3.9 secondi dalla pole di Russell"},
+        {label:"Batterie compromesse a Melbourne",value:"2 su 4",desc:"Prima ancora delle prove libere"},
+        {label:"Perdita con mappature conservative",value:">100cv",desc:"Per contenere i danni da vibrazione"},
+        {label:"Giri massimi di Stroll",value:"15",desc:"Prima di dover fermarsi"},
+        {label:"Deficit soglia concessioni FIA",value:">4%",desc:"Honda lo supera: extra budget e sviluppo"},
+      ]},
+      {title:"Cosa succede adesso", content:[
+        {type:"p",text:"Nel breve termine: mappature conservative che tolgono oltre 100 cavalli. Una perdita che blocca lo sviluppo del telaio — non sai mai se il limite viene dall'aerodinamica o dal motore che non eroga. Newey ha firmato una vettura che non può ancora girare al suo potenziale reale."},
+        {type:"p",text:"Honda dovrebbe ottenere le <strong>concessioni FIA</strong>: deficit superiore al 4% garantisce extra budget, più ore al banco prova e due nuove specifiche entro fine anno. Se arrivano. E se le vibrazioni vengono risolte — perché al momento i tecnici Honda non hanno ancora trovato l'origine del problema."},
+        {type:"p",text:"Il fantasma è McLaren-Honda, 2015-2017. Tre anni di umiliazione, ritiri, accuse reciproche. Un Alonso che chiamava il motore 'GP2 engine' via radio. Quella storia è finita con Honda che se ne andava. Questa ha la stessa dinamica, gli stessi protagonisti. E per Alonso, esattamente la stessa sensazione."},
+      ]},
+    ]
+  },
   {
     issue:"N°03 · 10 Marzo 2026", tag:"Debrief post-gara", sub:"GP Australia · Round 1/24 · Albert Park, Melbourne",
     title:"La gara è durata 11 giri. Il resto era gestione del danno.",
