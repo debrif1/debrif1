@@ -320,7 +320,7 @@ body{background:var(--bg);color:var(--dark);font-family:var(--body);font-size:16
     <div class="articles-toolbar">
       <div class="toolbar-left">
         <h2>Tutti gli articoli</h2>
-        <span class="count">4 numeri · Stagione 2026</span>
+        <span class="count">5 numeri · Stagione 2026</span>
       </div>
       <div class="view-toggle">
         <button class="view-btn active" id="btn-grid" onclick="setView('grid')" title="Vista griglia">
@@ -339,7 +339,18 @@ body{background:var(--bg);color:var(--dark);font-family:var(--body);font-size:16
       <div class="article-card fade-up" onclick="openArticle(0)">
         <div class="preview-overlay">
           <div class="preview-label">// La pillola</div>
-          <p class="preview-text">Sulla carta era la squadra più attrezzata del 2026: budget illimitato, Newey, Honda, Alonso. In Australia ha qualificato diciassettesima con quasi 4 secondi di ritardo. Alonso si è ritirato per precauzione — non c'erano pezzi di ricambio. Newey ha attaccato Honda in conferenza stampa con il presidente HRC seduto accanto.</p>
+          <p class="preview-text">120 sorpassi in Australia. Il 2025 ne aveva fatti 45. Un trionfo del nuovo regolamento — o forse no. Quando il 50% della potenza è elettrica e gestita da algoritmi, il pilota sorpassa o viene sorpassato dal software? La domanda non è filosofica. Cambia tutto il modo in cui leggiamo una gara.</p>
+          <div class="preview-cta">Leggi l'analisi completa</div>
+        </div>
+        <div class="card-issue">N°05 · 21 Marzo 2026</div>
+        <span class="card-tag">Dibattito</span>
+        <h3 class="card-title">120 sorpassi in Australia. Ma erano veri?</h3>
+        <div class="card-meta"><span>Regolamento 2026 · Spettacolo vs sostanza</span><span class="card-read">Leggi →</span></div>
+      </div>
+      <div class="article-card fade-up" onclick="openArticle(1)">
+        <div class="preview-overlay">
+          <div class="preview-label">// La pillola</div>
+          <p class="preview-text">Budget illimitato. Newey. Honda. Alonso. Sulla carta era la squadra del 2026. In Australia ha qualificato diciassettesima con quasi 4 secondi di ritardo. Alonso si è ritirato per precauzione — non c'erano pezzi di ricambio. Newey ha attaccato Honda in conferenza stampa con il presidente HRC seduto accanto.</p>
           <div class="preview-cta">Leggi l'analisi completa</div>
         </div>
         <div class="card-issue">N°04 · 17 Marzo 2026</div>
@@ -347,7 +358,7 @@ body{background:var(--bg);color:var(--dark);font-family:var(--body);font-size:16
         <h3 class="card-title">Newey ha attaccato Honda in pubblico. Con il presidente HRC seduto accanto.</h3>
         <div class="card-meta"><span>Aston Martin · Honda · Newey</span><span class="card-read">Leggi →</span></div>
       </div>
-      <div class="article-card fade-up" onclick="openArticle(1)">
+      <div class="article-card fade-up" onclick="openArticle(2)">
         <div class="preview-overlay">
           <div class="preview-label">// La pillola</div>
           <p class="preview-text">Russell vince. Antonelli secondo. Leclerc terzo, Hamilton quarto. La gara si decide al giro 11 con una Virtual Safety Car: Mercedes entra con entrambe le macchine, Ferrari no. Il distacco finale è quasi tre secondi tra Russell e Antonelli, ma il margine reale era molto più ampio. Verstappen recupera 14 posizioni dal fondo. McLaren è irriconoscibile.</p>
@@ -358,7 +369,7 @@ body{background:var(--bg);color:var(--dark);font-family:var(--body);font-size:16
         <h3 class="card-title">La gara è durata 11 giri. Il resto era gestione del danno.</h3>
         <div class="card-meta"><span>GP Australia · Round 1/24</span><span class="card-read">Leggi →</span></div>
       </div>
-      <div class="article-card fade-up" onclick="openArticle(2)">
+      <div class="article-card fade-up" onclick="openArticle(3)">
         <div class="preview-overlay">
           <div class="preview-label">// La pillola</div>
           <p class="preview-text">Il primo weekend del 2026 ha consegnato verdetti parziali ma già significativi. Mercedes è davanti — probabilmente di molto. Ferrari è seconda ma con un problema strategico cronico. Red Bull affronta la stagione più difficile dell'era Verstappen. McLaren, campione in carica, sembrava distante. La gerarchia è meno stabile di quanto sembri.</p>
@@ -369,7 +380,7 @@ body{background:var(--bg);color:var(--dark);font-family:var(--body);font-size:16
         <h3 class="card-title">Chi ha capito il 2026 e chi no. Il verdetto dopo Melbourne.</h3>
         <div class="card-meta"><span>Power ranking · Stagione 2026</span><span class="card-read">Leggi →</span></div>
       </div>
-      <div class="article-card fade-up" onclick="openArticle(3)">
+      <div class="article-card fade-up" onclick="openArticle(4)">
         <div class="preview-overlay">
           <div class="preview-label">// La pillola</div>
           <p class="preview-text">Il 2026 porta il cambiamento regolamentare più radicale nella storia moderna della F1: nuova aerodinamica attiva, 50% di potenza elettrica, addio al DRS, addio all'MGU-H. Le macchine sono più corte, più leggere, più difficili da guidare. In Australia si è visto che l'idea funziona — ma con effetti collaterali che nessuno aveva previsto completamente.</p>
@@ -384,7 +395,7 @@ body{background:var(--bg);color:var(--dark);font-family:var(--body);font-size:16
 
     <!-- LIST -->
     <div class="articles-list" id="articles-list">
-      <div class="article-list-row" onclick="openArticle(3)">
+      <div class="article-list-row" onclick="openArticle(4)">
         <div class="list-num">01</div>
         <div class="list-divider"></div>
         <div class="list-info">
@@ -394,7 +405,7 @@ body{background:var(--bg);color:var(--dark);font-family:var(--body);font-size:16
         </div>
         <div class="list-arrow">→</div>
       </div>
-      <div class="article-list-row" onclick="openArticle(2)">
+      <div class="article-list-row" onclick="openArticle(3)">
         <div class="list-num">02</div>
         <div class="list-divider"></div>
         <div class="list-info">
@@ -404,7 +415,7 @@ body{background:var(--bg);color:var(--dark);font-family:var(--body);font-size:16
         </div>
         <div class="list-arrow">→</div>
       </div>
-      <div class="article-list-row" onclick="openArticle(1)">
+      <div class="article-list-row" onclick="openArticle(2)">
         <div class="list-num">03</div>
         <div class="list-divider"></div>
         <div class="list-info">
@@ -414,13 +425,23 @@ body{background:var(--bg);color:var(--dark);font-family:var(--body);font-size:16
         </div>
         <div class="list-arrow">→</div>
       </div>
-      <div class="article-list-row" onclick="openArticle(0)">
+      <div class="article-list-row" onclick="openArticle(1)">
         <div class="list-num">04</div>
         <div class="list-divider"></div>
         <div class="list-info">
           <div class="list-tag">Retroscena · 17 Marzo 2026</div>
           <div class="list-title">Newey ha attaccato Honda in pubblico. Con il presidente HRC seduto accanto.</div>
           <div class="list-meta">Aston Martin · Honda · Newey</div>
+        </div>
+        <div class="list-arrow">→</div>
+      </div>
+      <div class="article-list-row" onclick="openArticle(0)">
+        <div class="list-num">05</div>
+        <div class="list-divider"></div>
+        <div class="list-info">
+          <div class="list-tag">Dibattito · 21 Marzo 2026</div>
+          <div class="list-title">120 sorpassi in Australia. Ma erano veri?</div>
+          <div class="list-meta">Regolamento 2026 · Spettacolo vs sostanza</div>
         </div>
         <div class="list-arrow">→</div>
       </div>
@@ -491,6 +512,43 @@ body{background:var(--bg);color:var(--dark);font-family:var(--body);font-size:16
 // ARTICLES DATA
 // ═══════════════════════════════════════════
 const ARTICLES = [
+  {
+    issue:"N°05 · 21 Marzo 2026", tag:"Dibattito", sub:"Regolamento 2026 · Spettacolo vs sostanza",
+    title:"120 sorpassi in Australia. Ma erano veri?",
+    pillola:"Il GP d'Australia 2026 ha registrato 120 sorpassi. Il 2025 ne aveva fatti 45. Sulla carta è un trionfo del nuovo regolamento. Nel paddock e nelle redazioni la discussione è già aperta: questi sorpassi valgono quanto quelli di una volta? Quando il 50% della potenza è elettrica e gestita da algoritmi, il pilota sorpassa o viene sorpassato dal software? La domanda sembra filosofica. Non lo è. Cambia tutto il modo in cui leggiamo una gara.",
+    sections:[
+      {title:"Il problema con i 120 sorpassi", content:[
+        {type:"p",text:"Partiamo dal dato. Australia 2026: 120 sorpassi. Australia 2025: 45. Un aumento del 167% in una sola stagione. La Liberty Media esulta. I numeri sono buoni. Ma i numeri raccontano sempre una versione parziale."},
+        {type:"p",text:"La domanda che si fanno i critici — e sono voci pesanti, non tifosi scontenti — è questa: quanti di quei 120 sorpassi sono stati decisi da un pilota, e quanti dal momento in cui la batteria del sorpassato era scarica e quella del sorpassante carica? Perché nel 2026, con il 50% della potenza che arriva dall'elettrico, il differenziale di velocità su un rettilineo non dipende solo da chi frena più tardi o da chi ha il coraggio di infilare la macchina in uno spazio impossibile. Dipende da chi ha energia nel pacco batteria in quel momento preciso."},
+        {type:"h3",text:"Il sorpasso alla Senna non esiste più"},
+        {type:"p",text:"C'è una scena che ogni appassionato di F1 conosce. Senna a Monaco 1984, sotto la pioggia, che guadagna quasi quattro secondi al giro su Prost con una macchina inferiore. O Schumacher in Spagna 1996, in condizioni impossibili, che tiene la Ferrari con una mano sola. Questi momenti esistono perché il limite tra il controllo e la perdita del controllo era fisico, immediato, assoluto. Il pilota era l'unica variabile."},
+        {type:"p",text:"Nel 2026 quella variabile è diventata una tra molte. Il software di gestione energetica decide quanta corrente erogare e quando. Il pilota preme sull'acceleratore e ottiene quello che il sistema ritiene appropriato in quel millisecondo, in funzione dello stato della batteria, della temperatura, della strategia energetica programmata dai box. Non è colpa di nessuno. È la conseguenza logica di aver triplicato la potenza elettrica senza aumentare la capacità della batteria."},
+        {type:"quote",text:"\"Sembra Formula E sotto steroidi.\" — Max Verstappen, GP Australia 2026"},
+        {type:"p",text:"Verstappen non è noto per i giri di parole. E quello che descrive è preciso: in Formula E i sorpassi avvengono spesso perché un pilota ha più energia dell'altro, non perché sia più veloce in frenata. Il 2026 non è Formula E — le velocità sono incomparabili — ma la logica sottostante è sempre più simile."},
+      ]},
+      {title:"Il contesto storico — non è la prima volta", content:[
+        {type:"p",text:"Ogni grande rivoluzione tecnica in Formula 1 ha prodotto le stesse reazioni. Nel 2014, primo anno dell'era ibrida, le critiche furono identiche. I motori non facevano rumore. I sorpassi erano 'artificiali'. La F1 aveva perso l'anima. Dodici anni dopo, quell'era viene ricordata come una delle più tecnicamente sofisticate della storia."},
+        {type:"p",text:"Nel 2022, con l'effetto suolo, le prime gare furono caotiche. Le macchine rimbalzavano, i piloti si lamentavano del porpoising, il paddock era spaccato. Poi le squadre hanno capito come gestirlo e il campionato è diventato uno dei più equilibrati degli ultimi anni."},
+        {type:"h3",text:"La differenza del 2026"},
+        {type:"p",text:"Il confronto storico funziona fino a un certo punto. La differenza tra il 2026 e le rivoluzioni precedenti è strutturale: <strong>non è mai stato così alto il peso percentuale dell'energia non controllata direttamente dal pilota</strong>. Nel 2014 l'ibrido contribuiva il 20% circa della potenza totale. Oggi è il 50%. Il pilota ha ancora un ruolo decisivo — la gestione energetica è una skill reale, e chi la domina meglio ottiene un vantaggio. Ma il margine di intervento umano puro si è ridotto."},
+        {type:"p",text:"Il problema alla partenza è il caso più evidente. In Australia diverse macchine sono rimaste piantate sulla griglia per frazioni di secondo — la potenza elettrica non è arrivata al momento giusto. Non è un errore del pilota. Non è una scelta. È un ritardo nel sistema di erogazione. In una partenza di Formula 1, dove i decimi di secondo valgono posizioni intere, questo è un problema di sicurezza oltre che di spettacolo."},
+      ]},
+      {title:"I numeri", nums:[
+        {label:"Sorpassi Australia 2026",value:"120",desc:"vs 45 del 2025: +167%"},
+        {label:"Sorpassi F1 media 2014",value:"~35",desc:"Primo anno era ibrida — poi cresciuti"},
+        {label:"Quota potenza elettrica 2026",value:"50%",desc:"vs 20% dell'era 2014-2025"},
+        {label:"Potenza MGU-K 2026",value:"350kW",desc:"Era 120kW: quasi triplicata"},
+        {label:"Peso vettura 2026",value:"768kg",desc:"vs 800kg: -32kg, più agili"},
+        {label:"Riduzione lunghezza vetture",value:"~20cm",desc:"Più strette, più corte rispetto 2022-2025"},
+      ]},
+      {title:"La domanda giusta", content:[
+        {type:"p",text:"Il dibattito 'è vera F1?' è vecchio quanto la Formula 1. Lo hanno fatto con il turbo negli anni '80, con il controllo di trazione nei '90, con il DRS nel 2011, con l'ibrido nel 2014. Ogni volta il mondo non è finito."},
+        {type:"p",text:"Ma c'è una distinzione utile da fare. Il DRS era artificiale e lo sapevamo tutti — era uno strumento esplicito per facilitare i sorpassi. Il 2026 è diverso: l'artificialità è nascosta dentro la fisica del sistema energetico. Il sorpasso sembra reale. La macchina accelera, quella davanti rallenta, il pubblico esulta. Ma la causa non è sempre quello che sembra."},
+        {type:"p",text:"Terruzzi, Allievi e gli altri non hanno torto nel sollevare la questione. Hanno torto se pensano che la risposta sia semplice. La Formula 1 è sempre stata un compromesso tra purezza e tecnologia — e ogni generazione ridefinisce quel compromesso. Il 2026 lo sposta più verso la tecnologia di quanto non lo abbia fatto qualsiasi regolamento precedente. Se questo sia un progresso o una perdita dipende da cosa cerchi quando accendi la televisione la domenica pomeriggio."},
+        {type:"p",text:"Una cosa è certa: i piloti che capiranno prima la gestione energetica — non solo il giro secco, ma il ritmo di carica e scarica della batteria su 58 giri — saranno quelli che vinceranno il campionato. È una skill nuova. Non è più semplice di prima. È solo diversa."},
+      ]},
+    ]
+  },
   {
     issue:"N°04 · 17 Marzo 2026", tag:"Retroscena", sub:"Aston Martin · Honda · Adrian Newey",
     title:"Newey ha attaccato Honda in pubblico. Con il presidente HRC seduto accanto.",
