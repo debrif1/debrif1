@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>DebriF1 — La strategia che non vedi</title>
+
+<!-- PWA META -->
+<meta name="description" content="Strategia F1, dati e retroscena. Quello che i media non hanno tempo di approfondire.">
+<meta name="theme-color" content="#0D0D0D">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="DebriF1">
+
+<!-- PWA MANIFEST (inline) -->
+<link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22DebriF1%22%2C%22short_name%22%3A%22DebriF1%22%2C%22description%22%3A%22Strategia%20F1%2C%20dati%20e%20retroscena.%22%2C%22start_url%22%3A%22.%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%230D0D0D%22%2C%22theme_color%22%3A%22%230D0D0D%22%2C%22orientation%22%3A%22portrait%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22icon-192.png%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fpng%22%7D%2C%7B%22src%22%3A%22icon-512.png%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fpng%22%7D%5D%7D">
+
+<!-- APPLE TOUCH ICONS (generated at runtime via canvas) -->
+<link rel="apple-touch-icon" id="apple-touch-icon" sizes="180x180">
+
+<!-- OG META -->
+<meta property="og:title" content="DebriF1 — La strategia che non vedi">
+<meta property="og:description" content="Analisi post-gara, dati e retroscena F1. Ogni lunedì dopo il GP.">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#F7F6F3;--white:#FFFFFF;--red:#D62828;--red-dim:#A01E1E;--red-pale:#FDF0F0;
+  --black:#0D0D0D;--dark:#1A1A1A;--mid:#444444;--muted:#888885;
+  --border:#E0DDD8;--border-dark:#C8C5BE;
+  --display:'Syne',sans-serif;--body:'IBM Plex Sans',system-ui,sans-serif;--mono:'IBM Plex Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--dark);font-family:var(--body);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:200;background:var(--black);border-bottom:2px solid var(--red);padding:0 40px;display:flex;justify-content:space-between;align-items:center;height:56px}
+.nav-logo{font-family:var(--display);font-size:22px;font-weight:800;color:var(--white);letter-spacing:-.5px;cursor:pointer}
+.nav-logo span{color:var(--red)}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#888885;text-decoration:none;cursor:pointer;padding:4px 0;border-bottom:2px solid transparent;transition:color .15s,border-color .15s}
+.nav-links a:hover,.nav-links a.active{color:var(--white);border-bottom-color:var(--red)}
+
+/* SECTIONS */
+.section{display:none}.section.active{display:block}
+
+/* HERO */
+.hero{background:var(--black);padding:72px 40px 64px;position:relative;overflow:hidden}
+.hero::before{content:'F1';position:absolute;right:-20px;top:-40px;font-family:var(--display);font-size:320px;font-weight:800;color:rgba(255,255,255,.02);line-height:1;pointer-events:none}
+.hero-inner{max-width:900px;margin:0 auto;position:relative}
+.hero-tag{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--red);border:1px solid var(--red-dim);padding:4px 10px;margin-bottom:24px}
+.hero h1{font-family:var(--display);font-size:clamp(36px,5vw,64px);font-weight:800;color:var(--white);line-height:1.05;letter-spacing:-1px;margin-bottom:20px;max-width:720px}
+.hero h1 span{color:var(--red)}
+.hero-sub{font-size:16px;color:#888885;font-weight:300;max-width:480px;line-height:1.6;margin-bottom:36px}
+.hero-cta{display:inline-block;background:var(--red);color:var(--white);font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:12px 24px;cursor:pointer;border:none;transition:background .15s}
+.hero-cta:hover{background:var(--red-dim)}
+.latest-strip{background:var(--white);border-bottom:1px solid var(--border);padding:12px 40px;display:flex;align-items:center;gap:16px}
+.strip-label{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--white);background:var(--red);padding:3px 8px;white-space:nowrap;flex-shrink:0}
+.strip-text{font-family:var(--mono);font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.strip-text strong{color:var(--dark)}
+.strip-text em{color:var(--muted);font-style:normal}
+.ticker-fade-in{animation:tickerIn .5s ease forwards}
+.ticker-fade-out{animation:tickerOut .4s ease forwards}
+@keyframes tickerIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+@keyframes tickerOut{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(-6px)}}
+
+/* ARTICLES */
+.articles-wrap{max-width:1100px;margin:0 auto;padding:56px 40px 80px}
+.articles-toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;padding-bottom:16px;border-bottom:2px solid var(--black)}
+.toolbar-left{display:flex;align-items:baseline;gap:16px}
+.toolbar-left h2{font-family:var(--display);font-size:28px;font-weight:800;color:var(--black);letter-spacing:-.5px}
+.toolbar-left .count{font-family:var(--mono);font-size:11px;color:var(--muted)}
+.view-toggle{display:flex;gap:2px}
+.view-btn{background:none;border:1px solid var(--border-dark);color:var(--muted);cursor:pointer;padding:6px 10px;font-family:var(--mono);font-size:10px;letter-spacing:.08em;transition:all .15s;display:flex;align-items:center;gap:5px}
+.view-btn.active{background:var(--black);color:var(--white);border-color:var(--black)}
+.view-btn:hover:not(.active){background:var(--bg);color:var(--dark)}
+
+/* GRID VIEW */
+.articles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border)}
+.article-card{background:var(--white);padding:28px 24px 24px;cursor:pointer;position:relative;overflow:hidden;display:flex;flex-direction:column;min-height:280px;transition:background .15s}
+.article-card:hover{background:var(--bg)}
+.preview-overlay{position:absolute;inset:0;background:var(--black);padding:24px;opacity:0;pointer-events:none;transition:opacity .2s ease;display:flex;flex-direction:column;justify-content:center}
+.article-card:hover .preview-overlay{opacity:1;pointer-events:auto}
+.preview-label{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin-bottom:12px}
+.preview-text{font-family:var(--body);font-size:13px;color:#B0ADA6;line-height:1.65;font-style:italic;font-weight:300;display:-webkit-box;-webkit-line-clamp:8;-webkit-box-orient:vertical;overflow:hidden}
+.preview-cta{margin-top:20px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--red)}
+.preview-cta::after{content:' →'}
+.card-issue{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.card-tag{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:2px 7px;border:1px solid var(--border-dark);color:var(--muted);margin-bottom:14px}
+.card-tag.tag-red{border-color:var(--red-dim);color:var(--red);background:var(--red-pale)}
+.card-title{font-family:var(--display);font-size:18px;font-weight:800;color:var(--black);line-height:1.2;letter-spacing:-.3px;margin-bottom:14px;flex:1}
+.card-meta{font-family:var(--mono);font-size:10px;color:var(--muted);display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:16px;border-top:1px solid var(--border)}
+.card-read{color:var(--red);font-size:9px;letter-spacing:.06em;text-transform:uppercase}
+
+/* LIST VIEW */
+.articles-list{display:flex;flex-direction:column;gap:1px;background:var(--border);border:1px solid var(--border)}
+.article-list-row{background:var(--white);display:flex;align-items:center;gap:20px;padding:16px 24px;cursor:pointer;transition:background .12s}
+.article-list-row:hover{background:var(--bg)}
+.list-num{font-family:var(--display);font-size:28px;font-weight:800;color:var(--border-dark);flex-shrink:0;width:48px;text-align:right;line-height:1}
+.list-divider{width:1px;height:40px;background:var(--border);flex-shrink:0}
+.list-info{flex:1;min-width:0}
+.list-tag{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.list-title{font-family:var(--display);font-size:17px;font-weight:800;color:var(--black);letter-spacing:-.3px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.list-meta{font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:3px}
+.list-arrow{font-family:var(--mono);font-size:12px;color:var(--red);flex-shrink:0}
+.articles-list{display:none}.articles-list.active{display:flex}
+.articles-grid{display:grid}.articles-grid.hidden{display:none}
+
+/* STANDINGS */
+.standings-wrap{max-width:960px;margin:0 auto;padding:56px 40px 80px}
+.standings-controls{display:flex;align-items:center;gap:16px;margin-bottom:32px;padding-bottom:16px;border-bottom:2px solid var(--black);flex-wrap:wrap}
+.standings-controls h2{font-family:var(--display);font-size:28px;font-weight:800;color:var(--black);letter-spacing:-.5px}
+.gp-select{font-family:var(--mono);font-size:11px;letter-spacing:.06em;background:var(--white);border:1px solid var(--border-dark);color:var(--dark);padding:8px 32px 8px 14px;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23888885'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;outline:none}
+.gp-select:focus{border-color:var(--red)}
+.standings-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.standings-table{background:var(--white);border:1px solid var(--border);border-top:3px solid var(--black);overflow:hidden}
+.standings-table-header{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:baseline}
+.standings-table-title{font-family:var(--display);font-size:16px;font-weight:800;color:var(--black);letter-spacing:-.3px}
+.standings-round{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.standings-row{display:flex;align-items:center;padding:10px 20px;border-bottom:1px solid var(--border);gap:12px;transition:background .1s}
+.standings-row:last-child{border-bottom:none}
+.standings-row:hover{background:var(--bg)}
+.pos{font-family:var(--display);font-size:14px;font-weight:800;color:var(--muted);width:20px;flex-shrink:0;text-align:center}
+.pos.p1{color:#B8963E}.pos.p2{color:#8A8A8A}.pos.p3{color:#A0674A}
+.team-bar{width:3px;height:28px;border-radius:1px;flex-shrink:0}
+.driver-info{flex:1;min-width:0}
+.driver-name{font-family:var(--display);font-size:13px;font-weight:700;color:var(--black);letter-spacing:-.2px;line-height:1.2}
+.driver-team{font-family:var(--mono);font-size:9px;color:var(--muted);margin-top:1px}
+.pts-bar-wrap{height:3px;background:var(--border);margin-top:5px;border-radius:2px;overflow:hidden}
+.pts-bar{height:100%;border-radius:2px}
+.driver-pts{font-family:var(--display);font-size:18px;font-weight:800;color:var(--dark);letter-spacing:-.5px;flex-shrink:0}
+.pts-zero{color:var(--muted)!important;font-size:14px!important}
+.driver-gap{font-family:var(--mono);font-size:10px;color:var(--muted);flex-shrink:0;min-width:72px;text-align:right}
+
+/* TEAM COLORS */
+.c-mercedes{background-color:#00D2BE}.c-ferrari{background-color:#E8002D}.c-mclaren{background-color:#FF8000}
+.c-redbull{background-color:#3671C6}.c-haas{background-color:#B6BABD}.c-racingbulls{background-color:#6692FF}
+.c-audi{background-color:#222222}.c-alpine{background-color:#FF87BC}.c-williams{background-color:#64C4FF}
+.c-cadillac{background-color:#555555}.c-astonmartin{background-color:#229971}
+
+/* CALENDAR */
+.calendar-wrap{max-width:900px;margin:0 auto;padding:56px 40px 80px}
+.calendar-legend{display:flex;gap:20px;margin-bottom:28px;flex-wrap:wrap}
+.legend-item{display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10px;color:var(--muted)}
+.legend-dot{width:8px;height:8px;border-radius:50%}
+.legend-dot.done{background:var(--border-dark)}.legend-dot.next{background:var(--red)}.legend-dot.sprint{background:#F5A623}.legend-dot.future{background:var(--border);border:1px solid var(--border-dark)}
+.calendar-list{display:flex;flex-direction:column;gap:1px;background:var(--border);border:1px solid var(--border)}
+.gp-row{background:var(--white);display:grid;grid-template-columns:44px 56px 1fr auto auto;align-items:center;cursor:pointer;transition:background .12s}
+.gp-row:hover{background:var(--bg)}
+.gp-row.done{opacity:.65}.gp-row.done:hover{opacity:1;background:#F0EDE8}
+.gp-row.next-race{background:var(--red-pale);border-left:3px solid var(--red)}.gp-row.next-race:hover{background:#FAE8E8}
+.gp-round{font-family:var(--mono);font-size:10px;font-weight:500;color:var(--muted);padding:16px 0 16px 18px}
+.gp-date{font-family:var(--mono);font-size:10px;color:var(--muted);padding:16px 8px;line-height:1.3}
+.gp-info{padding:16px 12px}
+.gp-name{font-family:var(--display);font-size:14px;font-weight:800;color:var(--black);letter-spacing:-.2px;line-height:1.2}
+.gp-circuit{font-family:var(--mono);font-size:9px;color:var(--muted);margin-top:2px}
+.gp-badges{padding:16px 8px;display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+.badge{font-family:var(--mono);font-size:8px;letter-spacing:.1em;text-transform:uppercase;padding:2px 6px;border-radius:2px;white-space:nowrap}
+.badge-sprint{background:#FFF3D6;color:#B07A00;border:1px solid #F5D78A}
+.badge-next{background:var(--red);color:white}
+.badge-done{background:var(--border);color:var(--muted)}
+.badge-new{background:#E8F4EC;color:#2D7A4A;border:1px solid #B0D9BD}
+.gp-winner{padding:16px 18px 16px 4px;text-align:right}
+.winner-name{font-family:var(--mono);font-size:10px;font-weight:500;color:var(--dark)}
+.winner-team{font-family:var(--mono);font-size:9px;color:var(--muted);margin-top:1px}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:500;opacity:0;pointer-events:none;transition:opacity .25s}
+.modal-overlay.open{opacity:1;pointer-events:auto}
+.modal{position:fixed;top:0;right:0;bottom:0;width:min(600px,100vw);background:var(--white);z-index:501;transform:translateX(100%);transition:transform .3s cubic-bezier(.4,0,.2,1);overflow-y:auto;display:flex;flex-direction:column}
+.modal.open{transform:translateX(0)}
+.modal-header{background:var(--black);padding:24px 28px 20px;position:sticky;top:0;z-index:10}
+.modal-close{position:absolute;top:20px;right:24px;background:none;border:none;color:#888885;font-family:var(--mono);font-size:20px;cursor:pointer;line-height:1;transition:color .15s}
+.modal-close:hover{color:var(--white)}
+.modal-round{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin-bottom:8px}
+.modal-title{font-family:var(--display);font-size:26px;font-weight:800;color:var(--white);letter-spacing:-.5px;line-height:1.15;margin-bottom:4px}
+.modal-subtitle{font-family:var(--mono);font-size:10px;color:#666;letter-spacing:.04em}
+.modal-body{padding:28px 28px 40px;flex:1}
+.result-hero{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:24px}
+.result-stat{background:var(--bg);padding:14px 16px}
+.result-stat-label{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.result-stat-value{font-family:var(--display);font-size:20px;font-weight:800;color:var(--black);letter-spacing:-.3px;line-height:1.1}
+.result-stat-value.red{color:var(--red)}
+.results-table{width:100%;border-collapse:collapse;margin-bottom:24px}
+.results-table th{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:8px 10px;text-align:left;border-bottom:2px solid var(--black);background:var(--bg)}
+.results-table td{font-family:var(--mono);font-size:11px;padding:9px 10px;border-bottom:1px solid var(--border);vertical-align:middle}
+.results-table tr:hover td{background:var(--bg)}
+.results-table tr.dnf td{opacity:.5}
+.result-pos{font-family:var(--display);font-size:13px;font-weight:800;color:var(--muted)}
+.result-pos.p1{color:#B8963E}.result-pos.p2{color:#8A8A8A}.result-pos.p3{color:#A0674A}
+.result-driver{color:var(--dark);font-weight:500}
+.result-team{font-size:9px;color:var(--muted);display:block;margin-top:1px}
+.result-gap{color:var(--mid);text-align:right}
+.result-fl{color:var(--red);font-size:9px}
+.tbar{display:inline-block;width:2px;height:14px;border-radius:1px;vertical-align:middle;margin-right:6px}
+.modal-section-title{font-family:var(--display);font-size:16px;font-weight:800;color:var(--black);letter-spacing:-.3px;margin:24px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.circuit-info-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:24px}
+.circuit-stat{background:var(--bg);padding:14px 16px}
+.circuit-stat-label{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.circuit-stat-value{font-family:var(--display);font-size:18px;font-weight:800;color:var(--black);letter-spacing:-.3px;line-height:1.1}
+.circuit-stat-unit{font-family:var(--mono);font-size:10px;color:var(--muted);margin-left:4px;font-weight:400}
+.circuit-desc{font-size:14px;line-height:1.7;color:var(--mid);font-weight:300;margin-bottom:20px}
+.circuit-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px}
+.circuit-tag{font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border:1px solid var(--border-dark);color:var(--muted)}
+.circuit-tag.highlight{border-color:var(--red-dim);color:var(--red);background:var(--red-pale)}
+.weekend-schedule{display:flex;flex-direction:column;gap:1px;background:var(--border)}
+.schedule-row{background:var(--white);display:flex;justify-content:space-between;align-items:center;padding:10px 14px}
+.schedule-session{font-family:var(--mono);font-size:10px;color:var(--dark);font-weight:500;letter-spacing:.03em}
+.schedule-time{font-family:var(--mono);font-size:10px;color:var(--muted)}
+.schedule-row.main-event{background:var(--red-pale)}.schedule-row.main-event .schedule-session{color:var(--red)}
+
+/* ARTICLE READER MODAL — FULL PAGE */
+.article-modal-header{background:var(--black);padding:32px 40px 28px;position:sticky;top:0;z-index:10}
+.article-modal-close{position:absolute;top:20px;right:32px;background:none;border:none;color:#888885;font-family:var(--mono);font-size:22px;cursor:pointer;line-height:1;transition:color .15s}
+.article-modal-close:hover{color:var(--white)}
+.article-modal-issue{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin-bottom:10px}
+.article-modal-title{font-family:var(--display);font-size:clamp(26px,4vw,48px);font-weight:800;color:var(--white);letter-spacing:-.5px;line-height:1.05;margin-bottom:8px;max-width:800px}
+.article-modal-sub{font-family:var(--mono);font-size:10px;color:#666;letter-spacing:.04em}
+.article-modal-body{padding:48px 40px 80px;flex:1;max-width:760px;margin:0 auto;width:100%}
+.article-pillola{background:var(--red-pale);border-top:2px solid var(--red);padding:20px 24px;margin-bottom:36px}
+.article-pillola-label{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin-bottom:10px}
+.article-pillola p{font-size:15px;color:var(--dark);line-height:1.7;font-style:italic;font-weight:300}
+.article-section-title{font-family:var(--display);font-size:22px;font-weight:800;color:var(--black);letter-spacing:-.4px;margin:36px 0 14px;padding-top:20px;border-top:2px solid var(--black)}
+.article-h3{font-family:var(--display);font-size:17px;font-weight:800;color:var(--black);margin:28px 0 10px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.article-body p{font-size:16px;line-height:1.78;color:var(--dark);margin-bottom:18px;font-weight:300}
+.article-body strong{font-weight:500;color:var(--black)}
+.article-callout{border-left:3px solid var(--red);padding:8px 20px;margin:24px 0;background:var(--red-pale)}
+.article-callout p{font-family:var(--body);font-size:15px;font-style:italic;color:var(--dark);line-height:1.5}
+.article-nums{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin:8px 0 24px}
+.article-num-card{background:var(--white);padding:16px 18px}
+.article-num-label{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.article-num-value{font-family:var(--display);font-size:32px;font-weight:800;color:var(--red);line-height:1;letter-spacing:-1px;margin:3px 0 3px}
+.article-num-desc{font-size:12px;color:var(--mid);font-weight:300;line-height:1.4}
+
+/* FOOTER */
+.site-footer{background:var(--black);padding:40px;display:flex;justify-content:space-between;align-items:center;border-top:2px solid var(--red)}
+.footer-logo{font-family:var(--display);font-size:24px;font-weight:800;color:var(--white);letter-spacing:-.5px}
+.footer-logo span{color:var(--red)}
+.footer-tagline{font-family:var(--mono);font-size:10px;color:var(--muted);text-align:right;line-height:1.7}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .nav{padding:0 20px}.hero{padding:48px 20px}
+  .articles-wrap,.standings-wrap,.calendar-wrap{padding:40px 20px 60px}
+  .articles-grid{grid-template-columns:1fr}.standings-grid{grid-template-columns:1fr}
+  .gp-winner{display:none}.site-footer{flex-direction:column;gap:16px;align-items:flex-start}
+  .footer-tagline{text-align:left}.latest-strip{padding:12px 20px}
+  .article-modal-body,.article-modal-header{padding-left:20px;padding-right:20px}
+}
+@media(max-width:500px){.nav-links{gap:16px}.nav-links a{font-size:10px}.gp-row{grid-template-columns:36px 48px 1fr auto}}
+/* ── PWA INSTALL BANNER ── */
+.pwa-banner{position:fixed;bottom:0;left:0;right:0;z-index:999;background:var(--black);border-top:2px solid var(--red);padding:16px 20px;display:flex;align-items:center;gap:16px;transform:translateY(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);box-shadow:0 -4px 24px rgba(0,0,0,.4)}
+.pwa-banner.show{transform:translateY(0)}
+.pwa-banner-icon{width:44px;height:44px;flex-shrink:0;border-radius:10px;overflow:hidden}
+.pwa-banner-icon canvas{display:block}
+.pwa-banner-text{flex:1;min-width:0}
+.pwa-banner-title{font-family:var(--display);font-size:15px;font-weight:800;color:var(--white);letter-spacing:-.2px}
+.pwa-banner-sub{font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:2px}
+.pwa-banner-btn{background:var(--red);color:var(--white);border:none;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:10px 18px;cursor:pointer;flex-shrink:0;transition:background .15s}
+.pwa-banner-btn:hover{background:var(--red-dim)}
+.pwa-banner-close{background:none;border:none;color:var(--muted);font-size:18px;cursor:pointer;padding:4px;flex-shrink:0;line-height:1;transition:color .15s}
+.pwa-banner-close:hover{color:var(--white)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.fade-up{animation:fadeUp .35s ease forwards;opacity:0}
+.fade-up:nth-child(1){animation-delay:.05s}.fade-up:nth-child(2){animation-delay:.1s}.fade-up:nth-child(3){animation-delay:.15s}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-logo" onclick="showSection('home')">DEBRI<span>F1</span></div>
+  <ul class="nav-links">
+    <li><a onclick="showSection('home')" id="nav-home" class="active">Articoli</a></li>
+    <li><a onclick="showSection('standings')" id="nav-standings">Classifiche</a></li>
+    <li><a onclick="showSection('calendar')" id="nav-calendar">Calendario</a></li>
+  </ul>
+</nav>
+
+<!-- ══════════ HOME ══════════ -->
+<div id="section-home" class="section active">
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-tag">Stagione 2026 · Round 1/24 completato</div>
+      <h1>La strategia<br>che non vedi.<br><span>Il retroscena.</span></h1>
+      <p class="hero-sub">Analisi post-gara, dati e tutto quello che i media tradizionali non hanno il tempo di approfondire. Ogni lunedì dopo il GP.</p>
+      <a href="https://debrif1.substack.com" target="_blank" class="hero-cta">Iscriviti alla newsletter →</a>
+    </div>
+  </div>
+  <div class="latest-strip">
+    <div class="strip-label">Dal paddock</div>
+    <div class="strip-text" id="quotes-ticker"></div>
+  </div>
+  <div class="articles-wrap">
+    <div class="articles-toolbar">
+      <div class="toolbar-left">
+        <h2>Tutti gli articoli</h2>
+        <span class="count">3 numeri · Stagione 2026</span>
+      </div>
+      <div class="view-toggle">
+        <button class="view-btn active" id="btn-grid" onclick="setView('grid')" title="Vista griglia">
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="currentColor"><rect x="0" y="0" width="5.5" height="5.5"/><rect x="7.5" y="0" width="5.5" height="5.5"/><rect x="0" y="7.5" width="5.5" height="5.5"/><rect x="7.5" y="7.5" width="5.5" height="5.5"/></svg>
+          Griglia
+        </button>
+        <button class="view-btn" id="btn-list" onclick="setView('list')" title="Vista lista">
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="currentColor"><rect x="0" y="0" width="13" height="2"/><rect x="0" y="5.5" width="13" height="2"/><rect x="0" y="11" width="13" height="2"/></svg>
+          Lista
+        </button>
+      </div>
+    </div>
+
+    <!-- GRID -->
+    <div class="articles-grid" id="articles-grid">
+      <div class="article-card fade-up" onclick="openArticle(0)">
+        <div class="preview-overlay">
+          <div class="preview-label">// La pillola</div>
+          <p class="preview-text">Russell vince. Antonelli secondo. Leclerc terzo, Hamilton quarto. La gara si decide al giro 11 con una Virtual Safety Car: Mercedes entra con entrambe le macchine, Ferrari no. Il distacco finale è quasi tre secondi tra Russell e Antonelli, ma il margine reale era molto più ampio. Verstappen recupera 14 posizioni dal fondo. McLaren è irriconoscibile.</p>
+          <div class="preview-cta">Leggi l'analisi completa</div>
+        </div>
+        <div class="card-issue">N°03 · 10 Marzo 2026</div>
+        <span class="card-tag tag-red">Debrief post-gara</span>
+        <h3 class="card-title">La gara è durata 11 giri. Il resto era gestione del danno.</h3>
+        <div class="card-meta"><span>GP Australia · Round 1/24</span><span class="card-read">Leggi →</span></div>
+      </div>
+      <div class="article-card fade-up" onclick="openArticle(1)">
+        <div class="preview-overlay">
+          <div class="preview-label">// La pillola</div>
+          <p class="preview-text">Il primo weekend del 2026 ha consegnato verdetti parziali ma già significativi. Mercedes è davanti — probabilmente di molto. Ferrari è seconda ma con un problema strategico cronico. Red Bull affronta la stagione più difficile dell'era Verstappen. McLaren, campione in carica, sembrava distante. La gerarchia è meno stabile di quanto sembri.</p>
+          <div class="preview-cta">Leggi l'analisi completa</div>
+        </div>
+        <div class="card-issue">N°02 · 09 Marzo 2026</div>
+        <span class="card-tag">Analisi scuderie</span>
+        <h3 class="card-title">Chi ha capito il 2026 e chi no. Il verdetto dopo Melbourne.</h3>
+        <div class="card-meta"><span>Power ranking · Stagione 2026</span><span class="card-read">Leggi →</span></div>
+      </div>
+      <div class="article-card fade-up" onclick="openArticle(2)">
+        <div class="preview-overlay">
+          <div class="preview-label">// La pillola</div>
+          <p class="preview-text">Il 2026 porta il cambiamento regolamentare più radicale nella storia moderna della F1: nuova aerodinamica attiva, 50% di potenza elettrica, addio al DRS, addio all'MGU-H. Le macchine sono più corte, più leggere, più difficili da guidare. In Australia si è visto che l'idea funziona — ma con effetti collaterali che nessuno aveva previsto completamente.</p>
+          <div class="preview-cta">Leggi l'analisi completa</div>
+        </div>
+        <div class="card-issue">N°01 · 08 Marzo 2026</div>
+        <span class="card-tag">Regolamento</span>
+        <h3 class="card-title">Il 2026 non è un aggiornamento. È una demolizione e ricostruzione.</h3>
+        <div class="card-meta"><span>Nuovo regolamento · 2026</span><span class="card-read">Leggi →</span></div>
+      </div>
+    </div>
+
+    <!-- LIST -->
+    <div class="articles-list" id="articles-list">
+      <div class="article-list-row" onclick="openArticle(2)">
+        <div class="list-num">01</div>
+        <div class="list-divider"></div>
+        <div class="list-info">
+          <div class="list-tag">Regolamento · 08 Marzo 2026</div>
+          <div class="list-title">Il 2026 non è un aggiornamento. È una demolizione e ricostruzione.</div>
+          <div class="list-meta">Nuovo regolamento · 2026</div>
+        </div>
+        <div class="list-arrow">→</div>
+      </div>
+      <div class="article-list-row" onclick="openArticle(1)">
+        <div class="list-num">02</div>
+        <div class="list-divider"></div>
+        <div class="list-info">
+          <div class="list-tag">Analisi scuderie · 09 Marzo 2026</div>
+          <div class="list-title">Chi ha capito il 2026 e chi no. Il verdetto dopo Melbourne.</div>
+          <div class="list-meta">Power ranking · Stagione 2026</div>
+        </div>
+        <div class="list-arrow">→</div>
+      </div>
+      <div class="article-list-row" onclick="openArticle(0)">
+        <div class="list-num">03</div>
+        <div class="list-divider"></div>
+        <div class="list-info">
+          <div class="list-tag">Debrief post-gara · 10 Marzo 2026</div>
+          <div class="list-title">La gara è durata 11 giri. Il resto era gestione del danno.</div>
+          <div class="list-meta">GP Australia · Round 1/24</div>
+        </div>
+        <div class="list-arrow">→</div>
+      </div>
+    </div>
+  </div>
+  <footer class="site-footer"><div class="footer-logo">DEBRI<span>F1</span></div><div class="footer-tagline">La strategia che non vedi.<br>Il retroscena che non ti raccontano.</div></footer>
+</div>
+
+<!-- ══════════ STANDINGS ══════════ -->
+<div id="section-standings" class="section">
+  <div class="standings-wrap">
+    <div class="standings-controls">
+      <h2>Classifiche</h2>
+      <select class="gp-select" id="standings-select" onchange="updateStandings()">
+        <option value="season">Stagione 2026 — Cumulativo</option>
+        <option value="aus">R01 · Australia</option>
+      </select>
+    </div>
+    <div id="standings-content"></div>
+  </div>
+  <footer class="site-footer"><div class="footer-logo">DEBRI<span>F1</span></div><div class="footer-tagline">La strategia che non vedi.<br>Il retroscena che non ti raccontano.</div></footer>
+</div>
+
+<!-- ══════════ CALENDAR ══════════ -->
+<div id="section-calendar" class="section">
+  <div class="calendar-wrap">
+    <div class="section-heading" style="display:flex;align-items:baseline;gap:16px;margin-bottom:32px;padding-bottom:16px;border-bottom:2px solid var(--black)">
+      <h2 style="font-family:var(--display);font-size:28px;font-weight:800;color:var(--black);letter-spacing:-.5px">Calendario 2026</h2>
+      <span style="font-family:var(--mono);font-size:11px;color:var(--muted)">24 Gran Premi · 6 Sprint · Clicca su ogni GP</span>
+    </div>
+    <div class="calendar-legend">
+      <div class="legend-item"><div class="legend-dot done"></div>Completato</div>
+      <div class="legend-item"><div class="legend-dot next"></div>Prossimo GP</div>
+      <div class="legend-item"><div class="legend-dot sprint"></div>Sprint weekend</div>
+      <div class="legend-item"><div class="legend-dot future"></div>In programma</div>
+    </div>
+    <div class="calendar-list" id="calendar-list"></div>
+  </div>
+  <footer class="site-footer"><div class="footer-logo">DEBRI<span>F1</span></div><div class="footer-tagline">La strategia che non vedi.<br>Il retroscena che non ti raccontano.</div></footer>
+</div>
+
+<!-- ══════════ GP/CIRCUIT MODAL ══════════ -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal()"></div>
+<div class="modal" id="gp-modal">
+  <div class="modal-header">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-round" id="modal-round"></div>
+    <div class="modal-title" id="modal-title"></div>
+    <div class="modal-subtitle" id="modal-subtitle"></div>
+  </div>
+  <div class="modal-body" id="modal-body"></div>
+</div>
+
+<!-- ══════════ ARTICLE MODAL ══════════ -->
+<div class="modal-overlay" id="article-overlay" style="z-index:600"></div>
+<div id="article-modal" style="position:fixed;inset:0;z-index:601;background:var(--white);overflow-y:auto;display:flex;flex-direction:column;opacity:0;pointer-events:none;transition:opacity .25s">
+  <div class="article-modal-header">
+    <button class="article-modal-close" onclick="closeArticle()">✕</button>
+    <div class="article-modal-issue" id="art-issue"></div>
+    <div class="article-modal-title" id="art-title"></div>
+    <div class="article-modal-sub" id="art-sub"></div>
+  </div>
+  <div class="article-modal-body" id="art-body"></div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════
+// ARTICLES DATA
+// ═══════════════════════════════════════════
+const ARTICLES = [
+  {
+    issue:"N°03 · 10 Marzo 2026", tag:"Debrief post-gara", sub:"GP Australia · Round 1/24 · Albert Park, Melbourne",
+    title:"La gara è durata 11 giri. Il resto era gestione del danno.",
+    pillola:"Russell vince. Antonelli secondo. Leclerc terzo, Hamilton quarto. La gara si decide al giro 11 quando una Virtual Safety Car offre a Mercedes la finestra perfetta per il pit stop. Ferrari resta fuori con entrambe le macchine — una scelta che Vasseur difende, che Leclerc difende, e che Hamilton critica già dalla macchina via radio. Il distacco finale è quasi tre secondi tra Russell e Antonelli, ma il margine reale era molto più ampio. Verstappen recupera 14 posizioni dal fondo. McLaren è irriconoscibile. Il campionato è appena iniziato, ma Mercedes ha già detto tutto quello che voleva dire.",
+    sections:[
+      {title:"Analisi — Quello che è successo davvero in 58 giri", content:[
+        {type:"p",text:"Cominciamo dalla fine per capire l'inizio. George Russell ha vinto il Gran Premio d'Australia 2026 con 2.9 secondi su Kimi Antonelli. Un margine che non racconta nulla di reale — Russell aveva gestito il vantaggio negli ultimi 15 giri, rallentando fino a dove era necessario. Il margine vero, in condizioni di gara aperta, era probabilmente il doppio. Forse di più."},
+        {type:"h3",text:"I 19 secondi che hanno deciso tutto"},
+        {type:"p",text:"Isack Hadjar si ferma a bordo pista. Fumo, ritiro, VSC automatica. Sono le 14:07 ora locale, giro 11 di 58. In quel momento la classifica è: Leclerc primo, Russell secondo, Antonelli terzo, Hamilton quarto. Due Ferrari davanti, due Mercedes subito dietro. Il team Mercedes non esita: doppio pit stop. Ferrari resta fuori."},
+        {type:"p",text:"La bandiera VSC era attiva da <strong>19 secondi</strong> quando Hamilton ha detto via radio \"almeno uno di noi doveva rientrare\". Non era frustrazione impulsiva — era l'analisi corretta di un pilota che in 7 titoli mondiali ha vissuto questo scenario centinaia di volte."},
+        {type:"quote",text:"\"Almeno uno di noi doveva rientrare.\" — Lewis Hamilton, giro 11, via radio"},
+        {type:"h3",text:"La logica di Ferrari: sbagliata, non irrazionale"},
+        {type:"p",text:"La narrazione facile è 'Ferrari ha sbagliato ancora strategia' e basta. È vera, ma è incompleta. Vasseur e Leclerc hanno spiegato il ragionamento: nel 2026, con gomme e degrado completamente sconosciuti, fermarsi al giro 11 avrebbe significato affrontare 47 giri con un set di Hard — una distanza non testata su nessun circuito con le nuove vetture."},
+        {type:"p",text:"Il problema non è la logica — è l'implementazione. <strong>Ferrari non aveva diviso la strategia tra i due piloti</strong>, strumento standard in F1 per coprire più scenari contemporaneamente. E quando la seconda VSC è arrivata con la pit lane bloccata da Bottas, non c'era piano B. Il problema Ferrari strategico non è nuovo. È sistemico. Dal 2019 a oggi ci sono stati almeno dieci episodi documentati in cui il muretto ha costato punti in situazioni identiche."},
+        {type:"h3",text:"La gestione energetica: il vero tema del weekend"},
+        {type:"p",text:"C'è un elemento della gara australiana che verrà ricordato come il simbolo dell'era 2026: il lift and coast. I piloti tolgono il gas prima della fine dei rettilinei per ricaricare la batteria. Verstappen lo ha chiamato \"Formula E sotto steroidi\" — una critica sottile ma reale. Norris e Ocon hanno parlato di gara \"artificiale\". Vasseur ha detto l'opposto: \"Non vedevo qualcosa di simile da 10 anni.\" Il paddock è spaccato."},
+      ]},
+      {title:"I numeri", nums:[
+        {label:"Gap Russell – Antonelli",value:"2.97s",desc:"Ma il margine reale era il doppio"},
+        {label:"Distacco Norris da Russell",value:"51s",desc:"Campione in carica fuori contesto"},
+        {label:"Rimonta Verstappen",value:"+14",desc:"Dal ventesimo al sesto posto"},
+        {label:"VSC attiva prima della richiesta Hamilton",value:"19s",desc:"Ferrari aveva tutto il tempo"},
+        {label:"Cambi di testa nei primi 10 giri",value:"×6",desc:"Il regolamento funziona in pista"},
+        {label:"Punti Mercedes vs Ferrari",value:"43–27",desc:"Gap aperto alla prima gara"},
+      ]},
+    ]
+  },
+  {
+    issue:"N°02 · 09 Marzo 2026", tag:"Analisi scuderie", sub:"Power ranking · Stagione 2026",
+    title:"Chi ha capito il 2026 e chi no. Il verdetto dopo Melbourne.",
+    pillola:"Il primo weekend del 2026 ha consegnato verdetti parziali ma già significativi. Mercedes è davanti — probabilmente di molto. Ferrari è seconda ma con un problema strategico cronico che si trascina da anni. Red Bull affronta la stagione più difficile dell'era Verstappen, con un motore tutto nuovo e un leader che ha già espresso dubbi. McLaren, campione in carica, è sembrata distante. La gerarchia è meno stabile di quanto sembri.",
+    sections:[
+      {title:"La mappa del potere reale", content:[
+        {type:"p",text:"Non tutte le scuderie si presentano al 2026 dalla stessa posizione. Il rivoluzionamento del regolamento ha rimescolato le carte, e i test pre-stagione hanno già iniziato a disegnare una gerarchia — anche se tutti nascondono il più possibile."},
+        {type:"h3",text:"Mercedes: il ritorno che non ti aspettavi così"},
+        {type:"p",text:"Bisogna essere onesti: pochi si aspettavano Mercedes così forte già alla prima gara. Russell parte in pole, Antonelli in prima fila, e la doppietta arriva in modo quasi controllato. In qualifica il gap era di circa <strong>8 decimi</strong>. In gara, Mercedes girava 3-4 decimi più veloce di Ferrari sui tempi sul giro. Se la W17 mantiene questo livello, Russell è un candidato reale al titolo."},
+        {type:"h3",text:"Ferrari: macchina buona, muro strategico invariato"},
+        {type:"p",text:"La SF-26 non è lenta. Leclerc ha preso la testa dalla quarta posizione alla prima curva. Hamilton dal settimo al terzo nel giro iniziale. Il turbo compatto della Ferrari sembra produrre partenze eccezionali — un vantaggio strutturale. Il problema è quello che succede quando si deve prendere una decisione. Vedi il giro 11."},
+        {type:"p",text:"Il problema Ferrari strategico non è nuovo. <strong>È sistemico.</strong> Il personale tecnico è cambiato parzialmente, la cultura decisionale no. Questo è il vero problema che Maranello deve risolvere nel 2026."},
+        {type:"h3",text:"Red Bull: la scommessa più grande della stagione"},
+        {type:"p",text:"Honda ha interrotto il rapporto con Red Bull per legarsi ad Aston Martin. Red Bull ora sviluppa il proprio powertrain con Ford — prima volta in assoluto. Il risultato in Australia: qualifica disastrosa e sesto posto finale dopo una rimonta da ventesimo. Verstappen durante i test aveva già detto 'non so dove siamo rispetto agli altri'. In Australia la risposta è arrivata: sono terzi o quarti."},
+        {type:"h3",text:"McLaren: il campione in carica è già in difficoltà"},
+        {type:"p",text:"Il dato più sorprendente di Australia non è la vittoria Mercedes — è il distacco McLaren. Norris ha chiuso a <strong>51 secondi</strong> da Russell. Il MCL39 non ha trovato il modo di funzionare con le nuove regole di gestione energetica. Con meno downforce da fondo e più enfasi sul powertrain, il vantaggio che aveva si è dissolto."},
+      ]},
+    ]
+  },
+  {
+    issue:"N°01 · 08 Marzo 2026", tag:"Regolamento", sub:"Nuovo regolamento tecnico · Era 2026",
+    title:"Il 2026 non è un aggiornamento. È una demolizione e ricostruzione.",
+    pillola:"Il 2026 porta il cambiamento regolamentare più radicale nella storia moderna della F1: nuova aerodinamica attiva, nuovo motore con il 50% di potenza elettrica, addio al DRS, addio all'MGU-H. Le macchine sono più corte, più leggere, più difficili da guidare. L'idea è avvicinare le vetture in gara e rendere i sorpassi più naturali. In Australia si è visto che l'idea funziona — ma con effetti collaterali che nessuno aveva previsto completamente.",
+    sections:[
+      {title:"Quello che è davvero cambiato e perché è importante", content:[
+        {type:"p",text:"Ogni qualche anno la Formula 1 'cambia tutto'. Di solito è marketing. Il 2026 è diverso: stavolta lo hanno fatto davvero, e lo hanno fatto su due fronti contemporaneamente — motore e aerodinamica — una cosa che non succedeva dalla fine dell'era turbo anni '80."},
+        {type:"h3",text:"Addio DRS, benvenuta aerodinamica attiva"},
+        {type:"p",text:"Il DRS è stato il sistema dominante di overtaking dal 2011 al 2025. Funzionava semplice: apri il flap del posteriore, guadagni velocità. Binario. Prevedibile. Il 2026 lo sostituisce con qualcosa di più sofisticato: le ali hanno elementi mobili. In curva restano chiuse per massimizzare il carico. Sui rettilinei si aprono per ridurre il drag — disponibile per tutti, in ogni giro, senza la condizione del gap."},
+        {type:"h3",text:"Il motore: la vera rivoluzione"},
+        {type:"p",text:"L'MGU-H è stato eliminato. Non è una semplificazione banale: era il cuore dell'efficienza termica. Al suo posto, l'MGU-K passa da 120kW a <strong>350kW</strong> — quasi triplicato. La distribuzione di potenza è ora 50% termica e 50% elettrica. In numeri assoluti: circa 400kW totali contro i 550-560kW precedenti. Meno potente in picco, ma con una curva di erogazione completamente diversa."},
+        {type:"h3",text:"Il problema che nessuno dice chiaramente: la batteria"},
+        {type:"p",text:"In Australia si è visto il 'lift and coast' — togliere il gas prima della fine del rettilineo per ricaricare — diventato quasi obbligatorio. Leclerc al primo giro aveva già indicatori energetici vicino a zero. Verstappen l'ha chiamato 'Formula E sotto steroidi'. Il problema tecnico è reale e la FIA potrebbe intervenire sul regolamento energetico."},
+        {type:"h3",text:"Il caso del rapporto di compressione"},
+        {type:"p",text:"I nuovi regolamenti fissano il rapporto di compressione a 16:1. La FIA effettuava il controllo a temperatura ambiente, a motore fermo. Mercedes avrebbe trovato un sistema per tornare verso 18:1 durante l'utilizzo in pista. Stime circolate in paddock suggeriscono un vantaggio di circa <strong>13 cavalli</strong> — circa 3 decimi al giro. Ferrari, Audi e Honda hanno scritto una lettera formale alla FIA. Il nuovo test in condizioni operative parte dal 1° giugno: i primi 7 GP si corrono sotto le vecchie regole."},
+      ]},
+      {title:"I numeri", nums:[
+        {label:"Potenza MGU-K",value:"350kW",desc:"vs 120kW precedente: +192%"},
+        {label:"Split termico/elettrico",value:"50/50",desc:"Prima era circa 80/20"},
+        {label:"Peso minimo vettura",value:"768kg",desc:"vs 800kg del 2025: -32kg"},
+        {label:"Carico aerodinamico a 20m",value:"90%",desc:"vs 70% del 2025 — più sorpassi"},
+        {label:"Riduzione downforce",value:"-15%",desc:"Circa 2 secondi al giro più lente"},
+        {label:"Vantaggio stimato Mercedes",value:"~3s",desc:"Al giro per il rapporto di compressione"},
+      ]},
+    ]
+  }
+];
+
+// ═══════════════════════════════════════════
+// STANDINGS DATA
+// ═══════════════════════════════════════════
+const DRIVERS_SEASON=[
+  {pos:1,name:"George Russell",team:"Mercedes",color:"c-mercedes",pts:25},
+  {pos:2,name:"Kimi Antonelli",team:"Mercedes",color:"c-mercedes",pts:18},
+  {pos:3,name:"Charles Leclerc",team:"Ferrari",color:"c-ferrari",pts:15},
+  {pos:4,name:"Lewis Hamilton",team:"Ferrari",color:"c-ferrari",pts:12},
+  {pos:5,name:"Lando Norris",team:"McLaren",color:"c-mclaren",pts:10},
+  {pos:6,name:"Max Verstappen",team:"Red Bull",color:"c-redbull",pts:8},
+  {pos:7,name:"Oliver Bearman",team:"Haas",color:"c-haas",pts:6},
+  {pos:8,name:"Arvid Lindblad",team:"Racing Bulls",color:"c-racingbulls",pts:4},
+  {pos:9,name:"Gabriel Bortoleto",team:"Audi",color:"c-audi",pts:2},
+  {pos:10,name:"Pierre Gasly",team:"Alpine",color:"c-alpine",pts:1},
+  {pos:11,name:"Esteban Ocon",team:"Haas",color:"c-haas",pts:0},
+  {pos:12,name:"Alex Albon",team:"Williams",color:"c-williams",pts:0},
+  {pos:13,name:"Liam Lawson",team:"Racing Bulls",color:"c-racingbulls",pts:0},
+  {pos:14,name:"Franco Colapinto",team:"Alpine",color:"c-alpine",pts:0},
+  {pos:15,name:"Carlos Sainz",team:"Williams",color:"c-williams",pts:0},
+  {pos:16,name:"Sergio Pérez",team:"Cadillac",color:"c-cadillac",pts:0},
+  {pos:17,name:"Lance Stroll",team:"Aston Martin",color:"c-astonmartin",pts:0},
+  {pos:"RIT",name:"Fernando Alonso",team:"Aston Martin",color:"c-astonmartin",pts:0},
+  {pos:"RIT",name:"Valtteri Bottas",team:"Cadillac",color:"c-cadillac",pts:0},
+  {pos:"DNS",name:"Isack Hadjar",team:"Red Bull",color:"c-redbull",pts:0},
+  {pos:"DNS",name:"Oscar Piastri",team:"McLaren",color:"c-mclaren",pts:0},
+  {pos:"DNS",name:"Nico Hülkenberg",team:"Audi",color:"c-audi",pts:0},
+];
+const CONSTRUCTORS_SEASON=[
+  {pos:1,name:"Mercedes",drivers:"Russell · Antonelli",color:"c-mercedes",pts:43},
+  {pos:2,name:"Ferrari",drivers:"Leclerc · Hamilton",color:"c-ferrari",pts:27},
+  {pos:3,name:"McLaren",drivers:"Norris · Piastri",color:"c-mclaren",pts:10},
+  {pos:4,name:"Red Bull",drivers:"Verstappen · Hadjar",color:"c-redbull",pts:8},
+  {pos:5,name:"Haas",drivers:"Bearman · Ocon",color:"c-haas",pts:6},
+  {pos:6,name:"Racing Bulls",drivers:"Lindblad · Lawson",color:"c-racingbulls",pts:4},
+  {pos:7,name:"Audi",drivers:"Bortoleto · Hülkenberg",color:"c-audi",pts:2},
+  {pos:8,name:"Alpine",drivers:"Gasly · Colapinto",color:"c-alpine",pts:1},
+  {pos:9,name:"Williams",drivers:"Albon · Sainz",color:"c-williams",pts:0},
+  {pos:10,name:"Cadillac",drivers:"Bottas · Pérez",color:"c-cadillac",pts:0},
+  {pos:11,name:"Aston Martin",drivers:"Alonso · Stroll",color:"c-astonmartin",pts:0},
+];
+const AUS_RESULTS=[
+  {pos:1,name:"George Russell",team:"Mercedes",color:"c-mercedes",gap:"Vincitore",fl:false},
+  {pos:2,name:"Kimi Antonelli",team:"Mercedes",color:"c-mercedes",gap:"+2.974s",fl:false},
+  {pos:3,name:"Charles Leclerc",team:"Ferrari",color:"c-ferrari",gap:"+15.519s",fl:false},
+  {pos:4,name:"Lewis Hamilton",team:"Ferrari",color:"c-ferrari",gap:"+16.144s",fl:false},
+  {pos:5,name:"Lando Norris",team:"McLaren",color:"c-mclaren",gap:"+51.741s",fl:false},
+  {pos:6,name:"Max Verstappen",team:"Red Bull",color:"c-redbull",gap:"+54.617s",fl:true},
+  {pos:7,name:"Oliver Bearman",team:"Haas",color:"c-haas",gap:"+1 giro",fl:false},
+  {pos:8,name:"Arvid Lindblad",team:"Racing Bulls",color:"c-racingbulls",gap:"+1 giro",fl:false},
+  {pos:9,name:"Gabriel Bortoleto",team:"Audi",color:"c-audi",gap:"+1 giro",fl:false},
+  {pos:10,name:"Pierre Gasly",team:"Alpine",color:"c-alpine",gap:"+1 giro",fl:false},
+  {pos:11,name:"Esteban Ocon",team:"Haas",color:"c-haas",gap:"+1 giro",fl:false},
+  {pos:12,name:"Alex Albon",team:"Williams",color:"c-williams",gap:"+1 giro",fl:false},
+  {pos:13,name:"Liam Lawson",team:"Racing Bulls",color:"c-racingbulls",gap:"+1 giro",fl:false},
+  {pos:14,name:"Franco Colapinto",team:"Alpine",color:"c-alpine",gap:"+2 giri",fl:false},
+  {pos:15,name:"Carlos Sainz",team:"Williams",color:"c-williams",gap:"+2 giri",fl:false},
+  {pos:16,name:"Sergio Pérez",team:"Cadillac",color:"c-cadillac",gap:"+3 giri",fl:false},
+  {pos:"RIT",name:"Lance Stroll",team:"Aston Martin",color:"c-astonmartin",gap:"Ritiro",fl:false},
+  {pos:"RIT",name:"Fernando Alonso",team:"Aston Martin",color:"c-astonmartin",gap:"Ritiro",fl:false},
+  {pos:"RIT",name:"Valtteri Bottas",team:"Cadillac",color:"c-cadillac",gap:"Ritiro",fl:false},
+  {pos:"DNS",name:"Isack Hadjar",team:"Red Bull",color:"c-redbull",gap:"Non partito",fl:false},
+  {pos:"DNS",name:"Oscar Piastri",team:"McLaren",color:"c-mclaren",gap:"Non partito",fl:false},
+  {pos:"DNS",name:"Nico Hülkenberg",team:"Audi",color:"c-audi",gap:"Non partito",fl:false},
+];
+
+// ═══════════════════════════════════════════
+// CALENDAR + CIRCUIT DATA
+// ═══════════════════════════════════════════
+const CALENDAR_DATA=[
+  {round:"R01",date:"8 Mar",flag:"🇦🇺",name:"Australia",circuit:"Albert Park · Melbourne",sprint:false,status:"done",winner:"Russell",winnerTeam:"Mercedes",id:"aus"},
+  {round:"R02",date:"15 Mar",flag:"🇨🇳",name:"Cina",circuit:"Shanghai International Circuit",sprint:true,status:"next",winner:null,id:"chn"},
+  {round:"R03",date:"29 Mar",flag:"🇯🇵",name:"Giappone",circuit:"Suzuka Circuit",sprint:false,status:"future",winner:null,id:"jpn"},
+  {round:"R04",date:"12 Apr",flag:"🇧🇭",name:"Bahrain",circuit:"Bahrain International Circuit",sprint:false,status:"future",winner:null,id:"bhr"},
+  {round:"R05",date:"19 Apr",flag:"🇸🇦",name:"Arabia Saudita",circuit:"Jeddah Corniche Circuit",sprint:false,status:"future",winner:null,id:"ksa"},
+  {round:"R06",date:"3 Mag",flag:"🇺🇸",name:"Miami",circuit:"Miami International Autodrome",sprint:true,status:"future",winner:null,id:"mia"},
+  {round:"R07",date:"24 Mag",flag:"🇨🇦",name:"Canada",circuit:"Circuit Gilles Villeneuve",sprint:true,status:"future",winner:null,id:"can"},
+  {round:"R08",date:"7 Giu",flag:"🇲🇨",name:"Monaco",circuit:"Circuit de Monaco",sprint:false,status:"future",winner:null,id:"mon"},
+  {round:"R09",date:"14 Giu",flag:"🇪🇸",name:"Spagna",circuit:"Circuit de Barcelona-Catalunya",sprint:false,status:"future",winner:null,id:"esp"},
+  {round:"R10",date:"28 Giu",flag:"🇦🇹",name:"Austria",circuit:"Red Bull Ring · Spielberg",sprint:false,status:"future",winner:null,id:"aut"},
+  {round:"R11",date:"5 Lug",flag:"🇬🇧",name:"Gran Bretagna",circuit:"Silverstone Circuit",sprint:true,status:"future",winner:null,id:"gbr"},
+  {round:"R12",date:"19 Lug",flag:"🇧🇪",name:"Belgio",circuit:"Circuit de Spa-Francorchamps",sprint:false,status:"future",winner:null,id:"bel"},
+  {round:"R13",date:"26 Lug",flag:"🇭🇺",name:"Ungheria",circuit:"Hungaroring · Budapest",sprint:false,status:"future",winner:null,id:"hun"},
+  {round:"R14",date:"23 Ago",flag:"🇳🇱",name:"Paesi Bassi",circuit:"Circuit Zandvoort",sprint:true,status:"future",winner:null,id:"ned",isLast:true},
+  {round:"R15",date:"6 Set",flag:"🇮🇹",name:"Italia",circuit:"Autodromo Nazionale di Monza",sprint:false,status:"future",winner:null,id:"ita"},
+  {round:"R16",date:"13 Set",flag:"🇪🇸",name:"Madrid",circuit:"Circuito de Madrid · Debutto 2026",sprint:false,status:"future",winner:null,id:"mad",isNew:true},
+  {round:"R17",date:"26 Set",flag:"🇦🇿",name:"Azerbaigian",circuit:"Baku City Circuit · Gara sabato",sprint:false,status:"future",winner:null,id:"aze"},
+  {round:"R18",date:"11 Ott",flag:"🇸🇬",name:"Singapore",circuit:"Marina Bay Street Circuit",sprint:true,status:"future",winner:null,id:"sgp"},
+  {round:"R19",date:"25 Ott",flag:"🇺🇸",name:"USA",circuit:"Circuit of the Americas · Austin",sprint:false,status:"future",winner:null,id:"usa"},
+  {round:"R20",date:"1 Nov",flag:"🇲🇽",name:"Messico",circuit:"Autodromo Hermanos Rodríguez",sprint:false,status:"future",winner:null,id:"mex"},
+  {round:"R21",date:"8 Nov",flag:"🇧🇷",name:"Brasile",circuit:"Autodromo José Carlos Pace",sprint:false,status:"future",winner:null,id:"bra"},
+  {round:"R22",date:"21 Nov",flag:"🇺🇸",name:"Las Vegas",circuit:"Las Vegas Strip Circuit · Gara sabato",sprint:false,status:"future",winner:null,id:"lv"},
+  {round:"R23",date:"29 Nov",flag:"🇶🇦",name:"Qatar",circuit:"Lusail International Circuit",sprint:false,status:"future",winner:null,id:"qat"},
+  {round:"R24",date:"6 Dic",flag:"🇦🇪",name:"Abu Dhabi",circuit:"Yas Marina Circuit",sprint:false,status:"future",winner:null,id:"ad"},
+];
+
+const CIRCUIT_INFO={
+  aus:{length:"5.278",laps:58,corners:16,drs:4,lapRecord:{time:"1:20.235",driver:"Charles Leclerc",year:2022},desc:"Albert Park è un circuito semiurbano sul lago di Melbourne. Quattro zone DRS tengono il gruppo unito e favoriscono i sorpassi. La combinazione di rettilinei medi e curve veloci richiede un setup bilanciato. Con le nuove regole 2026 è stato il primo banco di prova dell'era: 120 sorpassi, 6 cambi di testa nei primi 10 giri.",tags:["4 zone DRS","Semiurbano","Setup bilanciato","Alta frequenza sorpassi"],schedule:[{s:"Prove Libere 1",t:"Giovedì 12:30"},{s:"Prove Libere 2",t:"Giovedì 16:00"},{s:"Prove Libere 3",t:"Sabato 12:30"},{s:"Qualifiche",t:"Sabato 16:00"},{s:"Gara",t:"Domenica 15:00",main:true}]},
+  chn:{length:"5.451",laps:56,corners:16,drs:2,lapRecord:{time:"1:32.238",driver:"Michael Schumacher",year:2004},desc:"Shanghai è uno dei tracciati più tecnici del calendario. Il rettilineo principale è il più lungo della stagione: con il nuovo sistema di gestione energetica del 2026 la ricarica della batteria sarà il fattore decisivo. La famosa esse del primo settore e la hairpin finale rimangono le zone di sorpasso chiave.",tags:["Rettilineo lunghissimo","Gestione batteria critica","Esse tecnica","Sprint weekend"],schedule:[{s:"Prove Libere 1",t:"Venerdì 11:30"},{s:"Sprint Qualifiche",t:"Venerdì 15:00",main:true},{s:"Sprint Race",t:"Sabato 11:00",main:true},{s:"Qualifiche",t:"Sabato 15:00"},{s:"Gara",t:"Domenica 09:00",main:true}]},
+  jpn:{length:"5.807",laps:53,corners:18,drs:1,lapRecord:{time:"1:30.983",driver:"Valtteri Bottas",year:2019},desc:"Suzuka è il tempio dell'automobilismo — l'unico circuito a figura di 8 del calendario. La celebre esse di Maggots/Becketts/Chapel ad alta velocità è la sequenza più impegnativa di tutta la stagione. Il 130R, curva a piena velocità, separa i coraggiosi dagli altri. Il tracciato premia il carico aerodinamico e punisce le macchine instabili.",tags:["Alta velocità","Esses iconiche","Figura di 8","Carico aero fondamentale"],schedule:[{s:"Prove Libere 1",t:"Venerdì 11:30"},{s:"Prove Libere 2",t:"Venerdì 15:00"},{s:"Prove Libere 3",t:"Sabato 11:30"},{s:"Qualifiche",t:"Sabato 15:00"},{s:"Gara",t:"Domenica 14:00",main:true}]},
+  bhr:{length:"5.412",laps:57,corners:15,drs:3,lapRecord:{time:"1:31.447",driver:"Pedro de la Rosa",year:2005},desc:"Sakhir è un circuito misto con tratti veloci e lenti alternati. Notoriamente duro sulle gomme posteriori per le accelerazioni ripetute in uscita dalle curve lente. Con tre zone DRS le battaglie ruota a ruota sono frequenti. La polvere del deserto migliora la traiettoria giro dopo giro.",tags:["3 zone DRS","Duro sulle gomme","Gara notturna","Degrado elevato"],schedule:[{s:"Prove Libere 1",t:"Giovedì 17:30"},{s:"Prove Libere 2",t:"Giovedì 21:00"},{s:"Prove Libere 3",t:"Sabato 17:30"},{s:"Qualifiche",t:"Sabato 21:00"},{s:"Gara",t:"Domenica 18:00",main:true}]},
+  ksa:{length:"6.174",laps:50,corners:27,drs:3,lapRecord:{time:"1:28.225",driver:"Lewis Hamilton",year:2021},desc:"Il circuito di Jeddah è il più veloce del calendario con una media superiore a 250 km/h. Tracciato cittadino ad alta velocità con muretti vicinissimi e visibilità ridotta per la velocità in curva. Tre zone DRS e lunghi rettilinei rendono i sorpassi frequenti. Il vento costiero crea condizioni variabili tra qualifica e gara.",tags:["Il più veloce del calendario","3 zone DRS","Cittadino ad alta velocità","Muretti vicinissimi"],schedule:[{s:"Prove Libere 1",t:"Giovedì 17:30"},{s:"Prove Libere 2",t:"Giovedì 21:00"},{s:"Prove Libere 3",t:"Sabato 17:30"},{s:"Qualifiche",t:"Sabato 21:00"},{s:"Gara",t:"Domenica 20:00",main:true}]},
+  mia:{length:"5.412",laps:57,corners:19,drs:3,lapRecord:{time:"1:27.241",driver:"Max Verstappen",year:2023},desc:"Miami International Autodrome è un circuito permanente costruito attorno allo stadio Hard Rock. Il layout alterna rettilinei lunghi a sezioni tecniche strette. Con tre zone DRS e la tipica umidità floridiana, il degrado gomme è elevato. Ospita uno dei tre Sprint weekend della stagione.",tags:["3 zone DRS","Sprint weekend","Umidità elevata","Circuito permanente"],schedule:[{s:"Prove Libere 1",t:"Venerdì 19:30"},{s:"Sprint Qualifiche",t:"Venerdì 23:30",main:true},{s:"Sprint Race",t:"Sabato 19:00",main:true},{s:"Qualifiche",t:"Domenica 18:00"},{s:"Gara",t:"Domenica 22:00",main:true}]},
+  can:{length:"4.361",laps:70,corners:14,drs:2,lapRecord:{time:"1:13.078",driver:"Valtteri Bottas",year:2019},desc:"Circuit Gilles Villeneuve è un classico tracciato cittadino sull'île Notre-Dame. Famoso per il muro dei campioni nell'ultima chicane — ha mangiato più di un titolo potenziale. Layout stop-and-go con lunghi rettilinei e frenate brutali. La pioggia è frequente a giugno e può capovolgere la gara in pochi giri.",tags:["Muro dei campioni","Stop-and-go","Pioggia frequente","Sprint weekend"],schedule:[{s:"Prove Libere 1",t:"Venerdì 19:30"},{s:"Sprint Qualifiche",t:"Venerdì 23:30",main:true},{s:"Sprint Race",t:"Sabato 18:30",main:true},{s:"Qualifiche",t:"Domenica 18:00"},{s:"Gara",t:"Domenica 20:00",main:true}]},
+  mon:{length:"3.337",laps:78,corners:19,drs:1,lapRecord:{time:"1:12.909",driver:"Max Verstappen",year:2023},desc:"Monaco è l'anomalia del calendario. Il tracciato più stretto, più lento, più iconico. Sorpassare è quasi impossibile — la qualifica vale come la gara. La strategia nei box e il traffico nelle corsie diventano l'intera competizione. Un anacronismo magnifico che resiste da 75 anni sul calendario.",tags:["Sorpassi quasi impossibili","Qualifica decisiva","Tunnel iconico","Strada vera"],schedule:[{s:"Prove Libere 1",t:"Giovedì 13:30"},{s:"Prove Libere 2",t:"Giovedì 17:00"},{s:"Prove Libere 3",t:"Sabato 12:30"},{s:"Qualifiche",t:"Sabato 16:00"},{s:"Gara",t:"Domenica 15:00",main:true}]},
+  esp:{length:"4.657",laps:66,corners:16,drs:2,lapRecord:{time:"1:16.330",driver:"Max Verstappen",year:2023},desc:"L'ultimo GP di Spagna a Barcellona prima del trasferimento a Madrid. Il Circuit de Barcelona-Catalunya è storica sede dei test invernali — i team conoscono ogni millimetro dell'asfalto. Tracciato tecnico con diversi tipi di curva, dal veloce al lento.",tags:["Ultima edizione barcellona","Test invernali","Tracciato tecnico","Conosciutissimo dai team"],schedule:[{s:"Prove Libere 1",t:"Venerdì 13:30"},{s:"Prove Libere 2",t:"Venerdì 17:00"},{s:"Prove Libere 3",t:"Sabato 12:30"},{s:"Qualifiche",t:"Sabato 16:00"},{s:"Gara",t:"Domenica 15:00",main:true}]},
+  aut:{length:"4.318",laps:71,corners:10,drs:3,lapRecord:{time:"1:05.619",driver:"Carlos Sainz",year:2020},desc:"Il Red Bull Ring è il circuito con meno curve del calendario — solo 10. Layout veloce e aggressivo, con tre zone DRS che garantiscono sorpassi. L'altitudine (600m slm) riduce la potenza dei motori e la deportanza. I temporali pomeridiani delle Alpi stiriane possono stravolgere tutto in pochi minuti.",tags:["3 zone DRS","Solo 10 curve","600m di altitudine","Temporali alpini"],schedule:[{s:"Prove Libere 1",t:"Venerdì 13:30"},{s:"Prove Libere 2",t:"Venerdì 17:00"},{s:"Prove Libere 3",t:"Sabato 12:30"},{s:"Qualifiche",t:"Sabato 16:00"},{s:"Gara",t:"Domenica 15:00",main:true}]},
+  gbr:{length:"5.891",laps:52,corners:18,drs:2,lapRecord:{time:"1:27.097",driver:"Max Verstappen",year:2020},desc:"Silverstone è la casa del motorsport. Dal 1950 sede del primo Gran Premio del Campionato del Mondo. Il layout ad alta velocità con le famose sequenze di Maggots-Becketts-Chapel e Copse mette alla prova il coraggio dei piloti. Ospita uno Sprint weekend 2026 — il primo a Silverstone dal 2021.",tags:["Casa del motorsport","Maggots-Becketts iconiche","Sprint weekend","Alta velocità"],schedule:[{s:"Prove Libere 1",t:"Venerdì 13:30"},{s:"Sprint Qualifiche",t:"Venerdì 17:30",main:true},{s:"Sprint Race",t:"Sabato 12:30",main:true},{s:"Qualifiche",t:"Sabato 16:00"},{s:"Gara",t:"Domenica 15:00",main:true}]},
+  bel:{length:"7.004",laps:44,corners:20,drs:2,lapRecord:{time:"1:46.286",driver:"Valtteri Bottas",year:2018},desc:"Spa-Francorchamps è il circuito più lungo del calendario e uno dei più amati dai piloti. Raidillon-Eau Rouge, la combinazione di due curve in salita a piena velocità, è la selezione del coraggio. Il meteo belga cambia ogni 20 minuti. Ogni anno un temporale improvviso rimescola le strategie.",tags:["Il più lungo del calendario","Eau Rouge iconica","Meteo imprevedibile","7km di pista"],schedule:[{s:"Prove Libere 1",t:"Venerdì 13:30"},{s:"Prove Libere 2",t:"Venerdì 17:00"},{s:"Prove Libere 3",t:"Sabato 12:30"},{s:"Qualifiche",t:"Sabato 16:00"},{s:"Gara",t:"Domenica 15:00",main:true}]},
+  hun:{length:"4.381",laps:70,corners:14,drs:1,lapRecord:{time:"1:16.627",driver:"Lewis Hamilton",year:2020},desc:"L'Hungaroring è il contrario di Monza: lento, tortuoso, con pochissimi punti di sorpasso. Tracciato simile a Monaco ma senza i muretti — richiede il massimo carico aerodinamico e penalizza chi ha problemi di trazione. Il caldo di luglio a Budapest porta temperature dell'asfalto oltre i 50°C.",tags:["Carico massimo","1 solo DRS","Caldo estremo","Pochi sorpassi"],schedule:[{s:"Prove Libere 1",t:"Venerdì 13:30"},{s:"Prove Libere 2",t:"Venerdì 17:00"},{s:"Prove Libere 3",t:"Sabato 12:30"},{s:"Qualifiche",t:"Sabato 16:00"},{s:"Gara",t:"Domenica 15:00",main:true}]},
+  ned:{length:"4.259",laps:72,corners:14,drs:2,lapRecord:{time:"1:11.097",driver:"Max Verstappen",year:2021},desc:"Zandvoort ospita il suo ultimo Gran Premio nel 2026 prima di uscire dal calendario. Le dune costiere dell'Olanda del nord creano condizioni di vento uniche. Il famoso banking nelle ultime curve e la sequenza finale ad alta velocità rendono il tracciato molto diverso da tutti gli altri. Sprint weekend.",tags:["Ultimo GP a Zandvoort","Banking unico","Vento costiero","Sprint weekend"],schedule:[{s:"Prove Libere 1",t:"Venerdì 11:30"},{s:"Sprint Qualifiche",t:"Venerdì 15:00",main:true},{s:"Sprint Race",t:"Sabato 11:00",main:true},{s:"Qualifiche",t:"Sabato 15:00"},{s:"Gara",t:"Domenica 15:00",main:true}]},
+  ita:{length:"5.793",laps:53,corners:11,drs:2,lapRecord:{time:"1:21.046",driver:"Rubens Barrichello",year:2004},desc:"Monza è il Tempio della Velocità. Setup da monza significa: meno carico aerodinamico possibile per massimizzare la velocità di punta. Le slipstream battles in qualifica sono spettacolari. La curva Parabolica e la Variante del Rettifilo sono punti di sorpasso classici. I tifosi del Tifoso creano un'atmosfera unica.",tags:["Massima velocità","Minimo carico","Slipstream in qualifica","Tifosi Ferrari"],schedule:[{s:"Prove Libere 1",t:"Venerdì 13:30"},{s:"Prove Libere 2",t:"Venerdì 17:00"},{s:"Prove Libere 3",t:"Sabato 12:30"},{s:"Qualifiche",t:"Sabato 16:00"},{s:"Gara",t:"Domenica 15:00",main:true}]},
+  mad:{length:"5.474",laps:55,corners:22,drs:2,lapRecord:{time:"—",driver:"Record da stabilire",year:2026},desc:"Il Circuito de Madrid è il debutto assoluto in Formula 1. Costruito nell'area IFEMA-Valdebebas a est di Madrid, combina sezioni urbane e permanenti. Il rettilineo principale raggiunge i 340 km/h. Il settore centrale con chicane strette formerà treni di macchine simili a Suzuka. Layout ibrido sconosciuto a tutti.",tags:["Debutto assoluto","Record da stabilire","Layout ibrido","340 km/h sul rettilineo"],schedule:[{s:"Prove Libere 1",t:"Venerdì 13:30"},{s:"Prove Libere 2",t:"Venerdì 17:00"},{s:"Prove Libere 3",t:"Sabato 12:30"},{s:"Qualifiche",t:"Sabato 16:00"},{s:"Gara",t:"Domenica 15:00",main:true}]},
+  aze:{length:"6.003",laps:51,corners:20,drs:2,lapRecord:{time:"1:43.009",driver:"Charles Leclerc",year:2019},desc:"Baku City Circuit è un mash-up di circuiti: il rettilineo principale più lungo del calendario (2.2km), le stradine medievali della città vecchia con curve cieche, e il porto sullo sfondo. La Safety Car è praticamente garantita ogni anno. Gara il sabato.",tags:["Rettilineo da 2.2km","Strade medievali","Safety Car probabile","Gara il sabato"],schedule:[{s:"Prove Libere 1",t:"Giovedì 13:30"},{s:"Prove Libere 2",t:"Giovedì 17:00"},{s:"Prove Libere 3",t:"Venerdì 12:30"},{s:"Qualifiche",t:"Venerdì 16:00"},{s:"Gara",t:"Sabato 14:00",main:true}]},
+  sgp:{length:"5.063",laps:61,corners:23,drs:3,lapRecord:{time:"1:35.867",driver:"Lewis Hamilton",year:2023},desc:"Marina Bay è la gara notturna per eccellenza. 1600 proiettori illuminano 23 curve sulle strade di Singapore. Il calore e l'umidità tropicale portano le temperature dell'abitacolo oltre i 50°C. Safety Car statisticamente la più probabile di tutto il calendario. Sprint weekend per la prima volta.",tags:["Gara notturna","23 curve","Caldo tropicale","Sprint weekend 2026"],schedule:[{s:"Prove Libere 1",t:"Venerdì 17:30"},{s:"Sprint Qualifiche",t:"Venerdì 21:30",main:true},{s:"Sprint Race",t:"Sabato 17:00",main:true},{s:"Qualifiche",t:"Sabato 21:00"},{s:"Gara",t:"Domenica 20:00",main:true}]},
+  usa:{length:"5.513",laps:56,corners:20,drs:2,lapRecord:{time:"1:36.169",driver:"Charles Leclerc",year:2019},desc:"Circuit of the Americas è il tracciato americano per eccellenza, disegnato con le migliori curve del mondo: la curva 1 in salita è ispirata alla Roggia di Monza, le esse alla sezione di Suzuka, il Maggots/Becketts ad alta velocità. Pubblico texano caloroso e numeroso.",tags:["Curve da tutto il mondo","Curva 1 in salita","Texano e rumoroso","20 curve"],schedule:[{s:"Prove Libere 1",t:"Venerdì 19:30"},{s:"Prove Libere 2",t:"Venerdì 23:00"},{s:"Prove Libere 3",t:"Sabato 19:30"},{s:"Qualifiche",t:"Sabato 23:00"},{s:"Gara",t:"Domenica 21:00",main:true}]},
+  mex:{length:"4.304",laps:71,corners:17,drs:3,lapRecord:{time:"1:17.774",driver:"Valtteri Bottas",year:2021},desc:"L'Autodromo Hermanos Rodríguez è a 2200m di altitudine — la più alta del calendario. L'aria rarefatta riduce significativamente la deportanza aerodinamica e la potenza dei motori. Questo rende inefficaci le ali alte e favorisce le macchine con buona efficienza meccanica. Il Foro Sol, la tribuna che circonda la sezione finale, crea un'atmosfera unica.",tags:["2200m di altitudine","Aria rarefatta","Meno deportanza","Foro Sol iconico"],schedule:[{s:"Prove Libere 1",t:"Venerdì 18:30"},{s:"Prove Libere 2",t:"Venerdì 22:00"},{s:"Prove Libere 3",t:"Sabato 18:30"},{s:"Qualifiche",t:"Sabato 22:00"},{s:"Gara",t:"Domenica 21:00",main:true}]},
+  bra:{length:"4.309",laps:71,corners:15,drs:2,lapRecord:{time:"1:10.540",driver:"Valtteri Bottas",year:2018},desc:"Interlagos è uno dei circuiti più amati dai piloti e uno dei più caotici per meteo. La pioggia tropicale può arrivare in qualsiasi momento e capovolgere ogni previsione. Il tracciato corto e nervoso, con cambi di quota significativi, crea gare imprevedibili. Home race di tutti i piloti brasiliani della storia.",tags:["Pioggia imprevedibile","Cambi di quota","Brevissimo — 4.3km","Storia brasiliana"],schedule:[{s:"Prove Libere 1",t:"Venerdì 15:30"},{s:"Prove Libere 2",t:"Venerdì 19:00"},{s:"Prove Libere 3",t:"Sabato 15:30"},{s:"Qualifiche",t:"Sabato 19:00"},{s:"Gara",t:"Domenica 18:00",main:true}]},
+  lv:{length:"6.201",laps:50,corners:17,drs:2,lapRecord:{time:"1:35.490",driver:"Charles Leclerc",year:2023},desc:"Las Vegas Strip Circuit è il più lungo del calendario con 6.2km. Il rettilineo principale lungo la Strip è spettacolare ma il freddo notturno di novembre crea condizioni di grip basse e temperature gomme problematiche. Il show americano al massimo — ma anche gare di alta qualità tecnica.",tags:["Il più lungo — 6.2km","Freddo notturno","Strip di Las Vegas","Gara il sabato"],schedule:[{s:"Prove Libere 1",t:"Venerdì 04:30"},{s:"Prove Libere 2",t:"Sabato 04:00"},{s:"Qualifiche",t:"Sabato 08:00"},{s:"Gara",t:"Domenica 06:00",main:true}]},
+  qat:{length:"5.419",laps:57,corners:16,drs:1,lapRecord:{time:"1:24.319",driver:"Max Verstappen",year:2023},desc:"Il Lusail Circuit è stato costruito per la MotoGP e si vede: veloce, fluente, con molte curve ad alta velocità e pochissimi punti di sorpasso. Il calore del Qatar e le temperature elevate mettono gomme e piloti sotto stress estremo. Con un solo DRS, le battaglie ruota a ruota richiedono coraggio.",tags:["Costruito per MotoGP","Curioso, molto fluente","1 solo DRS","Caldo estremo"],schedule:[{s:"Prove Libere 1",t:"Giovedì 17:30"},{s:"Prove Libere 2",t:"Giovedì 21:00"},{s:"Prove Libere 3",t:"Sabato 17:30"},{s:"Qualifiche",t:"Sabato 21:00"},{s:"Gara",t:"Domenica 19:00",main:true}]},
+  ad:{length:"5.281",laps:58,corners:16,drs:2,lapRecord:{time:"1:26.103",driver:"Max Verstappen",year:2021},desc:"Yas Marina chiude ogni stagione con il finale sotto le luci di Abu Dhabi. Il tracciato è stato ridisegnato nel 2021 per favorire i sorpassi e ora è significativamente più veloce. Sede tradizionale della gara finale — molti titoli sono stati decisi qui. L'hotel Yas Viceroy attraversato dal tracciato è uno degli elementi più iconici del calendario.",tags:["Finale di stagione","Ridisegnato nel 2021","Hotel sul tracciato","Gara notturna"],schedule:[{s:"Prove Libere 1",t:"Giovedì 14:30"},{s:"Prove Libere 2",t:"Giovedì 18:00"},{s:"Prove Libere 3",t:"Sabato 14:30"},{s:"Qualifiche",t:"Sabato 18:00"},{s:"Gara",t:"Domenica 17:00",main:true}]},
+};
+
+// ═══════════════════════════════════════════
+// ARTICLE FUNCTIONS
+// ═══════════════════════════════════════════
+function openArticle(idx) {
+  const a = ARTICLES[idx];
+  document.getElementById('art-issue').textContent = a.issue;
+  document.getElementById('art-title').textContent = a.title;
+  document.getElementById('art-sub').textContent = a.sub;
+  let html = `<div class="article-pillola"><div class="article-pillola-label">// La pillola — 2 minuti</div><p>${a.pillola}</p></div>`;
+  a.sections.forEach(sec => {
+    html += `<div class="article-section-title">${sec.title}</div>`;
+    if (sec.content) {
+      html += `<div class="article-body">`;
+      sec.content.forEach(b => {
+        if (b.type==='p') html += `<p>${b.text}</p>`;
+        else if (b.type==='h3') html += `<div class="article-h3">${b.text}</div>`;
+        else if (b.type==='quote') html += `<div class="article-callout"><p>${b.text}</p></div>`;
+      });
+      html += `</div>`;
+    }
+    if (sec.nums) {
+      html += `<div class="article-nums">`;
+      sec.nums.forEach(n => {
+        html += `<div class="article-num-card"><div class="article-num-label">${n.label}</div><div class="article-num-value">${n.value}</div><div class="article-num-desc">${n.desc}</div></div>`;
+      });
+      html += `</div>`;
+    }
+  });
+  document.getElementById('art-body').innerHTML = html;
+  const m = document.getElementById('article-modal');
+  m.style.opacity = '1';
+  m.style.pointerEvents = 'auto';
+  m.scrollTop = 0;
+  document.body.style.overflow = 'hidden';
+}
+
+function closeArticle() {
+  const m = document.getElementById('article-modal');
+  m.style.opacity = '0';
+  m.style.pointerEvents = 'none';
+  document.body.style.overflow = '';
+}
+
+// ═══════════════════════════════════════════
+// VIEW TOGGLE
+// ═══════════════════════════════════════════
+function setView(v) {
+  const grid = document.getElementById('articles-grid');
+  const list = document.getElementById('articles-list');
+  if (v==='grid') {
+    grid.classList.remove('hidden'); list.classList.remove('active');
+    document.getElementById('btn-grid').classList.add('active');
+    document.getElementById('btn-list').classList.remove('active');
+  } else {
+    grid.classList.add('hidden'); list.classList.add('active');
+    document.getElementById('btn-list').classList.add('active');
+    document.getElementById('btn-grid').classList.remove('active');
+  }
+}
+
+// ═══════════════════════════════════════════
+// STANDINGS
+// ═══════════════════════════════════════════
+function buildStandingsHTML(drivers, constructors, roundLabel, showGap) {
+  const maxD = drivers.filter(d=>typeof d.pos==='number')[0]?.pts||1;
+  const maxC = constructors[0]?.pts||1;
+  const dRows = drivers.map(d => {
+    const isDNS = typeof d.pos!=='number';
+    const pClass = d.pos===1?'p1':d.pos===2?'p2':d.pos===3?'p3':'';
+    const pct = isDNS?0:Math.round((d.pts/maxD)*100);
+    const fl = d.fl?`<span style="font-family:var(--mono);font-size:8px;color:var(--red);margin-left:4px">⚡FL</span>`:'';
+    const right = showGap&&d.gap ? `<div class="driver-gap">${d.gap}</div>` : `<div class="driver-pts ${d.pts===0&&isDNS?'pts-zero':''}">${d.pts}</div>`;
+    return `<div class="standings-row" style="${isDNS?'opacity:0.5':''}"><div class="pos ${pClass}">${d.pos}</div><div class="team-bar ${d.color}"></div><div class="driver-info"><div class="driver-name">${d.name}${fl}</div><div class="driver-team">${d.team}</div><div class="pts-bar-wrap"><div class="pts-bar ${d.color}" style="width:${pct}%"></div></div></div>${right}</div>`;
+  }).join('');
+  const cRows = constructors.map(c => {
+    const pClass = c.pos===1?'p1':c.pos===2?'p2':c.pos===3?'p3':'';
+    const pct = Math.round((c.pts/maxC)*100);
+    return `<div class="standings-row"><div class="pos ${pClass}">${c.pos}</div><div class="team-bar ${c.color}"></div><div class="driver-info"><div class="driver-name">${c.name}</div><div class="driver-team">${c.drivers}</div><div class="pts-bar-wrap"><div class="pts-bar ${c.color}" style="width:${pct}%"></div></div></div><div class="driver-pts ${c.pts===0?'pts-zero':''}">${c.pts}</div></div>`;
+  }).join('');
+  return `<div class="standings-grid"><div class="standings-table"><div class="standings-table-header"><div class="standings-table-title">Piloti</div><div class="standings-round">${roundLabel}</div></div>${dRows}</div><div class="standings-table"><div class="standings-table-header"><div class="standings-table-title">Costruttori</div><div class="standings-round">${roundLabel}</div></div>${cRows}</div></div>`;
+}
+
+function updateStandings() {
+  const val = document.getElementById('standings-select').value;
+  const el = document.getElementById('standings-content');
+  if (val==='season') el.innerHTML = buildStandingsHTML(DRIVERS_SEASON,CONSTRUCTORS_SEASON,'1 / 24 GP',false);
+  else if (val==='aus') el.innerHTML = buildStandingsHTML(AUS_RESULTS,CONSTRUCTORS_SEASON,'R01 · Australia',true);
+}
+
+// ═══════════════════════════════════════════
+// CALENDAR
+// ═══════════════════════════════════════════
+function renderCalendar() {
+  const list = document.getElementById('calendar-list');
+  list.innerHTML = CALENDAR_DATA.map(gp => {
+    const isDone=gp.status==='done', isNext=gp.status==='next';
+    const badges=[
+      isDone?`<span class="badge badge-done">Completato</span>`:'',
+      isNext?`<span class="badge badge-next">Prossimo</span>`:'',
+      gp.sprint?`<span class="badge badge-sprint">Sprint</span>`:'',
+      gp.isNew?`<span class="badge badge-new">Nuovo</span>`:'',
+      gp.isLast?`<span class="badge" style="background:#f0f0f0;color:#666;border:1px solid #ddd">Ultimo</span>`:'',
+    ].filter(Boolean).join('');
+    const winner = isDone?`<div class="winner-name">${gp.winner}</div><div class="winner-team">${gp.winnerTeam}</div>`:`<div class="winner-name" style="color:var(--border-dark)">—</div>`;
+    return `<div class="gp-row ${isDone?'done':''} ${isNext?'next-race':''}" onclick="openGP('${gp.id}')"><div class="gp-round">${gp.round}</div><div class="gp-date">${gp.date}</div><div class="gp-info"><div class="gp-name">${gp.flag} ${gp.name}</div><div class="gp-circuit">${gp.circuit}</div></div><div class="gp-badges">${badges}</div><div class="gp-winner">${winner}</div></div>`;
+  }).join('');
+}
+
+// ═══════════════════════════════════════════
+// GP MODAL
+// ═══════════════════════════════════════════
+function openGP(id) {
+  const gp = CALENDAR_DATA.find(g=>g.id===id);
+  if (!gp) return;
+  const prep = n => n==='Gran Bretagna'?'di Gran Bretagna':`di ${n}`;
+  document.getElementById('modal-round').textContent = `${gp.round} · Stagione 2026`;
+  document.getElementById('modal-title').textContent = `${gp.flag} Gran Premio ${prep(gp.name)}`;
+  document.getElementById('modal-subtitle').textContent = `${gp.circuit} · ${gp.date} 2026`;
+  document.getElementById('modal-body').innerHTML = gp.status==='done' ? buildRaceModal(gp) : buildCircuitModal(gp);
+  document.getElementById('modal-overlay').classList.add('open');
+  document.getElementById('gp-modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.getElementById('gp-modal').classList.remove('open');
+  if (!document.getElementById('article-modal').classList.contains('open')) document.body.style.overflow='';
+}
+
+function buildRaceModal(gp) {
+  const rows = AUS_RESULTS.map(r => {
+    const isDnf = typeof r.pos!=='number';
+    const pClass = r.pos===1?'p1':r.pos===2?'p2':r.pos===3?'p3':'';
+    return `<tr class="${isDnf?'dnf':''}"><td><span class="result-pos ${pClass}">${r.pos}</span></td><td><span class="tbar ${r.color}"></span><span class="result-driver">${r.name}<span class="result-team">${r.team}</span></span></td><td class="result-gap">${r.gap}${r.fl?'<br><span class="result-fl">⚡ Giro più veloce</span>':''}</td></tr>`;
+  }).join('');
+  return `<div class="result-hero"><div class="result-stat"><div class="result-stat-label">Vincitore</div><div class="result-stat-value">Russell</div></div><div class="result-stat"><div class="result-stat-label">Pole Position</div><div class="result-stat-value">Russell</div></div><div class="result-stat"><div class="result-stat-label">Giro più veloce</div><div class="result-stat-value red">Verstappen</div></div><div class="result-stat"><div class="result-stat-label">Giri totali</div><div class="result-stat-value">58</div></div><div class="result-stat"><div class="result-stat-label">Sorpassi</div><div class="result-stat-value">120</div></div><div class="result-stat"><div class="result-stat-label">Momento chiave</div><div class="result-stat-value red">Giro 11</div></div></div><div class="modal-section-title">Classifica completa</div><table class="results-table"><thead><tr><th>Pos</th><th>Pilota</th><th style="text-align:right">Distacco</th></tr></thead><tbody>${rows}</tbody></table><div class="modal-section-title">Il momento chiave</div><p style="font-size:14px;color:var(--mid);line-height:1.7;font-weight:300">Giro 11 — Virtual Safety Car per il ritiro di Hadjar. Mercedes entra con entrambe le macchine. Ferrari resta fuori. Questo è il momento in cui la gara è stata decisa. Leggi l'analisi completa nel <strong>Numero 03 di DebriF1</strong>.</p>`;
+}
+
+function buildCircuitModal(gp) {
+  const info = CIRCUIT_INFO[gp.id] || {length:"—",laps:"—",corners:"—",drs:"—",lapRecord:{time:"—",driver:"Da stabilire",year:"2026"},desc:`Il Gran Premio ${gp.flag} ${gp.name} 2026. Informazioni dettagliate disponibili avvicinandosi al weekend.`,tags:["Stagione 2026"],schedule:[{s:"Prove Libere 1",t:"Venerdì"},{s:"Qualifiche",t:"Sabato"},{s:"Gara",t:"Domenica",main:true}]};
+  const tags = info.tags.map(t=>`<span class="circuit-tag${t.includes('critico')||t.includes('Debutto')||t.includes('fondamentale')||t.includes('record')||t.includes('Nuovo')||t.includes('Ultimo')?' highlight':''}">${t}</span>`).join('');
+  const sched = info.schedule.map(s=>`<div class="schedule-row ${s.main?'main-event':''}"><span class="schedule-session">${s.s}</span><span class="schedule-time">${s.t}</span></div>`).join('');
+  return `<div class="circuit-info-grid"><div class="circuit-stat"><div class="circuit-stat-label">Lunghezza</div><div class="circuit-stat-value">${info.length}<span class="circuit-stat-unit">km</span></div></div><div class="circuit-stat"><div class="circuit-stat-label">Giri</div><div class="circuit-stat-value">${info.laps}</div></div><div class="circuit-stat"><div class="circuit-stat-label">Curve</div><div class="circuit-stat-value">${info.corners}</div></div><div class="circuit-stat"><div class="circuit-stat-label">Zone DRS</div><div class="circuit-stat-value">${info.drs}</div></div></div><div class="modal-section-title">Il circuito</div><p class="circuit-desc">${info.desc}</p><div class="circuit-tags">${tags}</div><div class="modal-section-title">Record sul giro</div><p style="font-size:14px;color:var(--mid);line-height:1.7;font-weight:300;margin-bottom:24px"><strong style="color:var(--dark)">${info.lapRecord.time}</strong> &nbsp;·&nbsp; ${info.lapRecord.driver} &nbsp;·&nbsp; ${info.lapRecord.year}</p><div class="modal-section-title">Programma weekend${gp.sprint?' (Sprint)':''}</div><div class="weekend-schedule">${sched}</div>`;
+}
+
+// ═══════════════════════════════════════════
+// SECTION NAV + INIT
+// ═══════════════════════════════════════════
+function showSection(name) {
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+  document.getElementById('section-'+name).classList.add('active');
+  document.getElementById('nav-'+name).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+document.addEventListener('DOMContentLoaded',()=>{updateStandings();renderCalendar();});
+// ═══════════════════════════════════════════
+// QUOTES TICKER — GP Australia 2026
+// ═══════════════════════════════════════════
+const QUOTES = [
+  { driver: "George Russell", team: "Mercedes", quote: "\"I like this car, I like this engine. It's been a long time coming.\"" },
+  { driver: "Lando Norris", team: "McLaren", quote: "\"Siamo passati dalla miglior macchina mai costruita in F1 alla peggiore. Fa schifo.\"" },
+  { driver: "Charles Leclerc", team: "Ferrari", quote: "\"Non sai mai quando la batteria ti taglierà in rettilineo mentre stai difendendo.\"" },
+  { driver: "Lewis Hamilton", team: "Ferrari", quote: "\"La potenza va bene quando ce l'hai. Il problema è che non dura.\"" },
+  { driver: "Max Verstappen", team: "Red Bull", quote: "\"È come Formula E sotto steroidi.\"" },
+  { driver: "Lando Norris", team: "McLaren", quote: "\"È il caos. Aspettiamo che succeda qualcosa di brutto — e non è bello.\"" },
+  { driver: "Kimi Antonelli", team: "Mercedes", quote: "\"Che inizio di stagione. I sorpassi erano incredibili.\"" },
+];
+
+let quoteIdx = 0;
+const tickerEl = document.getElementById('quotes-ticker');
+
+function showQuote(idx) {
+  const q = QUOTES[idx];
+  tickerEl.innerHTML = `<strong>${q.driver} · ${q.team}</strong> — ${q.quote}`;
+  tickerEl.classList.remove('ticker-fade-out');
+  tickerEl.classList.add('ticker-fade-in');
+  setTimeout(() => tickerEl.classList.remove('ticker-fade-in'), 500);
+}
+
+function nextQuote() {
+  tickerEl.classList.add('ticker-fade-out');
+  setTimeout(() => {
+    quoteIdx = (quoteIdx + 1) % QUOTES.length;
+    showQuote(quoteIdx);
+  }, 400);
+}
+
+showQuote(0);
+setInterval(nextQuote, 5000);
+
+<!-- PWA INSTALL BANNER -->
+<div class="pwa-banner" id="pwa-banner">
+  <div class="pwa-banner-icon"><canvas id="banner-icon" width="44" height="44"></canvas></div>
+  <div class="pwa-banner-text">
+    <div class="pwa-banner-title">DebriF1</div>
+    <div class="pwa-banner-sub">Aggiungi alla home screen — si aggiorna automaticamente</div>
+  </div>
+  <button class="pwa-banner-btn" id="pwa-install-btn">Installa</button>
+  <button class="pwa-banner-close" id="pwa-dismiss-btn">✕</button>
+</div>
+
+<script>
+// ═══════════════════════════════════════════
+// PWA — ICON GENERATOR (Canvas)
+// ═══════════════════════════════════════════
+function generateIcon(canvas, size) {
+  const ctx = canvas.getContext('2d');
+  canvas.width = size;
+  canvas.height = size;
+  const r = size * 0.13; // border radius
+
+  // Background nero
+  ctx.fillStyle = '#0D0D0D';
+  roundRect(ctx, 0, 0, size, size, r);
+  ctx.fill();
+
+  // Bordo rosso bottom
+  ctx.fillStyle = '#D62828';
+  roundRect(ctx, 0, size * 0.88, size, size * 0.12, 0);
+  ctx.fill();
+
+  // Testo DEBRI
+  const fs1 = size * 0.22;
+  ctx.font = `800 ${fs1}px 'Arial Black', Arial, sans-serif`;
+  ctx.fillStyle = '#FFFFFF';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('DEBRI', size / 2, size * 0.38);
+
+  // Testo F1 in rosso
+  const fs2 = size * 0.30;
+  ctx.font = `800 ${fs2}px 'Arial Black', Arial, sans-serif`;
+  ctx.fillStyle = '#D62828';
+  ctx.fillText('F1', size / 2, size * 0.66);
+}
+
+function roundRect(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.lineTo(x + w - r, y);
+  ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+  ctx.lineTo(x + w, y + h - r);
+  ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+  ctx.lineTo(x + r, y + h);
+  ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+  ctx.lineTo(x, y + r);
+  ctx.quadraticCurveTo(x, y, x + r, y);
+  ctx.closePath();
+}
+
+// Genera icona nel banner
+generateIcon(document.getElementById('banner-icon'), 44);
+
+// Genera apple-touch-icon 180x180
+const appleCanvas = document.createElement('canvas');
+generateIcon(appleCanvas, 180);
+document.getElementById('apple-touch-icon').href = appleCanvas.toDataURL('image/png');
+
+// ═══════════════════════════════════════════
+// PWA — SERVICE WORKER (inline blob)
+// ═══════════════════════════════════════════
+const SW_CODE = `
+const CACHE = 'debrif1-v1';
+const PRECACHE = ['/'];
+
+self.addEventListener('install', e => {
+  e.waitUntil(
+    caches.open(CACHE).then(c => c.addAll(PRECACHE)).then(() => self.skipWaiting())
+  );
+});
+
+self.addEventListener('activate', e => {
+  e.waitUntil(
+    caches.keys().then(keys =>
+      Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))
+    ).then(() => self.clients.claim())
+  );
+});
+
+self.addEventListener('fetch', e => {
+  // Network-first: prova sempre la rete, fallback alla cache
+  e.respondWith(
+    fetch(e.request)
+      .then(res => {
+        if (res && res.status === 200 && e.request.method === 'GET') {
+          const clone = res.clone();
+          caches.open(CACHE).then(c => c.put(e.request, clone));
+        }
+        return res;
+      })
+      .catch(() => caches.match(e.request))
+  );
+});
+`;
+
+if ('serviceWorker' in navigator) {
+  const blob = new Blob([SW_CODE], { type: 'application/javascript' });
+  const swUrl = URL.createObjectURL(blob);
+  navigator.serviceWorker.register(swUrl).then(reg => {
+    console.log('[DebriF1] Service Worker registrato:', reg.scope);
+  }).catch(err => console.log('[DebriF1] SW error:', err));
+}
+
+// ═══════════════════════════════════════════
+// PWA — INSTALL PROMPT
+// ═══════════════════════════════════════════
+let deferredPrompt = null;
+const banner = document.getElementById('pwa-banner');
+const installBtn = document.getElementById('pwa-install-btn');
+const dismissBtn = document.getElementById('pwa-dismiss-btn');
+
+// Mostra banner solo se non già installata e non già dismissata
+const dismissed = sessionStorage.getItem('pwa-dismissed');
+const isStandalone = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone;
+
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  deferredPrompt = e;
+  if (!isStandalone && !dismissed) {
+    setTimeout(() => banner.classList.add('show'), 2500);
+  }
+});
+
+installBtn.addEventListener('click', async () => {
+  if (!deferredPrompt) {
+    // iOS: mostra istruzioni manuali
+    showIOSInstructions();
+    return;
+  }
+  banner.classList.remove('show');
+  deferredPrompt.prompt();
+  const { outcome } = await deferredPrompt.userChoice;
+  console.log('[DebriF1] Install outcome:', outcome);
+  deferredPrompt = null;
+});
+
+dismissBtn.addEventListener('click', () => {
+  banner.classList.remove('show');
+  sessionStorage.setItem('pwa-dismissed', '1');
+});
+
+// iOS non supporta beforeinstallprompt — mostra istruzioni
+function showIOSInstructions() {
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+  if (!isIOS) return;
+  alert('Per installare DebriF1:\n1. Tocca il pulsante Condividi (□↑) in basso\n2. Scorri e tocca "Aggiungi alla schermata Home"\n3. Tocca "Aggiungi" in alto a destra');
+}
+
+// Su iOS mostra il banner comunque dopo 3 secondi
+const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+if (isIOS && !isStandalone && !dismissed) {
+  setTimeout(() => banner.classList.add('show'), 3000);
+}
+
+// Nascondi banner se già in standalone
+if (isStandalone) {
+  banner.style.display = 'none';
+}
+
+document.addEventListener('keydown', e => { if(e.key==='Escape'){closeModal();closeArticle();} });
+</script>
+</body>
+</html>
