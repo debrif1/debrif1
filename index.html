@@ -5,7 +5,471 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>PITLANE — Formula 1 News, Classifiche e Calendario</title>
   <meta name="description" content="PITLANE è la tua fonte premium per news, classifiche aggiornate e calendario completo della Formula 1. Analisi tecniche, interviste esclusive e contenuti per veri appassionati.">
-  <link rel="stylesheet" href="style.css" />
+  <style>
+/* ── RESET & VARIABLES ── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg-dark:    #0a0a0a;
+  --bg-card:    #141416;
+  --bg-card2:   #1a1a1e;
+  --bg-surface: #111113;
+  --white:      #ffffff;
+  --gray:       #8a8a8e;
+  --gray-light: #c7c7cc;
+  --red:        #E10600;
+  --red-glow:   rgba(225,6,0,0.35);
+  --red-hover:  #ff1a0e;
+  --gold:       #FFD700;
+  --silver:     #C0C0C0;
+  --bronze:     #CD7F32;
+  --font:       'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --radius:     16px;
+  --radius-sm:  10px;
+  --nav-h:      56px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font);
+  background: var(--bg-dark);
+  color: var(--white);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  line-height: 1.5;
+}
+
+/* ── NAVBAR ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  height: var(--nav-h);
+  background: rgba(10,10,10,0.78);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 clamp(16px, 4vw, 48px);
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.nav-logo {
+  font-size: 20px; font-weight: 800; letter-spacing: 2px;
+  color: var(--white); text-decoration: none;
+  display: flex; align-items: center; gap: 8px;
+}
+.nav-logo .logo-accent { color: var(--red); }
+
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a {
+  color: rgba(255,255,255,0.7); text-decoration: none;
+  font-size: 13px; font-weight: 500; letter-spacing: 0.02em;
+  transition: color .2s; text-transform: uppercase;
+}
+.nav-links a:hover { color: var(--white); }
+
+.nav-cta {
+  background: var(--red); color: var(--white); text-decoration: none;
+  padding: 8px 20px; border-radius: 980px; font-size: 13px;
+  font-weight: 600; letter-spacing: 0.02em;
+  transition: background .2s, transform .15s, box-shadow .2s;
+}
+.nav-cta:hover { background: var(--red-hover); transform: scale(1.04); box-shadow: 0 0 20px var(--red-glow); }
+
+/* ── HAMBURGER ── */
+.hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+.hamburger span { display: block; width: 22px; height: 2px; background: var(--white); margin: 5px 0; border-radius: 2px; transition: .3s; }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; text-align: center;
+  padding: calc(var(--nav-h) + 60px) 24px 80px;
+  position: relative; overflow: hidden;
+  background:
+    radial-gradient(ellipse 60% 40% at 50% 55%, var(--red-glow) 0%, transparent 65%),
+    radial-gradient(ellipse 80% 50% at 20% 80%, rgba(225,6,0,0.08) 0%, transparent 50%),
+    var(--bg-dark);
+}
+
+.hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h60v60H0z' fill='none'/%3E%3Cpath d='M0 30h60M30 0v60' stroke='rgba(255,255,255,0.03)' stroke-width='1'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+.hero-eyebrow {
+  font-size: 13px; font-weight: 700; color: var(--red);
+  letter-spacing: 0.15em; text-transform: uppercase;
+  margin-bottom: 20px; opacity: 0; animation: fadeUp .8s .2s forwards;
+  display: flex; align-items: center; gap: 10px;
+}
+.hero-eyebrow::before, .hero-eyebrow::after {
+  content: ''; width: 24px; height: 1.5px; background: var(--red); opacity: .5;
+}
+
+.hero h1 {
+  font-size: clamp(42px, 7.5vw, 88px); font-weight: 900;
+  letter-spacing: -0.03em; line-height: 1.02; max-width: 800px;
+  opacity: 0; animation: fadeUp .9s .35s forwards;
+}
+.hero h1 .accent { color: var(--red); }
+
+.hero-sub {
+  margin-top: 24px; font-size: clamp(16px, 2.2vw, 20px);
+  color: var(--gray); max-width: 520px; line-height: 1.6;
+  opacity: 0; animation: fadeUp .9s .5s forwards;
+}
+
+.hero-cta-row {
+  margin-top: 40px; display: flex; gap: 16px;
+  flex-wrap: wrap; justify-content: center;
+  opacity: 0; animation: fadeUp .9s .65s forwards;
+}
+
+.btn-primary {
+  background: var(--red); color: var(--white);
+  padding: 15px 32px; border-radius: 980px; font-size: 16px;
+  font-weight: 600; text-decoration: none; border: none; cursor: pointer;
+  font-family: var(--font);
+  transition: background .2s, transform .15s, box-shadow .3s;
+}
+.btn-primary:hover { background: var(--red-hover); transform: scale(1.03); box-shadow: 0 0 30px var(--red-glow); }
+
+.btn-ghost {
+  background: transparent; color: var(--white);
+  padding: 15px 32px; border-radius: 980px; font-size: 16px;
+  font-weight: 500; text-decoration: none;
+  border: 1.5px solid rgba(255,255,255,0.2);
+  transition: border-color .2s, transform .15s, background .2s;
+}
+.btn-ghost:hover { border-color: rgba(255,255,255,0.5); transform: scale(1.03); background: rgba(255,255,255,0.04); }
+
+/* ── NEXT GP CARD (in hero) ── */
+.next-gp-card {
+  margin-top: 56px; opacity: 0; animation: fadeUp 1s .8s forwards;
+  background: rgba(20,20,22,0.8); border: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(16px); border-radius: var(--radius);
+  padding: 28px 36px; display: flex; align-items: center; gap: 32px;
+  max-width: 620px; width: 100%;
+}
+.next-gp-flag { font-size: 48px; }
+.next-gp-info { text-align: left; flex: 1; }
+.next-gp-label { font-size: 11px; font-weight: 700; color: var(--red); letter-spacing: 0.1em; text-transform: uppercase; }
+.next-gp-name { font-size: 22px; font-weight: 700; margin-top: 4px; }
+.next-gp-detail { font-size: 14px; color: var(--gray); margin-top: 4px; }
+.next-gp-countdown { text-align: center; }
+.countdown-val { font-size: 32px; font-weight: 800; color: var(--red); line-height: 1; }
+.countdown-lbl { font-size: 10px; color: var(--gray); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; }
+.countdown-grid { display: flex; gap: 16px; }
+.countdown-unit { text-align: center; }
+
+/* ── MARQUEE ── */
+.marquee-wrap {
+  background: var(--bg-surface); padding: 20px 0; overflow: hidden;
+  border-top: 1px solid rgba(255,255,255,0.04);
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.marquee-track { display: flex; gap: 48px; width: max-content; animation: marquee 25s linear infinite; }
+.marquee-item { font-size: 13px; font-weight: 600; color: var(--gray); white-space: nowrap; letter-spacing: 0.08em; text-transform: uppercase; }
+.marquee-item span { color: var(--red); margin-right: 8px; }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ── SECTION COMMON ── */
+.section-label {
+  display: inline-block; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--red); margin-bottom: 12px;
+}
+.section-title {
+  font-size: clamp(30px, 4.5vw, 52px); font-weight: 800;
+  letter-spacing: -0.025em; line-height: 1.1;
+}
+.section-sub { color: var(--gray); font-size: 17px; max-width: 480px; margin: 14px auto 0; line-height: 1.55; }
+.section-header { text-align: center; margin-bottom: 56px; }
+
+/* ── STANDINGS ── */
+.standings {
+  background: var(--bg-dark); padding: 100px 24px;
+}
+
+.tab-bar {
+  display: flex; justify-content: center; gap: 4px;
+  background: var(--bg-card); border-radius: 980px;
+  padding: 4px; max-width: 320px; margin: 0 auto 48px;
+}
+.tab-btn {
+  flex: 1; padding: 10px 24px; border-radius: 980px;
+  border: none; background: transparent; color: var(--gray);
+  font-size: 14px; font-weight: 600; cursor: pointer;
+  font-family: var(--font); transition: .25s;
+}
+.tab-btn.active { background: var(--red); color: var(--white); }
+
+.standings-table {
+  max-width: 800px; margin: 0 auto;
+  display: flex; flex-direction: column; gap: 8px;
+}
+
+.standing-row {
+  display: grid; grid-template-columns: 48px 1fr 180px;
+  align-items: center; gap: 16px;
+  background: var(--bg-card); border-radius: var(--radius-sm);
+  padding: 14px 20px; transition: transform .2s, box-shadow .2s, background .2s;
+  cursor: default;
+}
+.standing-row:hover { transform: translateX(4px); background: var(--bg-card2); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+
+.pos { font-size: 18px; font-weight: 800; text-align: center; min-width: 32px; }
+.pos-1 { color: var(--gold); }
+.pos-2 { color: var(--silver); }
+.pos-3 { color: var(--bronze); }
+
+.driver-info { display: flex; align-items: center; gap: 12px; }
+.driver-flag { font-size: 22px; }
+.driver-name { font-size: 15px; font-weight: 600; }
+.driver-team { font-size: 12px; color: var(--gray); margin-top: 2px; }
+
+.team-color {
+  width: 4px; height: 32px; border-radius: 4px; flex-shrink: 0;
+}
+
+.points-area { display: flex; align-items: center; gap: 12px; min-width: 160px; }
+.points-bar-bg { flex: 1; height: 4px; background: rgba(255,255,255,0.06); border-radius: 4px; overflow: hidden; }
+.points-bar { height: 100%; border-radius: 4px; transition: width .6s ease; }
+.points { font-size: 17px; font-weight: 700; white-space: nowrap; }
+.points span { font-size: 12px; color: var(--gray); font-weight: 500; margin-left: 4px; }
+
+.race-winner { font-size: 11px; color: var(--gold); margin-top: 2px; font-weight: 600; }
+
+/* ── ARTICLES ── */
+.articles { background: var(--bg-surface); padding: 100px 24px; }
+
+.articles-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px; max-width: 1100px; margin: 0 auto;
+}
+
+.article-card {
+  background: var(--bg-card); border-radius: var(--radius);
+  overflow: hidden; cursor: pointer;
+  transition: transform .3s, box-shadow .3s;
+  border: 1px solid rgba(255,255,255,0.04);
+}
+.article-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+
+.article-img {
+  width: 100%; aspect-ratio: 16/9;
+  background: linear-gradient(135deg, #1c1c1e, #2a2a2e);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 56px; position: relative; overflow: hidden;
+}
+.article-img::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to top, var(--bg-card) 0%, transparent 40%);
+}
+
+.article-tag {
+  position: absolute; top: 14px; left: 14px; z-index: 1;
+  background: var(--red); color: white; font-size: 10px;
+  font-weight: 700; padding: 4px 10px; border-radius: 20px;
+  letter-spacing: 0.06em; text-transform: uppercase;
+}
+
+.article-body { padding: 22px; }
+.article-title { font-size: 18px; font-weight: 700; line-height: 1.3; margin-bottom: 8px; letter-spacing: -0.01em; }
+.article-excerpt { font-size: 14px; color: var(--gray); line-height: 1.5; margin-bottom: 16px; }
+.article-meta { display: flex; align-items: center; justify-content: space-between; }
+.article-author { font-size: 12px; color: var(--gray-light); font-weight: 500; }
+.article-date { font-size: 12px; color: var(--gray); }
+
+/* ── CALENDAR ── */
+.calendar-section { background: var(--bg-dark); padding: 100px 24px; }
+
+.calendar-grid {
+  max-width: 900px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px;
+}
+
+.race-item {
+  display: flex; align-items: center; gap: 14px;
+  padding: 16px 18px; border-radius: var(--radius-sm);
+  background: var(--bg-card); transition: .2s;
+  border: 1px solid transparent;
+}
+.race-item:hover { background: var(--bg-card2); }
+.race-item.next-race { border-color: var(--red); background: rgba(225,6,0,0.06); }
+.race-item.completed { opacity: 0.45; }
+
+.race-flag { font-size: 28px; }
+.race-info { flex: 1; }
+.race-name { font-size: 14px; font-weight: 600; }
+.race-date { font-size: 12px; color: var(--gray); margin-top: 2px; }
+.race-status { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+.race-status.done { color: var(--gray); }
+.race-status.live { color: var(--red); }
+.race-status.upcoming { color: var(--gray); }
+
+/* ── NEWSLETTER ── */
+.newsletter { background: var(--bg-surface); padding: 100px 24px; text-align: center; }
+.newsletter p { color: var(--gray); font-size: 17px; margin-bottom: 36px; }
+.nl-form { display: flex; gap: 12px; max-width: 440px; margin: 0 auto; flex-wrap: wrap; justify-content: center; }
+.nl-form input {
+  flex: 1; min-width: 200px; background: var(--bg-card);
+  border: 1.5px solid rgba(255,255,255,0.1); border-radius: 980px;
+  padding: 14px 22px; color: var(--white); font-size: 15px;
+  font-family: var(--font); outline: none; transition: border-color .2s;
+}
+.nl-form input:focus { border-color: var(--red); }
+.nl-form input::placeholder { color: var(--gray); }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--bg-card); padding: 60px 24px 36px;
+  border-top: 1px solid rgba(255,255,255,0.04);
+}
+.footer-grid {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px; max-width: 1100px; margin: 0 auto 48px;
+}
+.footer-brand p { color: var(--gray); font-size: 14px; line-height: 1.6; margin-top: 12px; max-width: 240px; }
+.footer-col h4 { font-size: 12px; font-weight: 700; color: var(--gray-light); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px; }
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 10px; }
+.footer-col ul li a { color: var(--gray); font-size: 14px; text-decoration: none; transition: color .2s; }
+.footer-col ul li a:hover { color: var(--white); }
+.footer-bottom {
+  max-width: 1100px; margin: 0 auto; display: flex; flex-wrap: wrap;
+  gap: 12px; align-items: center; justify-content: space-between;
+  padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.06);
+}
+.footer-bottom p { font-size: 13px; color: var(--gray); }
+.footer-social { display: flex; gap: 16px; }
+.footer-social a { color: var(--gray); font-size: 18px; text-decoration: none; transition: color .2s; }
+.footer-social a:hover { color: var(--white); }
+
+/* ── ARTICLE MODAL ── */
+#article-modal {
+  position: fixed; inset: 0; z-index: 2000;
+  display: flex; align-items: center; justify-content: center;
+  pointer-events: none; opacity: 0; transition: opacity .3s;
+}
+#article-modal.open { pointer-events: all; opacity: 1; }
+
+.modal-overlay {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(8px);
+}
+
+.modal-content {
+  position: relative; z-index: 1;
+  background: var(--bg-card); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius); max-width: 720px; width: 92%;
+  max-height: 85vh; overflow-y: auto; padding: 40px 44px;
+  transform: translateY(20px); transition: transform .3s;
+  scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.1) transparent;
+}
+#article-modal.open .modal-content { transform: translateY(0); }
+
+.modal-close {
+  position: absolute; top: 16px; right: 18px;
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+  color: var(--white); width: 36px; height: 36px;
+  border-radius: 50%; font-size: 16px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .2s;
+}
+.modal-close:hover { background: rgba(255,255,255,0.12); }
+
+.modal-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.modal-tag {
+  background: var(--red); color: white; font-size: 11px;
+  font-weight: 700; padding: 4px 12px; border-radius: 20px;
+  letter-spacing: 0.06em; text-transform: uppercase;
+}
+.modal-num { font-size: 13px; color: var(--gray); font-weight: 600; }
+.modal-cat { font-size: 13px; color: var(--gray); margin-bottom: 16px; }
+
+.modal-title {
+  font-size: clamp(24px, 3.5vw, 34px); font-weight: 800;
+  letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 12px;
+}
+
+.modal-meta {
+  display: flex; gap: 8px; font-size: 13px; color: var(--gray);
+  margin-bottom: 28px; padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.modal-body h3 {
+  font-size: 18px; font-weight: 700; margin: 28px 0 12px;
+  color: var(--white); letter-spacing: -0.01em;
+}
+
+.modal-body p {
+  font-size: 16px; line-height: 1.7; color: rgba(255,255,255,0.82);
+  margin-bottom: 16px;
+}
+
+.modal-body .article-pill {
+  background: rgba(225,6,0,0.08); border-left: 3px solid var(--red);
+  padding: 16px 20px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  margin-bottom: 24px; font-size: 15px; line-height: 1.65;
+}
+
+.modal-body blockquote {
+  border-left: 3px solid var(--red); padding: 16px 20px;
+  margin: 20px 0; background: rgba(255,255,255,0.03);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-style: italic; color: rgba(255,255,255,0.75);
+  font-size: 15px; line-height: 1.6;
+}
+
+.article-stats {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 12px; margin: 28px 0 8px;
+}
+.stat {
+  background: rgba(255,255,255,0.04); border-radius: var(--radius-sm);
+  padding: 16px; text-align: center;
+}
+.stat-val { display: block; font-size: 24px; font-weight: 800; color: var(--red); }
+.stat-lbl { display: block; font-size: 11px; color: var(--gray); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.06em; }
+
+.modal-footer { margin-top: 28px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.06); }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:translateY(0); } }
+.reveal { opacity:0; transform:translateY(28px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+
+/* ── TOAST ── */
+#toast {
+  position: fixed; bottom: 28px; left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: rgba(20,20,22,0.95); color: var(--white);
+  padding: 14px 28px; border-radius: 980px; font-size: 15px; font-weight: 500;
+  backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1);
+  opacity: 0; transition: opacity .3s, transform .3s;
+  z-index: 9999; pointer-events: none;
+}
+#toast.show { opacity:1; transform: translateX(-50%) translateY(0); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-links.open { display: flex; flex-direction: column; position: absolute; top: var(--nav-h); left: 0; right: 0; background: rgba(10,10,10,0.95); padding: 24px; gap: 20px; border-bottom: 1px solid rgba(255,255,255,0.06); backdrop-filter: blur(20px); }
+  .hamburger { display: block; }
+  .next-gp-card { flex-direction: column; text-align: center; gap: 20px; }
+  .next-gp-info { text-align: center; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .articles-grid { grid-template-columns: 1fr; }
+  .calendar-grid { grid-template-columns: 1fr; }
+}
+  </style>
 </head>
 <body>
 
@@ -184,6 +648,355 @@
 <!-- TOAST -->
 <div id="toast"></div>
 
-<script src="script.js"></script>
+<script>
+/* ── F1 DATA — Aggiornato dopo GP Cina 2026 (15 Marzo 2026) ── */
+
+const drivers = [
+  { pos:1, name:"George Russell", team:"Mercedes", flag:"🇬🇧", pts:51, color:"#27F4D2" },
+  { pos:2, name:"Kimi Antonelli", team:"Mercedes", flag:"🇮🇹", pts:47, color:"#27F4D2" },
+  { pos:3, name:"Charles Leclerc", team:"Ferrari", flag:"🇲🇨", pts:34, color:"#E8002D" },
+  { pos:4, name:"Lewis Hamilton", team:"Ferrari", flag:"🇬🇧", pts:33, color:"#E8002D" },
+  { pos:5, name:"Oliver Bearman", team:"Haas", flag:"🇬🇧", pts:17, color:"#B6BABD" },
+  { pos:6, name:"Lando Norris", team:"McLaren", flag:"🇬🇧", pts:15, color:"#FF8000" },
+  { pos:7, name:"Pierre Gasly", team:"Alpine", flag:"🇫🇷", pts:9, color:"#FF87BC" },
+  { pos:8, name:"Max Verstappen", team:"Red Bull", flag:"🇳🇱", pts:8, color:"#3671C6" },
+  { pos:9, name:"Liam Lawson", team:"Racing Bulls", flag:"🇳🇿", pts:8, color:"#6692FF" },
+  { pos:10, name:"Arvid Lindblad", team:"Racing Bulls", flag:"🇬🇧", pts:4, color:"#6692FF" },
+  { pos:11, name:"Isack Hadjar", team:"Red Bull", flag:"🇫🇷", pts:4, color:"#3671C6" },
+  { pos:12, name:"Carlos Sainz", team:"Williams", flag:"🇪🇸", pts:2, color:"#00A0DE" },
+  { pos:13, name:"Franco Colapinto", team:"Alpine", flag:"🇦🇷", pts:1, color:"#FF87BC" },
+  { pos:14, name:"Oscar Piastri", team:"McLaren", flag:"🇦🇺", pts:0, color:"#FF8000" },
+  { pos:15, name:"Nico Hulkenberg", team:"Sauber/Audi", flag:"🇩🇪", pts:0, color:"#52E252" },
+];
+
+const constructors = [
+  { pos:1, name:"Mercedes", flag:"🇩🇪", pts:98, color:"#27F4D2" },
+  { pos:2, name:"Ferrari", flag:"🇮🇹", pts:67, color:"#E8002D" },
+  { pos:3, name:"Haas", flag:"🇺🇸", pts:17, color:"#B6BABD" },
+  { pos:4, name:"McLaren", flag:"🇬🇧", pts:15, color:"#FF8000" },
+  { pos:5, name:"Racing Bulls", flag:"🇮🇹", pts:12, color:"#6692FF" },
+  { pos:6, name:"Red Bull", flag:"🇦🇹", pts:12, color:"#3671C6" },
+  { pos:7, name:"Alpine", flag:"🇫🇷", pts:10, color:"#FF87BC" },
+  { pos:8, name:"Williams", flag:"🇬🇧", pts:2, color:"#00A0DE" },
+  { pos:9, name:"Sauber/Audi", flag:"🇨🇭", pts:0, color:"#52E252" },
+  { pos:10, name:"Cadillac", flag:"🇺🇸", pts:0, color:"#1d1d1f" },
+];
+
+/* ── ARTICOLI COMPLETI da DebriF1 ── */
+const articles = [
+  {
+    id: 1,
+    title:"L'ala Macarena è a Shanghai. Ferrari ha trovato il modo di battere la fisica.",
+    excerpt:"Ferrari porta a Shanghai un'ala posteriore che non si era mai vista in F1. Il flap ruota 270 gradi invece di 90. Il monopilone centrale sparisce. La riduzione del drag è tre volte superiore ai sistemi tradizionali.",
+    tag:"TECNICA", emoji:"🔧", author:"DebriF1", date:"15 Mar 2026", num:"N°07", cat:"GP Cina · Aerodinamica attiva",
+    body: `<p class="article-pill"><strong>La pillola:</strong> Ferrari ha spedito a Shanghai tre esemplari di un'ala posteriore che non si era mai vista in Formula 1. La chiamano Macarena — il nome viene da Vasseur, che ha paragonato il movimento dei flap alla coreografia degli anni '90. Il flap ruota 270 gradi invece di 90. Il monopilone centrale sparisce. Il drag si riduce in modo che nessuno aveva ancora tentato in Formula 1. I numeri che circolano nel paddock: 8-10 km/h in più sulla velocità di punta.</p>
+
+<h3>Come funziona — la spiegazione che nessuno ha fatto davvero</h3>
+<p>Partiamo dalla differenza fondamentale con il vecchio DRS. Il DRS era semplice: il flap superiore si alzava di 90 gradi, si apriva uno spazio tra i due elementi dell'ala, l'aria passava più facilmente. Riducevi il drag, guadagnavi velocità. Semplice, binario, prevedibile.</p>
+<p>La Macarena fa qualcosa di completamente diverso. Il flap non si alza — si capovolge. Ruota su se stesso di 270 gradi. In configurazione aperta l'ala non è semplicemente meno resistente — genera un lieve effetto portante verso l'alto invece del normale carico verso il basso. L'aria non trova resistenza, trova quasi un invito a passare. Il risultato è una riduzione del drag tre volte superiore rispetto a un'apertura tradizionale a 90 gradi.</p>
+
+<h3>Il segreto è dove hanno nascosto l'attuatore</h3>
+<p>Nelle ali tradizionali il comando idraulico — l'attuatore — è posizionato al centro, tra i due elementi alari. È visibile, è strutturale, ed è esso stesso una fonte di drag. Ferrari lo ha rimosso dal centro e lo ha spostato all'interno delle paratie laterali — le endplate che chiudono l'ala ai lati. Due effetti simultanei: il movimento di 270 gradi diventa meccanicamente possibile, e l'attuatore stesso smette di produrre resistenza aerodinamica.</p>
+
+<h3>La zona grigia regolamentare</h3>
+<p>Il regolamento tecnico 2026 definisce con precisione due configurazioni per l'ala posteriore: massimo carico e minima resistenza. Descrive i volumi, le posizioni, i limiti di ogni elemento. Quello che non descrive è la cinematica del passaggio tra le due — il movimento, la traiettoria, la posizione dell'ala mentre transita da una configurazione all'altra. Ferrari ha trovato in questo spazio la possibilità di far passare l'ala attraverso una posizione che in configurazione statica non sarebbe consentita.</p>
+
+<h3>Perché Ferrari ne aveva bisogno</h3>
+<p>La scelta della turbina più piccola sulla SF-26 — 85mm contro i 110mm di Mercedes — è stata deliberata. Garantisce partenze fulminee, risposta immediata nei curvoni veloci, meno peso sul retrotreno. Il costo è 20-30 cavalli in meno alla massima potenza sui rettilinei. La Macarena serve a compensare esattamente questa differenza.</p>
+
+<div class="article-stats">
+  <div class="stat"><span class="stat-val">270°</span><span class="stat-lbl">Rotazione flap</span></div>
+  <div class="stat"><span class="stat-val">3x</span><span class="stat-lbl">Riduzione drag</span></div>
+  <div class="stat"><span class="stat-val">8-10 km/h</span><span class="stat-lbl">Vantaggio velocità</span></div>
+  <div class="stat"><span class="stat-val">+7cv</span><span class="stat-lbl">Potenza equivalente</span></div>
+</div>`
+  },
+  {
+    id: 2,
+    title:"Russell ha spiegato perché partire dalla pole era uno svantaggio. Nessuno se n'era accorto.",
+    excerpt:"In Australia qualcosa non tornava. Chi partiva dalla pole faticava alla partenza. Chi partiva dal fondo no. Non era casualità. Era una regola. Russell l'ha spiegata giovedì a Shanghai.",
+    tag:"ANALISI", emoji:"📊", author:"DebriF1", date:"14 Mar 2026", num:"N°06", cat:"GP Cina · Regolamento · Shanghai",
+    body: `<p class="article-pill"><strong>La pillola:</strong> Il GP d'Australia aveva un segreto nascosto in bella vista. Chi partiva dalla pole arrivava al semaforo con metà della batteria già consumata. Chi partiva dal fondo arrivava con la batteria piena.</p>
+
+<h3>La regola che nessuno aveva letto</h3>
+<p>Il contatore del recupero energetico si azzera quando la macchina attraversa la linea del traguardo durante il giro di formazione. Sembra semplice. Non lo è.</p>
+<p>Chi parte dalla pole position — e dalle prime posizioni in griglia — è già oltre la linea del traguardo quando inizia il giro di formazione. Quando attraversa il traguardo durante il giro di formazione, non si azzera nulla: è già dentro il giro di gara. Tutto il recupero energetico del giro di formazione si accumula nel limite del primo giro.</p>
+<p>Chi parte dal fondo della griglia — posizioni 15-20 — è prima della linea del traguardo. Quando la attraversa durante il giro di formazione, il contatore si azzera. Inizia il giro di gara con la batteria come se non avesse mai fatto il giro di formazione.</p>
+
+<blockquote>"Ho accelerato, ho ricaricato la batteria e questo ha consumato circa il 50% del limite di recupero energia di quel giro." — George Russell, giovedì di Shanghai</blockquote>`
+  },
+  {
+    id: 3,
+    title:"120 sorpassi in Australia. Ma erano veri?",
+    excerpt:"120 sorpassi in Australia. Il 2025 ne aveva fatti 45. Un trionfo del nuovo regolamento — o forse no. Quando il 50% della potenza è elettrica e gestita da algoritmi, il pilota sorpassa o viene sorpassato dal software?",
+    tag:"OPINIONE", emoji:"💭", author:"DebriF1", date:"13 Mar 2026", num:"N°05", cat:"Regolamento 2026 · Spettacolo vs sostanza",
+    body: `<p class="article-pill"><strong>La pillola:</strong> Australia 2026: 120 sorpassi. Australia 2025: 45. Un trionfo del nuovo regolamento — o forse no. Quando il 50% della potenza è elettrica e gestita da algoritmi, il pilota sorpassa o viene sorpassato dal software?</p>
+
+<h3>Il problema con i 120 sorpassi</h3>
+<p>La domanda che si fanno i critici è questa: quanti di quei 120 sorpassi sono stati decisi da un pilota, e quanti dal momento in cui la batteria del sorpassato era scarica e quella del sorpassante carica? Nel 2026 il differenziale di velocità su un rettilineo dipende da chi ha energia nel pacco batteria in quel momento preciso.</p>
+
+<blockquote>"Sembra Formula E sotto steroidi." — Max Verstappen, GP Australia 2026</blockquote>
+
+<h3>La differenza del 2026</h3>
+<p>La differenza tra il 2026 e le rivoluzioni precedenti è strutturale: non è mai stato così alto il peso percentuale dell'energia non controllata direttamente dal pilota. Nel 2014 l'ibrido contribuiva il 20% circa. Oggi è il 50%.</p>
+
+<div class="article-stats">
+  <div class="stat"><span class="stat-val">120</span><span class="stat-lbl">Sorpassi 2026</span></div>
+  <div class="stat"><span class="stat-val">45</span><span class="stat-lbl">Sorpassi 2025</span></div>
+  <div class="stat"><span class="stat-val">50%</span><span class="stat-lbl">Potenza elettrica</span></div>
+</div>`
+  },
+  {
+    id: 4,
+    title:"Newey ha attaccato Honda in pubblico. Con il presidente HRC seduto accanto.",
+    excerpt:"Budget illimitato. Newey. Honda. Alonso. Sulla carta era la squadra del 2026. In Australia ha qualificato diciassettesima con quasi 4 secondi di ritardo. Alonso si è ritirato per precauzione — non c'erano pezzi di ricambio.",
+    tag:"ESCLUSIVA", emoji:"💣", author:"DebriF1", date:"12 Mar 2026", num:"N°04", cat:"Aston Martin · Honda · Newey",
+    body: `<p class="article-pill"><strong>La pillola:</strong> Budget illimitato. Newey. Honda. Alonso. Sulla carta era la squadra del 2026. In Australia ha qualificato diciassettesima — 3 secondi e 9 decimi dalla pole. Alonso si è ritirato perché non c'erano pezzi di ricambio.</p>
+
+<h3>Il buco di 18 mesi</h3>
+<p>Honda aveva annunciato il ritiro nel 2020, fermando lo sviluppo per anni. Quando hanno annunciato il ritorno con Aston Martin, il ritardo accumulato era di almeno 18 mesi rispetto a Ferrari o Mercedes.</p>
+
+<h3>Le vibrazioni distruttive</h3>
+<p>Il motore Honda 2026 vibra in modo distruttivo. Specchietti che si spaccano, cavi che si scollegano, e soprattutto: i pacchi batteria vengono sistematicamente distrutti dalle vibrazioni. A Melbourne, su quattro pacchi batterie portati, due erano compromessi prima ancora delle prove libere.</p>
+
+<blockquote>"Il telaio ha il potenziale per il Q3. Non più di un secondo dai vertici." — Adrian Newey, giovedì di Melbourne (con il presidente Honda Watanabe seduto accanto).</blockquote>`
+  },
+  {
+    id: 5,
+    title:"La gara è durata 11 giri. Il resto era gestione del danno.",
+    excerpt:"Russell vince. Antonelli secondo. Leclerc terzo, Hamilton quarto. La gara si decide al giro 11 con una Virtual Safety Car: Mercedes entra con entrambe le macchine, Ferrari no.",
+    tag:"GARA", emoji:"🏁", author:"DebriF1", date:"11 Mar 2026", num:"N°03", cat:"GP Australia · Round 1/24",
+    body: `<p class="article-pill"><strong>La pillola:</strong> Russell vince davanti ad Antonelli e Leclerc. La gara si decide al giro 11 con una Virtual Safety Car: Mercedes entra con entrambi i piloti, Ferrari resta fuori.</p>
+
+<h3>Quello che è successo davvero</h3>
+<p>La bandiera VSC era attiva da 19 secondi quando Hamilton ha detto via radio "almeno uno di noi doveva rientrare". Ferrari ha scelto di restare fuori perché nel 2026, con gomme e degrado sconosciuti, fermarsi al giro 11 significava affrontare 47 giri con un set di Hard, una distanza mai testata. Il problema è stato non dividere la strategia tra i due piloti per coprire entrambi gli scenari.</p>`
+  },
+  {
+    id: 6,
+    title:"Chi ha capito il 2026 e chi no. Il verdetto dopo Melbourne.",
+    excerpt:"Mercedes è davanti — probabilmente di molto. Ferrari è seconda ma con un problema strategico cronico. Red Bull affronta la stagione più difficile dell'era Verstappen. McLaren, campione in carica, sembrava distante.",
+    tag:"VERDETTO", emoji:"⚖️", author:"DebriF1", date:"10 Mar 2026", num:"N°02", cat:"Analisi scuderie · Power ranking",
+    body: `<p class="article-pill"><strong>Il verdetto in sintesi:</strong></p>
+
+<h3>Mercedes — I più forti</h3>
+<p>Russell e Antonelli gestiscono l'energia con una facilità che gli altri non hanno. Gap di circa 8 decimi in qualifica. La W17 è la macchina di riferimento in questa prima fase del 2026.</p>
+
+<h3>Ferrari — Veloce, ma…</h3>
+<p>Macchina veloce, ma cultura decisionale del muretto ancora deficitaria. Il turbo compatto garantisce partenze fulminee (Leclerc da 4° a 1° in Australia), ma la strategia costa cara. La Macarena potrebbe cambiare tutto.</p>
+
+<h3>Red Bull — In difficoltà</h3>
+<p>La scommessa Powertrains-Ford è difficile. In Australia sono partiti dal fondo e hanno rimontato fino al 6°, ma Verstappen è preoccupato. Il gap dalla vetta è significativo.</p>
+
+<h3>McLaren — La vera delusione</h3>
+<p>Norris ha chiuso a 51 secondi da Russell. La macchina non digerisce le nuove regole di gestione energetica. Da campioni del mondo a questo: serve una svolta radicale.</p>`
+  },
+];
+
+/* ── CALENDARIO 2026 ── */
+const races = [
+  { name:"GP Australia", flag:"🇦🇺", date:"9 Mar", status:"done", winner:"G. Russell" },
+  { name:"GP Cina", flag:"🇨🇳", date:"15 Mar", status:"done", winner:"K. Antonelli" },
+  { name:"GP Giappone", flag:"🇯🇵", date:"6 Apr", status:"next" },
+  { name:"GP Bahrain", flag:"🇧🇭", date:"13 Apr", status:"upcoming" },
+  { name:"GP Arabia Saudita", flag:"🇸🇦", date:"20 Apr", status:"upcoming" },
+  { name:"GP Miami", flag:"🇺🇸", date:"4 Mag", status:"upcoming" },
+  { name:"GP Emilia Romagna", flag:"🇮🇹", date:"18 Mag", status:"upcoming" },
+  { name:"GP Monaco", flag:"🇲🇨", date:"25 Mag", status:"upcoming" },
+  { name:"GP Spagna", flag:"🇪🇸", date:"1 Giu", status:"upcoming" },
+  { name:"GP Canada", flag:"🇨🇦", date:"15 Giu", status:"upcoming" },
+  { name:"GP Austria", flag:"🇦🇹", date:"29 Giu", status:"upcoming" },
+  { name:"GP Gran Bretagna", flag:"🇬🇧", date:"13 Lug", status:"upcoming" },
+  { name:"GP Belgio", flag:"🇧🇪", date:"27 Lug", status:"upcoming" },
+  { name:"GP Olanda", flag:"🇳🇱", date:"10 Ago", status:"upcoming" },
+  { name:"GP Italia", flag:"🇮🇹", date:"31 Ago", status:"upcoming" },
+  { name:"GP Azerbaijan", flag:"🇦🇿", date:"14 Set", status:"upcoming" },
+  { name:"GP Singapore", flag:"🇸🇬", date:"28 Set", status:"upcoming" },
+  { name:"GP USA", flag:"🇺🇸", date:"19 Ott", status:"upcoming" },
+  { name:"GP Messico", flag:"🇲🇽", date:"26 Ott", status:"upcoming" },
+  { name:"GP Brasile", flag:"🇧🇷", date:"9 Nov", status:"upcoming" },
+  { name:"GP Las Vegas", flag:"🇺🇸", date:"22 Nov", status:"upcoming" },
+  { name:"GP Qatar", flag:"🇶🇦", date:"30 Nov", status:"upcoming" },
+  { name:"GP Abu Dhabi", flag:"🇦🇪", date:"7 Dic", status:"upcoming" },
+];
+
+/* ── ARTICLE MODAL ── */
+function openArticle(id) {
+  const a = articles.find(x => x.id === id);
+  if (!a) return;
+  const modal = document.getElementById('article-modal');
+  modal.innerHTML = `
+    <div class="modal-overlay" onclick="closeArticle()"></div>
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeArticle()" aria-label="Chiudi">✕</button>
+      <div class="modal-header">
+        <span class="modal-tag">${a.tag}</span>
+        <span class="modal-num">${a.num}</span>
+      </div>
+      <div class="modal-cat">${a.cat}</div>
+      <h2 class="modal-title">${a.title}</h2>
+      <div class="modal-meta">
+        <span>${a.author}</span>
+        <span>·</span>
+        <span>${a.date}</span>
+      </div>
+      <div class="modal-body">${a.body}</div>
+      <div class="modal-footer">
+        <span style="font-size:13px;color:var(--gray);">Fonte: DebriF1 — La strategia che non vedi</span>
+      </div>
+    </div>
+  `;
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeArticle() {
+  const modal = document.getElementById('article-modal');
+  modal.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// Close on Escape
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeArticle();
+});
+
+/* ── RENDER STANDINGS ── */
+let currentTab = 'drivers';
+
+function renderStandings(tab) {
+  currentTab = tab;
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+  const container = document.getElementById('standings-list');
+  const data = tab === 'drivers' ? drivers : constructors;
+  const maxPts = data[0].pts;
+  container.innerHTML = data.map((d, i) => `
+    <div class="standing-row reveal" style="transition-delay:${i * 50}ms">
+      <div class="team-color" style="background:${d.color}"></div>
+      <div class="driver-info">
+        <span class="pos ${i < 3 ? 'pos-'+(i+1) : ''}">${d.pos}</span>
+        <span class="driver-flag">${d.flag}</span>
+        <div>
+          <div class="driver-name">${d.name}</div>
+          ${tab === 'drivers' ? `<div class="driver-team">${d.team}</div>` : ''}
+        </div>
+      </div>
+      <div class="points-area">
+        <div class="points-bar-bg">
+          <div class="points-bar" style="width:${maxPts > 0 ? (d.pts/maxPts*100) : 0}%; background:${d.color}"></div>
+        </div>
+        <div class="points">${d.pts}<span>PTS</span></div>
+      </div>
+    </div>
+  `).join('');
+  observeReveal();
+}
+
+/* ── RENDER ARTICLES ── */
+function renderArticles() {
+  document.getElementById('articles-grid').innerHTML = articles.map(a => `
+    <div class="article-card reveal" onclick="openArticle(${a.id})" role="button" tabindex="0">
+      <div class="article-img">
+        <span class="article-tag">${a.tag}</span>
+        ${a.emoji}
+      </div>
+      <div class="article-body">
+        <h3 class="article-title">${a.title}</h3>
+        <p class="article-excerpt">${a.excerpt}</p>
+        <div class="article-meta">
+          <span class="article-author">${a.author}</span>
+          <span class="article-date">${a.date}</span>
+        </div>
+      </div>
+    </div>
+  `).join('');
+  observeReveal();
+}
+
+/* ── RENDER CALENDAR ── */
+function renderCalendar() {
+  document.getElementById('calendar-grid').innerHTML = races.map(r => `
+    <div class="race-item ${r.status === 'next' ? 'next-race' : ''} ${r.status === 'done' ? 'completed' : ''} reveal">
+      <span class="race-flag">${r.flag}</span>
+      <div class="race-info">
+        <div class="race-name">${r.name}</div>
+        <div class="race-date">${r.date} 2026</div>
+        ${r.winner ? `<div class="race-winner">🏆 ${r.winner}</div>` : ''}
+      </div>
+      <span class="race-status ${r.status === 'done' ? 'done' : r.status === 'next' ? 'live' : 'upcoming'}">
+        ${r.status === 'done' ? '✓ Completato' : r.status === 'next' ? '● PROSSIMO' : r.date}
+      </span>
+    </div>
+  `).join('');
+  observeReveal();
+}
+
+/* ── COUNTDOWN (prossimo GP: Giappone, 6 Aprile 2026) ── */
+function updateCountdown() {
+  const raceDate = new Date('2026-04-06T14:00:00+09:00');
+  const now = new Date();
+  const diff = raceDate - now;
+  if (diff <= 0) {
+    document.getElementById('countdown').innerHTML = '<div class="countdown-unit"><div class="countdown-val" style="font-size:18px;">GARA IN CORSO</div></div>';
+    return;
+  }
+  const d = Math.floor(diff / 86400000);
+  const h = Math.floor((diff % 86400000) / 3600000);
+  const m = Math.floor((diff % 3600000) / 60000);
+  const s = Math.floor((diff % 60000) / 1000);
+  document.getElementById('countdown').innerHTML = `
+    <div class="countdown-unit"><div class="countdown-val">${d}</div><div class="countdown-lbl">Giorni</div></div>
+    <div class="countdown-unit"><div class="countdown-val">${String(h).padStart(2,'0')}</div><div class="countdown-lbl">Ore</div></div>
+    <div class="countdown-unit"><div class="countdown-val">${String(m).padStart(2,'0')}</div><div class="countdown-lbl">Min</div></div>
+    <div class="countdown-unit"><div class="countdown-val">${String(s).padStart(2,'0')}</div><div class="countdown-lbl">Sec</div></div>
+  `;
+}
+
+/* ── SCROLL REVEAL ── */
+function observeReveal() {
+  const els = document.querySelectorAll('.reveal:not(.observed)');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 60);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  els.forEach(el => { el.classList.add('observed'); io.observe(el); });
+}
+
+/* ── TOAST ── */
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2600);
+}
+
+/* ── NEWSLETTER ── */
+function handleNL(e) {
+  e.preventDefault();
+  showToast('🏁 Iscrizione completata! Benvenuto nel paddock.');
+  e.target.reset();
+}
+
+/* ── HAMBURGER ── */
+document.getElementById('hamburger').addEventListener('click', () => {
+  document.getElementById('nav-links').classList.toggle('open');
+});
+
+/* ── TAB CLICKS ── */
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => renderStandings(btn.dataset.tab));
+});
+
+/* ── INIT ── */
+renderStandings('drivers');
+renderArticles();
+renderCalendar();
+updateCountdown();
+setInterval(updateCountdown, 1000);
+observeReveal();
+</script>
 </body>
 </html>
