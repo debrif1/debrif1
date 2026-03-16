@@ -256,6 +256,52 @@ footer{background:var(--card);padding:60px 24px 36px;border-top:1px solid rgba(2
 @media(min-width:769px){
   .mob-section-toggle{display:none!important}
   .mob-collapsible{max-height:none!important;opacity:1!important;overflow:visible!important}
+  .mob-bottom-nav{display:none!important}
+}
+@media(max-width:768px){
+  /* ── BOTTOM NAV ── */
+  .mob-bottom-nav{
+    position:fixed;bottom:0;left:0;right:0;height:60px;
+    background:rgba(10,10,10,.97);
+    border-top:1px solid rgba(255,255,255,.08);
+    display:flex;align-items:stretch;
+    z-index:1100;
+    backdrop-filter:blur(20px);
+  }
+  .mob-nav-item{
+    flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:3px;cursor:pointer;border:none;background:none;
+    color:var(--gray);font-family:var(--f);font-size:9px;font-weight:600;
+    letter-spacing:.04em;text-transform:uppercase;
+    transition:color .2s;padding:8px 0;
+  }
+  .mob-nav-item.active{color:var(--red)}
+  .mob-nav-item svg{width:20px;height:20px;stroke-width:1.8}
+  /* ── MOBILE PAGE SYSTEM ── */
+  body{padding-bottom:60px}
+  .mob-page{display:none}
+  .mob-page.active{display:block}
+  /* On mobile, hero section IS the home page */
+  .hero,.mq{display:none}
+  .mob-home-page.active .hero{display:flex}
+  .mob-home-page.active .mq{display:block}
+  /* sections become pages */
+  .st-sec,.art-sec,.cal-sec,.nl-sec,footer{display:none}
+  .mob-page-st.active .st-sec{display:block}
+  .mob-page-art.active .art-sec{display:block}
+  .mob-page-cal.active .cal-sec{display:block}
+  .mob-page-nl.active .nl-sec{display:block}
+  .mob-page-nl.active footer{display:block}
+  /* restore section padding on mobile pages */
+  .mob-page-st.active .st-sec{padding:24px 16px 32px}
+  .mob-page-art.active .art-sec{padding:24px 16px 32px}
+  .mob-page-cal.active .cal-sec{padding:24px 16px 32px}
+  .mob-page-nl.active .nl-sec{padding:40px 16px 40px}
+  /* show s-hdr again on mobile pages */
+  .st-sec .s-hdr,.art-sec .s-hdr,.cal-sec .s-hdr{display:block}
+  /* hide collapsible toggles — not needed in page mode */
+  .mob-section-toggle{display:none!important}
+  .mob-collapsible{max-height:none!important;opacity:1!important;overflow:visible!important}
 }
   </style>
 </head>
@@ -273,7 +319,7 @@ footer{background:var(--card);padding:60px 24px 36px;border-top:1px solid rgba(2
   <button class="ham" id="ham" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 
-<section class="hero">
+<div class="mob-page mob-home-page active" id="mob-page-home"><section class="hero">
   <p class="hero-ey">Stagione 2026</p>
   <h1>La strategia che <span class="acc">non vedi.</span></h1>
   <p class="hero-sub">Classifiche aggiornate dopo il GP di Cina, analisi dal paddock e calendario completo 2026. Il retroscena che non ti raccontano.</p>
@@ -306,7 +352,9 @@ footer{background:var(--card);padding:60px 24px 36px;border-top:1px solid rgba(2
     <span class="mq-i"><span>🏎️</span>Contenuti per veri fan</span>
   </div>
 </div>
+</div><!-- /mob-home-page -->
 
+<div class="mob-page mob-page-st" id="mob-page-st">
 <section class="st-sec" id="standings">
   <div class="s-hdr">
     <span class="s-lbl rv">Classifiche 2026</span>
@@ -335,7 +383,9 @@ footer{background:var(--card);padding:60px 24px 36px;border-top:1px solid rgba(2
   </div>
   </div><!-- /mob-collapsible standings -->
 </section>
+</div><!-- /mob-page-st -->
 
+<div class="mob-page mob-page-art" id="mob-page-art">
 <section class="art-sec" id="articles">
   <div class="s-hdr">
     <span class="s-lbl rv">Ultime notizie</span>
@@ -353,7 +403,9 @@ footer{background:var(--card);padding:60px 24px 36px;border-top:1px solid rgba(2
   </div>
   </div><!-- /mob-collapsible articles -->
 </section>
+</div><!-- /mob-page-art -->
 
+<div class="mob-page mob-page-cal" id="mob-page-cal">
 <section class="cal-sec" id="calendar">
   <div class="s-hdr">
     <span class="s-lbl rv">Calendario 2026</span>
@@ -368,7 +420,9 @@ footer{background:var(--card);padding:60px 24px 36px;border-top:1px solid rgba(2
   <div class="cal-grid" id="cal-grid" style="padding-top:16px"></div>
   </div><!-- /mob-collapsible calendar -->
 </section>
+</div><!-- /mob-page-cal -->
 
+<div class="mob-page mob-page-nl" id="mob-page-nl">
 <section class="nl-sec" id="newsletter">
   <span class="s-lbl rv">Resta in pole position</span>
   <h2 class="s-ttl rv">Non perderti nulla.</h2>
@@ -391,6 +445,7 @@ footer{background:var(--card);padding:60px 24px 36px;border-top:1px solid rgba(2
     <div class="ft-soc"><a href="#">𝕏</a><a href="#">📷</a><a href="#">▶</a></div>
   </div>
 </footer>
+</div><!-- /mob-page-nl -->
 
 <div id="gp-ov" onclick="closeGP()"></div>
 <div id="gp-pn">
@@ -404,6 +459,29 @@ footer{background:var(--card);padding:60px 24px 36px;border-top:1px solid rgba(2
 </div>
 <div id="a-modal"></div>
 <div id="toast"></div>
+
+<nav class="mob-bottom-nav">
+  <button class="mob-nav-item active" id="mbn-home" onclick="mobNav('home')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H5a1 1 0 01-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>
+    Home
+  </button>
+  <button class="mob-nav-item" id="mbn-st" onclick="mobNav('st')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
+    Classifica
+  </button>
+  <button class="mob-nav-item" id="mbn-art" onclick="mobNav('art')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10l6 6v8a2 2 0 01-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg>
+    News
+  </button>
+  <button class="mob-nav-item" id="mbn-cal" onclick="mobNav('cal')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+    Calendario
+  </button>
+  <button class="mob-nav-item" id="mbn-nl" onclick="mobNav('nl')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+    Iscriviti
+  </button>
+</nav>
 
 <script>
 /* ━━━ DebriF1 — Script ━━━ */
@@ -891,6 +969,19 @@ function obs(){
 /* ━━━ MISC ━━━ */
 function showToast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2600);}
 /* newsletter handled by Substack */
+function mobNav(page){
+  if(window.innerWidth>768) return;
+  const pages=['home','st','art','cal','nl'];
+  pages.forEach(p=>{
+    const el=document.getElementById('mob-page-'+p);
+    if(el) el.classList.toggle('active', p===page);
+    const btn=document.getElementById('mbn-'+p);
+    if(btn) btn.classList.toggle('active', p===page);
+  });
+  window.scrollTo({top:0,behavior:'smooth'});
+  // re-trigger reveals for newly visible section
+  obs();
+}
 function toggleMobSection(bodyId,iconId){
   if(window.innerWidth>768) return;
   const body=document.getElementById(bodyId);
