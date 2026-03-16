@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>DebriF1 — La strategia che non vedi</title>
-  <meta name="description" content="DebriF1: classifiche F1 aggiornate, calendario 2026, analisi e retroscena dal paddock.">
-  <style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DebriF1 — La strategia che non vedi</title>
+  <meta name="description" content="DebriF1: classifiche F1 aggiornate, calendario 2026, analisi e retroscena dal paddock.">
+  <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#0a0a0a;--card:#141416;--card2:#1a1a1e;--surface:#111113;
-  --white:#fff;--gray:#8a8a8e;--gray-l:#c7c7cc;
-  --red:#E10600;--red-g:rgba(225,6,0,.35);--red-h:#ff1a0e;
-  --gold:#FFD700;--silver:#C0C0C0;--bronze:#CD7F32;
-  --f:'Inter',-apple-system,sans-serif;--r:16px;--rs:10px;--nav:56px;
+  --bg:#0a0a0a;--card:#141416;--card2:#1a1a1e;--surface:#111113;
+  --white:#fff;--gray:#8a8a8e;--gray-l:#c7c7cc;
+  --red:#E10600;--red-g:rgba(225,6,0,.35);--red-h:#ff1a0e;
+  --gold:#FFD700;--silver:#C0C0C0;--bronze:#CD7F32;
+  --f:'Inter',-apple-system,sans-serif;--r:16px;--rs:10px;--nav:56px;
 }
 html{scroll-behavior:smooth}
 body{font-family:var(--f);background:var(--bg);color:var(--white);-webkit-font-smoothing:antialiased;overflow-x:hidden;line-height:1.5;padding-top:var(--nav)}
@@ -220,778 +220,776 @@ footer{background:var(--card);padding:60px 24px 36px;border-top:1px solid rgba(2
 #toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);background:rgba(20,20,22,.95);color:var(--white);padding:14px 28px;border-radius:980px;font-size:15px;font-weight:500;backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1);opacity:0;transition:opacity .3s,transform .3s;z-index:9999;pointer-events:none}
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 @media(max-width:768px){
-  .nav-ul{display:none}
-  .nav-ul.open {
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    top: auto;
-    bottom: 60px;
-    left: 0;
-    right: 0;
-    background: rgba(10,10,10,.95);
-    padding: 24px;
-    gap: 20px;
-    border-top: 1px solid rgba(255,255,255,.06);
-    border-bottom: none;
-    backdrop-filter: blur(20px);
-    z-index: 1050;
-  }
-  .ham{display:block}
-  .ngp{flex-direction:column;text-align:center;gap:20px}
-  .ngp-info{text-align:center}
-  .ft-grid{grid-template-columns:1fr 1fr}
-  .art-grid{grid-template-columns:1fr}
-  .cal-grid{grid-template-columns:1fr}
-  .st-row{grid-template-columns:40px 1fr 100px}
-  .a-box{padding:28px 22px}
-  .ci-grid{grid-template-columns:1fr 1fr}
-  .res-hero{grid-template-columns:1fr 1fr}
-  .st-gp-grid.has-extras,.st-gp-grid.has-sprint{grid-template-columns:1fr}
+  .nav-ul{display:none}
+  .nav-ul.open{display:flex;flex-direction:column;position:absolute;top:var(--nav);left:0;right:0;background:rgba(10,10,10,.95);padding:24px;gap:20px;border-bottom:1px solid rgba(255,255,255,.06);backdrop-filter:blur(20px)}
+  .ham{display:block}
+  .ngp{flex-direction:column;text-align:center;gap:20px}
+  .ngp-info{text-align:center}
+  .ft-grid{grid-template-columns:1fr 1fr}
+  .art-grid{grid-template-columns:1fr}
+  .cal-grid{grid-template-columns:1fr}
+  .st-row{grid-template-columns:40px 1fr 100px}
+  .a-box{padding:28px 22px}
+  .ci-grid{grid-template-columns:1fr 1fr}
+  .res-hero{grid-template-columns:1fr 1fr}
+  .st-gp-grid.has-extras,.st-gp-grid.has-sprint{grid-template-columns:1fr}
 
-  /* ── MOBILE SECTION TOGGLES ── */
-  .mob-section-toggle{display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:0;user-select:none}
-  .mob-section-toggle h2{font-size:22px}
-  .mob-toggle-icon{font-size:18px;color:var(--red);transition:transform .3s;flex-shrink:0}
-  .mob-collapsible{overflow:hidden;transition:max-height .4s cubic-bezier(.4,0,.2,1),opacity .3s;max-height:0;opacity:0}
-  .mob-collapsible.open{max-height:9999px;opacity:1}
+  /* ── MOBILE SECTION TOGGLES ── */
+  .mob-section-toggle{display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:0;user-select:none}
+  .mob-section-toggle h2{font-size:22px}
+  .mob-toggle-icon{font-size:18px;color:var(--red);transition:transform .3s;flex-shrink:0}
+  .mob-collapsible{overflow:hidden;transition:max-height .4s cubic-bezier(.4,0,.2,1),opacity .3s;max-height:0;opacity:0}
+  .mob-collapsible.open{max-height:9999px;opacity:1}
 
-  /* On mobile, hide default s-hdr and use toggle header instead */
-  .st-sec .s-hdr,.art-sec .s-hdr,.cal-sec .s-hdr{display:none}
-  .st-sec,.art-sec,.cal-sec{padding:0 24px}
-  .mob-sec-wrap{padding:0}
+  /* On mobile, hide default s-hdr and use toggle header instead */
+  .st-sec .s-hdr,.art-sec .s-hdr,.cal-sec .s-hdr{display:none}
+  .st-sec,.art-sec,.cal-sec{padding:0 24px}
+  .mob-sec-wrap{padding:0}
 
-  /* reduce section vertical padding on mobile */
-  .st-sec{padding-top:0;padding-bottom:0}
-  .art-sec{padding-top:0;padding-bottom:0;background:var(--surface)}
-  .cal-sec{padding-top:0;padding-bottom:0}
+  /* reduce section vertical padding on mobile */
+  .st-sec{padding-top:0;padding-bottom:0}
+  .art-sec{padding-top:0;padding-bottom:0;background:var(--surface)}
+  .cal-sec{padding-top:0;padding-bottom:0}
 
-  .mob-sections-wrap{padding:16px 0 32px}
+  .mob-sections-wrap{padding:16px 0 32px}
 }
 @media(min-width:769px){
-  .mob-section-toggle{display:none!important}
-  .mob-collapsible{max-height:none!important;opacity:1!important;overflow:visible!important}
-  .mob-bottom-nav{display:none!important}
+  .mob-section-toggle{display:none!important}
+  .mob-collapsible{max-height:none!important;opacity:1!important;overflow:visible!important}
+  .mob-bottom-nav{display:none!important}
 }
 @media(max-width:768px){
-  /* ── BOTTOM NAV ── */
-  .mob-bottom-nav{
-    position:fixed;bottom:0;left:0;right:0;height:60px;
-    background:rgba(10,10,10,.97);
-    border-top:1px solid rgba(255,255,255,.08);
-    display:flex;align-items:stretch;
-    z-index:1100;
-    backdrop-filter:blur(20px);
-  }
-  .mob-nav-item{
-    flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
-    gap:3px;cursor:pointer;border:none;background:none;
-    color:var(--gray);font-family:var(--f);font-size:9px;font-weight:600;
-    letter-spacing:.04em;text-transform:uppercase;
-    transition:color .2s;padding:8px 0;
-  }
-  .mob-nav-item.active{color:var(--red)}
-  .mob-nav-item svg{width:20px;height:20px;stroke-width:1.8}
-  /* ── MOBILE PAGE SYSTEM ── */
-  body{padding-bottom:60px}
-  .mob-page{display:none}
-  .mob-page.active{display:block}
-  /* On mobile, hero section IS the home page */
-  .hero,.mq{display:none}
-  .mob-home-page.active .hero{display:flex}
-  .mob-home-page.active .mq{display:block}
-  /* sections become pages */
-  .st-sec,.art-sec,.cal-sec,.nl-sec,footer{display:none}
-  .mob-page-st.active .st-sec{display:block}
-  .mob-page-art.active .art-sec{display:block}
-  .mob-page-cal.active .cal-sec{display:block}
-  .mob-page-nl.active .nl-sec{display:block}
-  .mob-page-nl.active footer{display:block}
-  /* restore section padding on mobile pages */
-  .mob-page-st.active .st-sec{padding:24px 16px 32px}
-  .mob-page-art.active .art-sec{padding:24px 16px 32px}
-  .mob-page-cal.active .cal-sec{padding:24px 16px 32px}
-  .mob-page-nl.active .nl-sec{padding:40px 16px 40px}
-  /* show s-hdr again on mobile pages */
-  .st-sec .s-hdr,.art-sec .s-hdr,.cal-sec .s-hdr{display:block}
-  /* hide collapsible toggles — not needed in page mode */
-  .mob-section-toggle{display:none!important}
-  .mob-collapsible{max-height:none!important;opacity:1!important;overflow:visible!important}
+  /* ── BOTTOM NAV ── */
+  .mob-bottom-nav{
+    position:fixed;bottom:0;left:0;right:0;height:60px;
+    background:rgba(10,10,10,.97);
+    border-top:1px solid rgba(255,255,255,.08);
+    display:flex;align-items:stretch;
+    z-index:1100;
+    backdrop-filter:blur(20px);
+  }
+  .mob-nav-item{
+    flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:3px;cursor:pointer;border:none;background:none;
+    color:var(--gray);font-family:var(--f);font-size:9px;font-weight:600;
+    letter-spacing:.04em;text-transform:uppercase;
+    transition:color .2s;padding:8px 0;
+  }
+  .mob-nav-item.active{color:var(--red)}
+  .mob-nav-item svg{width:20px;height:20px;stroke-width:1.8}
+  /* ── MOBILE PAGE SYSTEM ── */
+  body{padding-bottom:60px}
+  .mob-page{display:none}
+  .mob-page.active{display:block}
+  /* On mobile, hero section IS the home page */
+  .hero,.mq{display:none}
+  .mob-home-page.active .hero{display:flex}
+  .mob-home-page.active .mq{display:block}
+  /* sections become pages */
+  .st-sec,.art-sec,.cal-sec,.nl-sec,footer{display:none}
+  .mob-page-st.active .st-sec{display:block}
+  .mob-page-art.active .art-sec{display:block}
+  .mob-page-cal.active .cal-sec{display:block}
+  .mob-page-nl.active .nl-sec{display:block}
+  .mob-page-nl.active footer{display:block}
+  /* restore section padding on mobile pages */
+  .mob-page-st.active .st-sec{padding:24px 16px 32px}
+  .mob-page-art.active .art-sec{padding:24px 16px 32px}
+  .mob-page-cal.active .cal-sec{padding:24px 16px 32px}
+  .mob-page-nl.active .nl-sec{padding:40px 16px 40px}
+  /* show s-hdr again on mobile pages */
+  .st-sec .s-hdr,.art-sec .s-hdr,.cal-sec .s-hdr{display:block}
+  /* hide collapsible toggles — not needed in page mode */
+  .mob-section-toggle{display:none!important}
+  .mob-collapsible{max-height:none!important;opacity:1!important;overflow:visible!important}
 }
-  </style>
+  </style>
 </head>
 <body>
 
 <nav>
-  <a class="nav-logo" href="#">DEBRI<span>F1</span></a>
-  <ul class="nav-ul" id="nav-ul">
-    <li><a href="#standings">Classifiche</a></li>
-    <li><a href="#articles">News</a></li>
-    <li><a href="#calendar">Calendario</a></li>
-    <li><a href="#newsletter">Contatti</a></li>
-  </ul>
-  <a href="https://debrif1.substack.com/subscribe" target="_blank" rel="noopener" class="nav-cta">Iscriviti</a>
-  <button class="ham" id="ham" aria-label="Menu"><span></span><span></span><span></span></button>
+  <a class="nav-logo" href="#">DEBRI<span>F1</span></a>
+  <ul class="nav-ul" id="nav-ul">
+    <li><a href="#standings">Classifiche</a></li>
+    <li><a href="#articles">News</a></li>
+    <li><a href="#calendar">Calendario</a></li>
+    <li><a href="#newsletter">Contatti</a></li>
+  </ul>
+  <a href="https://debrif1.substack.com/subscribe" target="_blank" rel="noopener" class="nav-cta">Iscriviti</a>
+  <button class="ham" id="ham" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 
 <div class="mob-page mob-home-page active" id="mob-page-home"><section class="hero">
-  <p class="hero-ey">Stagione 2026</p>
-  <h1>La strategia che <span class="acc">non vedi.</span></h1>
-  <p class="hero-sub">Classifiche aggiornate dopo il GP di Cina, analisi dal paddock e calendario completo 2026. Il retroscena che non ti raccontano.</p>
-  <div class="hero-cta-row">
-    <a href="#standings" class="btn-p" onclick="if(window.innerWidth<=768){ mobNav('st'); return false; }">Classifiche live</a>
-    <a href="#articles" class="btn-g" onclick="if(window.innerWidth<=768){ mobNav('art'); return false; }">Ultime news</a>
-  </div>
-  <div class="ngp">
-    <span class="ngp-flag">🇯🇵</span>
-    <div class="ngp-info">
-      <div class="ngp-lbl">Prossimo Gran Premio</div>
-      <div class="ngp-name">GP del Giappone 2026</div>
-      <div class="ngp-det">Suzuka · 29 Marzo 2026</div>
-    </div>
-    <div class="cd-grid" id="countdown"></div>
-  </div>
+  <p class="hero-ey">Stagione 2026</p>
+  <h1>La strategia che <span class="acc">non vedi.</span></h1>
+  <p class="hero-sub">Classifiche aggiornate dopo il GP di Cina, analisi dal paddock e calendario completo 2026. Il retroscena che non ti raccontano.</p>
+  <div class="hero-cta-row">
+    <a href="#standings" class="btn-p">Classifiche live</a>
+    <a href="#articles" class="btn-g">Ultime news</a>
+  </div>
+  <div class="ngp">
+    <span class="ngp-flag">🇯🇵</span>
+    <div class="ngp-info">
+      <div class="ngp-lbl">Prossimo Gran Premio</div>
+      <div class="ngp-name">GP del Giappone 2026</div>
+      <div class="ngp-det">Suzuka · 29 Marzo 2026</div>
+    </div>
+    <div class="cd-grid" id="countdown"></div>
+  </div>
 </section>
 
 <div class="mq">
-  <div class="mq-t">
-    <span class="mq-i"><span>🏁</span>Classifiche live</span>
-    <span class="mq-i"><span>📰</span>News e analisi</span>
-    <span class="mq-i"><span>📅</span>Calendario 2026</span>
-    <span class="mq-i"><span>🔧</span>Approfondimenti tecnici</span>
-    <span class="mq-i"><span>🏎️</span>Contenuti per veri fan</span>
-    <span class="mq-i"><span>🏁</span>Classifiche live</span>
-    <span class="mq-i"><span>📰</span>News e analisi</span>
-    <span class="mq-i"><span>📅</span>Calendario 2026</span>
-    <span class="mq-i"><span>🔧</span>Approfondimenti tecnici</span>
-    <span class="mq-i"><span>🏎️</span>Contenuti per veri fan</span>
-  </div>
+  <div class="mq-t">
+    <span class="mq-i"><span>🏁</span>Classifiche live</span>
+    <span class="mq-i"><span>📰</span>News e analisi</span>
+    <span class="mq-i"><span>📅</span>Calendario 2026</span>
+    <span class="mq-i"><span>🔧</span>Approfondimenti tecnici</span>
+    <span class="mq-i"><span>🏎️</span>Contenuti per veri fan</span>
+    <span class="mq-i"><span>🏁</span>Classifiche live</span>
+    <span class="mq-i"><span>📰</span>News e analisi</span>
+    <span class="mq-i"><span>📅</span>Calendario 2026</span>
+    <span class="mq-i"><span>🔧</span>Approfondimenti tecnici</span>
+    <span class="mq-i"><span>🏎️</span>Contenuti per veri fan</span>
+  </div>
 </div>
-</div><div class="mob-page mob-page-st" id="mob-page-st">
+</div><!-- /mob-home-page -->
+
+<div class="mob-page mob-page-st" id="mob-page-st">
 <section class="st-sec" id="standings">
-  <div class="s-hdr">
-    <span class="s-lbl rv">Classifiche 2026</span>
-    <h2 class="s-ttl rv">La corsa al titolo.</h2>
-    <p class="s-sub rv">Scegli la vista: stagione cumulativa o ogni singolo Gran Premio.</p>
-  </div>
-  <div class="mob-section-toggle" onclick="toggleMobSection('standings-body','standings-icon')">
-    <h2 class="s-ttl" style="font-size:22px">🏆 Classifiche</h2>
-    <span class="mob-toggle-icon" id="standings-icon">▼</span>
-  </div>
-  <div class="mob-collapsible" id="standings-body">
-  <div class="st-ctrl rv" style="padding-top:20px">
-    <select class="gp-sel" id="gp-sel" onchange="onGpChange()">
-      <option value="season">Stagione 2026 — Cumulativo</option>
-      <option value="aus">R01 · GP Australia</option>
-      <option value="chn">R02 · GP Cina</option>
-    </select>
-    <div class="tab-bar" id="tab-bar">
-      <button class="tab-btn active" data-tab="drivers">Piloti</button>
-      <button class="tab-btn" data-tab="constructors">Costruttori</button>
-    </div>
-  </div>
-  <div class="st-table" id="st-list"></div>
-  <div id="st-more-wrap" style="display:none;justify-content:center;margin-top:32px;">
-    <button id="st-more-btn" onclick="toggleMoreSt()" class="btn-more">Vedi altri piloti ↓</button>
-  </div>
-  </div></section>
-</div><div class="mob-page mob-page-art" id="mob-page-art">
+  <div class="s-hdr">
+    <span class="s-lbl rv">Classifiche 2026</span>
+    <h2 class="s-ttl rv">La corsa al titolo.</h2>
+    <p class="s-sub rv">Scegli la vista: stagione cumulativa o ogni singolo Gran Premio.</p>
+  </div>
+  <div class="mob-section-toggle" onclick="toggleMobSection('standings-body','standings-icon')">
+    <h2 class="s-ttl" style="font-size:22px">🏆 Classifiche</h2>
+    <span class="mob-toggle-icon" id="standings-icon">▼</span>
+  </div>
+  <div class="mob-collapsible" id="standings-body">
+  <div class="st-ctrl rv" style="padding-top:20px">
+    <select class="gp-sel" id="gp-sel" onchange="onGpChange()">
+      <option value="season">Stagione 2026 — Cumulativo</option>
+      <option value="aus">R01 · GP Australia</option>
+      <option value="chn">R02 · GP Cina</option>
+    </select>
+    <div class="tab-bar" id="tab-bar">
+      <button class="tab-btn active" data-tab="drivers">Piloti</button>
+      <button class="tab-btn" data-tab="constructors">Costruttori</button>
+    </div>
+  </div>
+  <div class="st-table" id="st-list"></div>
+  <div id="st-more-wrap" style="display:none;justify-content:center;margin-top:32px;">
+    <button id="st-more-btn" onclick="toggleMoreSt()" class="btn-more">Vedi altri piloti ↓</button>
+  </div>
+  </div><!-- /mob-collapsible standings -->
+</section>
+</div><!-- /mob-page-st -->
+
+<div class="mob-page mob-page-art" id="mob-page-art">
 <section class="art-sec" id="articles">
-  <div class="s-hdr">
-    <span class="s-lbl rv">Ultime notizie</span>
-    <h2 class="s-ttl rv">Dal paddock al mondo.</h2>
-    <p class="s-sub rv">Analisi, retroscena e breaking news dal circus della Formula 1.</p>
-  </div>
-  <div class="mob-section-toggle" onclick="toggleMobSection('articles-body','articles-icon')">
-    <h2 class="s-ttl" style="font-size:22px">📰 News</h2>
-    <span class="mob-toggle-icon" id="articles-icon">▼</span>
-  </div>
-  <div class="mob-collapsible open" id="articles-body">
-  <div class="art-grid" id="art-grid" style="padding-top:16px"></div>
-  <div id="art-more-wrap" style="display:none;justify-content:center;margin-top:40px;">
-    <button id="art-more-btn" onclick="toggleMoreArts()" class="btn-more">Vedi altri articoli ↓</button>
-  </div>
-  </div></section>
-</div><div class="mob-page mob-page-cal" id="mob-page-cal">
+  <div class="s-hdr">
+    <span class="s-lbl rv">Ultime notizie</span>
+    <h2 class="s-ttl rv">Dal paddock al mondo.</h2>
+    <p class="s-sub rv">Analisi, retroscena e breaking news dal circus della Formula 1.</p>
+  </div>
+  <div class="mob-section-toggle" onclick="toggleMobSection('articles-body','articles-icon')">
+    <h2 class="s-ttl" style="font-size:22px">📰 News</h2>
+    <span class="mob-toggle-icon" id="articles-icon">▼</span>
+  </div>
+  <div class="mob-collapsible open" id="articles-body">
+  <div class="art-grid" id="art-grid" style="padding-top:16px"></div>
+  <div id="art-more-wrap" style="display:none;justify-content:center;margin-top:40px;">
+    <button id="art-more-btn" onclick="toggleMoreArts()" class="btn-more">Vedi altri articoli ↓</button>
+  </div>
+  </div><!-- /mob-collapsible articles -->
+</section>
+</div><!-- /mob-page-art -->
+
+<div class="mob-page mob-page-cal" id="mob-page-cal">
 <section class="cal-sec" id="calendar">
-  <div class="s-hdr">
-    <span class="s-lbl rv">Calendario 2026</span>
-    <h2 class="s-ttl rv">Tutte le tappe del mondiale.</h2>
-    <p class="s-sub rv">24 Gran Premi · Clicca su ogni gara per info circuito e risultati.</p>
-  </div>
-  <div class="mob-section-toggle" onclick="toggleMobSection('calendar-body','calendar-icon')">
-    <h2 class="s-ttl" style="font-size:22px">📅 Calendario</h2>
-    <span class="mob-toggle-icon" id="calendar-icon">▼</span>
-  </div>
-  <div class="mob-collapsible" id="calendar-body">
-  <div class="cal-grid" id="cal-grid" style="padding-top:16px"></div>
-  </div></section>
-</div><div class="mob-page mob-page-nl" id="mob-page-nl">
+  <div class="s-hdr">
+    <span class="s-lbl rv">Calendario 2026</span>
+    <h2 class="s-ttl rv">Tutte le tappe del mondiale.</h2>
+    <p class="s-sub rv">24 Gran Premi · Clicca su ogni gara per info circuito e risultati.</p>
+  </div>
+  <div class="mob-section-toggle" onclick="toggleMobSection('calendar-body','calendar-icon')">
+    <h2 class="s-ttl" style="font-size:22px">📅 Calendario</h2>
+    <span class="mob-toggle-icon" id="calendar-icon">▼</span>
+  </div>
+  <div class="mob-collapsible" id="calendar-body">
+  <div class="cal-grid" id="cal-grid" style="padding-top:16px"></div>
+  </div><!-- /mob-collapsible calendar -->
+</section>
+</div><!-- /mob-page-cal -->
+
+<div class="mob-page mob-page-nl" id="mob-page-nl">
 <section class="nl-sec" id="newsletter">
-  <span class="s-lbl rv">Resta in pole position</span>
-  <h2 class="s-ttl rv">Non perderti nulla.</h2>
-  <p class="rv">Iscriviti alla newsletter per ricevere news, classifiche e contenuti esclusivi.</p>
-  <a href="https://debrif1.substack.com/subscribe" target="_blank" rel="noopener" class="btn-p rv" style="font-size:15px;padding:15px 36px;text-decoration:none;display:inline-block;margin-top:8px">Iscriviti su Substack →</a>
+  <span class="s-lbl rv">Resta in pole position</span>
+  <h2 class="s-ttl rv">Non perderti nulla.</h2>
+  <p class="rv">Iscriviti alla newsletter per ricevere news, classifiche e contenuti esclusivi.</p>
+  <a href="https://debrif1.substack.com/subscribe" target="_blank" rel="noopener" class="btn-p rv" style="font-size:15px;padding:15px 36px;text-decoration:none;display:inline-block;margin-top:8px">Iscriviti su Substack →</a>
 </section>
 
 <footer>
-  <div class="ft-grid">
-    <div class="ft-brand">
-      <span style="font-size:20px;font-weight:800;letter-spacing:2px">DEBRI<span style="color:var(--red)">F1</span></span>
-      <p>La strategia che non vedi. Il retroscena che non ti raccontano. Analisi, classifiche e calendario F1.</p>
-    </div>
-    <div class="ft-col"><h4>Contenuti</h4><ul><li><a href="#standings">Classifiche</a></li><li><a href="#articles">News</a></li><li><a href="#calendar">Calendario</a></li></ul></div>
-    <div class="ft-col"><h4>Info</h4><ul><li><a href="#">Chi siamo</a></li><li><a href="#">Collabora</a></li><li><a href="#">Contatti</a></li></ul></div>
-    <div class="ft-col"><h4>Legale</h4><ul><li><a href="#">Privacy Policy</a></li><li><a href="#">Cookie Policy</a></li><li><a href="#">Termini d'uso</a></li></ul></div>
-  </div>
-  <div class="ft-bot">
-    <p>&copy; 2026 DebriF1 &mdash; Tutti i diritti riservati</p>
-    <div class="ft-soc"><a href="#">𝕏</a><a href="#">📷</a><a href="#">▶</a></div>
-  </div>
+  <div class="ft-grid">
+    <div class="ft-brand">
+      <span style="font-size:20px;font-weight:800;letter-spacing:2px">DEBRI<span style="color:var(--red)">F1</span></span>
+      <p>La strategia che non vedi. Il retroscena che non ti raccontano. Analisi, classifiche e calendario F1.</p>
+    </div>
+    <div class="ft-col"><h4>Contenuti</h4><ul><li><a href="#standings">Classifiche</a></li><li><a href="#articles">News</a></li><li><a href="#calendar">Calendario</a></li></ul></div>
+    <div class="ft-col"><h4>Info</h4><ul><li><a href="#">Chi siamo</a></li><li><a href="#">Collabora</a></li><li><a href="#">Contatti</a></li></ul></div>
+    <div class="ft-col"><h4>Legale</h4><ul><li><a href="#">Privacy Policy</a></li><li><a href="#">Cookie Policy</a></li><li><a href="#">Termini d'uso</a></li></ul></div>
+  </div>
+  <div class="ft-bot">
+    <p>&copy; 2026 DebriF1 &mdash; Tutti i diritti riservati</p>
+    <div class="ft-soc"><a href="#">𝕏</a><a href="#">📷</a><a href="#">▶</a></div>
+  </div>
 </footer>
-</div><div id="gp-ov" onclick="closeGP()"></div>
+</div><!-- /mob-page-nl -->
+
+<div id="gp-ov" onclick="closeGP()"></div>
 <div id="gp-pn">
-  <div class="pn-hdr">
-    <button class="pn-close" onclick="closeGP()">✕</button>
-    <div class="pn-round" id="pn-round"></div>
-    <div class="pn-ttl" id="pn-ttl"></div>
-    <div class="pn-sub" id="pn-sub"></div>
-  </div>
-  <div class="pn-body" id="pn-body"></div>
+  <div class="pn-hdr">
+    <button class="pn-close" onclick="closeGP()">✕</button>
+    <div class="pn-round" id="pn-round"></div>
+    <div class="pn-ttl" id="pn-ttl"></div>
+    <div class="pn-sub" id="pn-sub"></div>
+  </div>
+  <div class="pn-body" id="pn-body"></div>
 </div>
 <div id="a-modal"></div>
 <div id="toast"></div>
 
 <nav class="mob-bottom-nav">
-  <button class="mob-nav-item active" id="mbn-home" onclick="mobNav('home')">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H5a1 1 0 01-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>
-    Home
-  </button>
-  <button class="mob-nav-item" id="mbn-st" onclick="mobNav('st')">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
-    Classifica
-  </button>
-  <button class="mob-nav-item" id="mbn-art" onclick="mobNav('art')">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10l6 6v8a2 2 0 01-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg>
-    News
-  </button>
-  <button class="mob-nav-item" id="mbn-cal" onclick="mobNav('cal')">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-    Calendario
-  </button>
-  <button class="mob-nav-item" id="mbn-nl" onclick="mobNav('nl')">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
-    Iscriviti
-  </button>
+  <button class="mob-nav-item active" id="mbn-home" onclick="mobNav('home')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H5a1 1 0 01-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>
+    Home
+  </button>
+  <button class="mob-nav-item" id="mbn-st" onclick="mobNav('st')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
+    Classifica
+  </button>
+  <button class="mob-nav-item" id="mbn-art" onclick="mobNav('art')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10l6 6v8a2 2 0 01-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg>
+    News
+  </button>
+  <button class="mob-nav-item" id="mbn-cal" onclick="mobNav('cal')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+    Calendario
+  </button>
+  <button class="mob-nav-item" id="mbn-nl" onclick="mobNav('nl')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+    Iscriviti
+  </button>
 </nav>
 
 <script>
 /* ━━━ DebriF1 — Script ━━━ */
 
 const DS=[
-  {pos:1,name:"George Russell",team:"Mercedes",flag:"🇬🇧",pts:51,color:"#27F4D2"},
-  {pos:2,name:"Kimi Antonelli",team:"Mercedes",flag:"🇮🇹",pts:47,color:"#27F4D2"},
-  {pos:3,name:"Charles Leclerc",team:"Ferrari",flag:"🇲🇨",pts:34,color:"#E8002D"},
-  {pos:4,name:"Lewis Hamilton",team:"Ferrari",flag:"🇬🇧",pts:33,color:"#E8002D"},
-  {pos:5,name:"Oliver Bearman",team:"Haas",flag:"🇬🇧",pts:17,color:"#B6BABD"},
-  {pos:6,name:"Lando Norris",team:"McLaren",flag:"🇬🇧",pts:15,color:"#FF8000"},
-  {pos:7,name:"Pierre Gasly",team:"Alpine",flag:"🇫🇷",pts:9,color:"#FF87BC"},
-  {pos:8,name:"Max Verstappen",team:"Red Bull",flag:"🇳🇱",pts:8,color:"#3671C6"},
-  {pos:9,name:"Liam Lawson",team:"Racing Bulls",flag:"🇳🇿",pts:8,color:"#6692FF"},
-  {pos:10,name:"Arvid Lindblad",team:"Racing Bulls",flag:"🇬🇧",pts:4,color:"#6692FF"},
-  {pos:11,name:"Isack Hadjar",team:"Red Bull",flag:"🇫🇷",pts:4,color:"#3671C6"},
-  {pos:12,name:"Oscar Piastri",team:"McLaren",flag:"🇦🇺",pts:3,color:"#FF8000"},
-  {pos:13,name:"Carlos Sainz",team:"Williams",flag:"🇪🇸",pts:2,color:"#00A0DE"},
-  {pos:14,name:"Gabriel Bortoleto",team:"Audi",flag:"🇧🇷",pts:2,color:"#52E252"},
-  {pos:15,name:"Franco Colapinto",team:"Alpine",flag:"🇦🇷",pts:1,color:"#FF87BC"},
-  {pos:16,name:"Esteban Ocon",team:"Haas",flag:"🇫🇷",pts:0,color:"#B6BABD"},
-  {pos:17,name:"Alex Albon",team:"Williams",flag:"🇹🇭",pts:0,color:"#00A0DE"},
-  {pos:18,name:"Sergio Pérez",team:"Cadillac",flag:"🇲🇽",pts:0,color:"#888"},
-  {pos:19,name:"Fernando Alonso",team:"Aston Martin",flag:"🇪🇸",pts:0,color:"#229971"},
-  {pos:20,name:"Lance Stroll",team:"Aston Martin",flag:"🇨🇦",pts:0,color:"#229971"},
-  {pos:21,name:"Nico Hülkenberg",team:"Audi",flag:"🇩🇪",pts:0,color:"#52E252"},
-  {pos:22,name:"Valtteri Bottas",team:"Cadillac",flag:"🇫🇮",pts:0,color:"#888"},
+  {pos:1,name:"George Russell",team:"Mercedes",flag:"🇬🇧",pts:51,color:"#27F4D2"},
+  {pos:2,name:"Kimi Antonelli",team:"Mercedes",flag:"🇮🇹",pts:47,color:"#27F4D2"},
+  {pos:3,name:"Charles Leclerc",team:"Ferrari",flag:"🇲🇨",pts:34,color:"#E8002D"},
+  {pos:4,name:"Lewis Hamilton",team:"Ferrari",flag:"🇬🇧",pts:33,color:"#E8002D"},
+  {pos:5,name:"Oliver Bearman",team:"Haas",flag:"🇬🇧",pts:17,color:"#B6BABD"},
+  {pos:6,name:"Lando Norris",team:"McLaren",flag:"🇬🇧",pts:15,color:"#FF8000"},
+  {pos:7,name:"Pierre Gasly",team:"Alpine",flag:"🇫🇷",pts:9,color:"#FF87BC"},
+  {pos:8,name:"Max Verstappen",team:"Red Bull",flag:"🇳🇱",pts:8,color:"#3671C6"},
+  {pos:9,name:"Liam Lawson",team:"Racing Bulls",flag:"🇳🇿",pts:8,color:"#6692FF"},
+  {pos:10,name:"Arvid Lindblad",team:"Racing Bulls",flag:"🇬🇧",pts:4,color:"#6692FF"},
+  {pos:11,name:"Isack Hadjar",team:"Red Bull",flag:"🇫🇷",pts:4,color:"#3671C6"},
+  {pos:12,name:"Oscar Piastri",team:"McLaren",flag:"🇦🇺",pts:3,color:"#FF8000"},
+  {pos:13,name:"Carlos Sainz",team:"Williams",flag:"🇪🇸",pts:2,color:"#00A0DE"},
+  {pos:14,name:"Gabriel Bortoleto",team:"Audi",flag:"🇧🇷",pts:2,color:"#52E252"},
+  {pos:15,name:"Franco Colapinto",team:"Alpine",flag:"🇦🇷",pts:1,color:"#FF87BC"},
+  {pos:16,name:"Esteban Ocon",team:"Haas",flag:"🇫🇷",pts:0,color:"#B6BABD"},
+  {pos:17,name:"Alex Albon",team:"Williams",flag:"🇹🇭",pts:0,color:"#00A0DE"},
+  {pos:18,name:"Sergio Pérez",team:"Cadillac",flag:"🇲🇽",pts:0,color:"#888"},
+  {pos:19,name:"Fernando Alonso",team:"Aston Martin",flag:"🇪🇸",pts:0,color:"#229971"},
+  {pos:20,name:"Lance Stroll",team:"Aston Martin",flag:"🇨🇦",pts:0,color:"#229971"},
+  {pos:21,name:"Nico Hülkenberg",team:"Audi",flag:"🇩🇪",pts:0,color:"#52E252"},
+  {pos:22,name:"Valtteri Bottas",team:"Cadillac",flag:"🇫🇮",pts:0,color:"#888"},
 ];
 const CS=[
-  {pos:1,name:"Mercedes",flag:"🇩🇪",pts:98,color:"#27F4D2"},
-  {pos:2,name:"Ferrari",flag:"🇮🇹",pts:67,color:"#E8002D"},
-  {pos:3,name:"McLaren",flag:"🇬🇧",pts:18,color:"#FF8000"},
-  {pos:4,name:"Haas",flag:"🇺🇸",pts:17,color:"#B6BABD"},
-  {pos:5,name:"Racing Bulls",flag:"🇮🇹",pts:12,color:"#6692FF"},
-  {pos:6,name:"Red Bull",flag:"🇦🇹",pts:12,color:"#3671C6"},
-  {pos:7,name:"Alpine",flag:"🇫🇷",pts:10,color:"#FF87BC"},
-  {pos:8,name:"Williams",flag:"🇬🇧",pts:2,color:"#00A0DE"},
-  {pos:9,name:"Audi",flag:"🇨🇭",pts:2,color:"#52E252"},
-  {pos:10,name:"Cadillac",flag:"🇺🇸",pts:0,color:"#888"},
-  {pos:11,name:"Aston Martin",flag:"🇬🇧",pts:0,color:"#229971"},
+  {pos:1,name:"Mercedes",flag:"🇩🇪",pts:98,color:"#27F4D2"},
+  {pos:2,name:"Ferrari",flag:"🇮🇹",pts:67,color:"#E8002D"},
+  {pos:3,name:"McLaren",flag:"🇬🇧",pts:18,color:"#FF8000"},
+  {pos:4,name:"Haas",flag:"🇺🇸",pts:17,color:"#B6BABD"},
+  {pos:5,name:"Racing Bulls",flag:"🇮🇹",pts:12,color:"#6692FF"},
+  {pos:6,name:"Red Bull",flag:"🇦🇹",pts:12,color:"#3671C6"},
+  {pos:7,name:"Alpine",flag:"🇫🇷",pts:10,color:"#FF87BC"},
+  {pos:8,name:"Williams",flag:"🇬🇧",pts:2,color:"#00A0DE"},
+  {pos:9,name:"Audi",flag:"🇨🇭",pts:2,color:"#52E252"},
+  {pos:10,name:"Cadillac",flag:"🇺🇸",pts:0,color:"#888"},
+  {pos:11,name:"Aston Martin",flag:"🇬🇧",pts:0,color:"#229971"},
 ];
 const GPR={
-  aus:{label:"R01 · GP Australia",hero:{V:"RUS",P:"RUS",FL:"VER",giri:58,sor:120,chiave:"Giro 11 VSC"},key:"Giro 11 — Virtual Safety Car per il ritiro di Hadjar. Mercedes entra con entrambe le macchine. Ferrari resta fuori. La gara è finita qui.",
-    drivers:[
-      {pos:1,name:"George Russell",team:"Mercedes",color:"#27F4D2",gap:"Vincitore",fl:false},
-      {pos:2,name:"Kimi Antonelli",team:"Mercedes",color:"#27F4D2",gap:"+2.974s",fl:false},
-      {pos:3,name:"Charles Leclerc",team:"Ferrari",color:"#E8002D",gap:"+15.519s",fl:false},
-      {pos:4,name:"Lewis Hamilton",team:"Ferrari",color:"#E8002D",gap:"+16.144s",fl:false},
-      {pos:5,name:"Lando Norris",team:"McLaren",color:"#FF8000",gap:"+51.741s",fl:false},
-      {pos:6,name:"Max Verstappen",team:"Red Bull",color:"#3671C6",gap:"+54.617s",fl:true},
-      {pos:7,name:"Oliver Bearman",team:"Haas",color:"#B6BABD",gap:"+1 giro",fl:false},
-      {pos:8,name:"Arvid Lindblad",team:"Racing Bulls",color:"#6692FF",gap:"+1 giro",fl:false},
-      {pos:9,name:"Gabriel Bortoleto",team:"Audi",color:"#52E252",gap:"+1 giro",fl:false},
-      {pos:10,name:"Pierre Gasly",team:"Alpine",color:"#FF87BC",gap:"+1 giro",fl:false},
-      {pos:"RIT",name:"Fernando Alonso",team:"Aston Martin",color:"#229971",gap:"Ritiro",fl:false},
-      {pos:"DNS",name:"Isack Hadjar",team:"Red Bull",color:"#3671C6",gap:"Non partito",fl:false},
-    ],
-    constructors:[
-      {pos:1,name:"Mercedes",flag:"🇩🇪",pts:43,color:"#27F4D2"},
-      {pos:2,name:"Ferrari",flag:"🇮🇹",pts:27,color:"#E8002D"},
-      {pos:3,name:"McLaren",flag:"🇬🇧",pts:10,color:"#FF8000"},
-      {pos:4,name:"Red Bull",flag:"🇦🇹",pts:8,color:"#3671C6"},
-      {pos:5,name:"Haas",flag:"🇺🇸",pts:6,color:"#B6BABD"},
-    ],
-    quali:[
-      {pos:1,name:"George Russell",team:"Mercedes",color:"#27F4D2",time:"1:15.096"},
-      {pos:2,name:"Kimi Antonelli",team:"Mercedes",color:"#27F4D2",time:"+0.293s"},
-      {pos:3,name:"Charles Leclerc",team:"Ferrari",color:"#E8002D",time:"+0.448s"},
-      {pos:4,name:"Lewis Hamilton",team:"Ferrari",color:"#E8002D",time:"+0.712s"},
-      {pos:5,name:"Lando Norris",team:"McLaren",color:"#FF8000",time:"+0.891s"},
-    ]
-  },
-  chn:{label:"R02 · GP Cina",hero:{V:"ANT",P:"RUS",FL:"RUS",giri:56,sor:89,chiave:"Sprint weekend"},key:"Antonelli vince il suo primo GP a 18 anni. Russell dalla pole gestisce ma non contiene il compagno nelle fasi finali. Ferrari perde terreno.",
-    drivers:[
-      {pos:1,name:"Kimi Antonelli",team:"Mercedes",color:"#27F4D2",gap:"Vincitore",fl:false},
-      {pos:2,name:"George Russell",team:"Mercedes",color:"#27F4D2",gap:"+4.821s",fl:true},
-      {pos:3,name:"Lewis Hamilton",team:"Ferrari",color:"#E8002D",gap:"+18.234s",fl:false},
-      {pos:4,name:"Charles Leclerc",team:"Ferrari",color:"#E8002D",gap:"+21.107s",fl:false},
-      {pos:5,name:"Oliver Bearman",team:"Haas",color:"#B6BABD",gap:"+41.553s",fl:false},
-      {pos:6,name:"Pierre Gasly",team:"Alpine",color:"#FF87BC",gap:"+52.001s",fl:false},
-      {pos:7,name:"Lando Norris",team:"McLaren",color:"#FF8000",gap:"+58.340s",fl:false},
-      {pos:8,name:"Liam Lawson",team:"Racing Bulls",color:"#6692FF",gap:"+1 giro",fl:false},
-      {pos:9,name:"Isack Hadjar",team:"Red Bull",color:"#3671C6",gap:"+1 giro",fl:false},
-      {pos:10,name:"Carlos Sainz",team:"Williams",color:"#00A0DE",gap:"+1 giro",fl:false},
-    ],
-    constructors:[
-      {pos:1,name:"Mercedes",flag:"🇩🇪",pts:55,color:"#27F4D2"},
-      {pos:2,name:"Ferrari",flag:"🇮🇹",pts:40,color:"#E8002D"},
-      {pos:3,name:"Haas",flag:"🇺🇸",pts:11,color:"#B6BABD"},
-      {pos:4,name:"Alpine",flag:"🇫🇷",pts:8,color:"#FF87BC"},
-      {pos:5,name:"McLaren",flag:"🇬🇧",pts:5,color:"#FF8000"},
-    ],
-    quali:[
-      {pos:1,name:"Kimi Antonelli",team:"Mercedes",color:"#27F4D2",time:"1:32.064"},
-      {pos:2,name:"George Russell",team:"Mercedes",color:"#27F4D2",time:"+0.222s"},
-      {pos:3,name:"Charles Leclerc",team:"Ferrari",color:"#E8002D",time:"+0.477s"},
-      {pos:4,name:"Lewis Hamilton",team:"Ferrari",color:"#E8002D",time:"+0.614s"},
-      {pos:5,name:"Lando Norris",team:"McLaren",color:"#FF8000",time:"+0.891s"},
-    ],
-    sprint:[
-      {pos:1,name:"George Russell",team:"Mercedes",color:"#27F4D2",gap:"Vincitore"},
-      {pos:2,name:"Charles Leclerc",team:"Ferrari",color:"#E8002D",gap:"+1.742s"},
-      {pos:3,name:"Lewis Hamilton",team:"Ferrari",color:"#E8002D",gap:"+3.218s"},
-      {pos:4,name:"Kimi Antonelli",team:"Mercedes",color:"#27F4D2",gap:"+4.501s"},
-      {pos:5,name:"Oscar Piastri",team:"McLaren",color:"#FF8000",gap:"+8.234s"},
-    ]
-  }
+  aus:{label:"R01 · GP Australia",hero:{V:"RUS",P:"RUS",FL:"VER",giri:58,sor:120,chiave:"Giro 11 VSC"},key:"Giro 11 — Virtual Safety Car per il ritiro di Hadjar. Mercedes entra con entrambe le macchine. Ferrari resta fuori. La gara è finita qui.",
+    drivers:[
+      {pos:1,name:"George Russell",team:"Mercedes",color:"#27F4D2",gap:"Vincitore",fl:false},
+      {pos:2,name:"Kimi Antonelli",team:"Mercedes",color:"#27F4D2",gap:"+2.974s",fl:false},
+      {pos:3,name:"Charles Leclerc",team:"Ferrari",color:"#E8002D",gap:"+15.519s",fl:false},
+      {pos:4,name:"Lewis Hamilton",team:"Ferrari",color:"#E8002D",gap:"+16.144s",fl:false},
+      {pos:5,name:"Lando Norris",team:"McLaren",color:"#FF8000",gap:"+51.741s",fl:false},
+      {pos:6,name:"Max Verstappen",team:"Red Bull",color:"#3671C6",gap:"+54.617s",fl:true},
+      {pos:7,name:"Oliver Bearman",team:"Haas",color:"#B6BABD",gap:"+1 giro",fl:false},
+      {pos:8,name:"Arvid Lindblad",team:"Racing Bulls",color:"#6692FF",gap:"+1 giro",fl:false},
+      {pos:9,name:"Gabriel Bortoleto",team:"Audi",color:"#52E252",gap:"+1 giro",fl:false},
+      {pos:10,name:"Pierre Gasly",team:"Alpine",color:"#FF87BC",gap:"+1 giro",fl:false},
+      {pos:"RIT",name:"Fernando Alonso",team:"Aston Martin",color:"#229971",gap:"Ritiro",fl:false},
+      {pos:"DNS",name:"Isack Hadjar",team:"Red Bull",color:"#3671C6",gap:"Non partito",fl:false},
+    ],
+    constructors:[
+      {pos:1,name:"Mercedes",flag:"🇩🇪",pts:43,color:"#27F4D2"},
+      {pos:2,name:"Ferrari",flag:"🇮🇹",pts:27,color:"#E8002D"},
+      {pos:3,name:"McLaren",flag:"🇬🇧",pts:10,color:"#FF8000"},
+      {pos:4,name:"Red Bull",flag:"🇦🇹",pts:8,color:"#3671C6"},
+      {pos:5,name:"Haas",flag:"🇺🇸",pts:6,color:"#B6BABD"},
+    ],
+    quali:[
+      {pos:1,name:"George Russell",team:"Mercedes",color:"#27F4D2",time:"1:15.096"},
+      {pos:2,name:"Kimi Antonelli",team:"Mercedes",color:"#27F4D2",time:"+0.293s"},
+      {pos:3,name:"Charles Leclerc",team:"Ferrari",color:"#E8002D",time:"+0.448s"},
+      {pos:4,name:"Lewis Hamilton",team:"Ferrari",color:"#E8002D",time:"+0.712s"},
+      {pos:5,name:"Lando Norris",team:"McLaren",color:"#FF8000",time:"+0.891s"},
+    ]
+  },
+  chn:{label:"R02 · GP Cina",hero:{V:"ANT",P:"RUS",FL:"RUS",giri:56,sor:89,chiave:"Sprint weekend"},key:"Antonelli vince il suo primo GP a 18 anni. Russell dalla pole gestisce ma non contiene il compagno nelle fasi finali. Ferrari perde terreno.",
+    drivers:[
+      {pos:1,name:"Kimi Antonelli",team:"Mercedes",color:"#27F4D2",gap:"Vincitore",fl:false},
+      {pos:2,name:"George Russell",team:"Mercedes",color:"#27F4D2",gap:"+4.821s",fl:true},
+      {pos:3,name:"Lewis Hamilton",team:"Ferrari",color:"#E8002D",gap:"+18.234s",fl:false},
+      {pos:4,name:"Charles Leclerc",team:"Ferrari",color:"#E8002D",gap:"+21.107s",fl:false},
+      {pos:5,name:"Oliver Bearman",team:"Haas",color:"#B6BABD",gap:"+41.553s",fl:false},
+      {pos:6,name:"Pierre Gasly",team:"Alpine",color:"#FF87BC",gap:"+52.001s",fl:false},
+      {pos:7,name:"Lando Norris",team:"McLaren",color:"#FF8000",gap:"+58.340s",fl:false},
+      {pos:8,name:"Liam Lawson",team:"Racing Bulls",color:"#6692FF",gap:"+1 giro",fl:false},
+      {pos:9,name:"Isack Hadjar",team:"Red Bull",color:"#3671C6",gap:"+1 giro",fl:false},
+      {pos:10,name:"Carlos Sainz",team:"Williams",color:"#00A0DE",gap:"+1 giro",fl:false},
+    ],
+    constructors:[
+      {pos:1,name:"Mercedes",flag:"🇩🇪",pts:55,color:"#27F4D2"},
+      {pos:2,name:"Ferrari",flag:"🇮🇹",pts:40,color:"#E8002D"},
+      {pos:3,name:"Haas",flag:"🇺🇸",pts:11,color:"#B6BABD"},
+      {pos:4,name:"Alpine",flag:"🇫🇷",pts:8,color:"#FF87BC"},
+      {pos:5,name:"McLaren",flag:"🇬🇧",pts:5,color:"#FF8000"},
+    ],
+    quali:[
+      {pos:1,name:"Kimi Antonelli",team:"Mercedes",color:"#27F4D2",time:"1:32.064"},
+      {pos:2,name:"George Russell",team:"Mercedes",color:"#27F4D2",time:"+0.222s"},
+      {pos:3,name:"Charles Leclerc",team:"Ferrari",color:"#E8002D",time:"+0.477s"},
+      {pos:4,name:"Lewis Hamilton",team:"Ferrari",color:"#E8002D",time:"+0.614s"},
+      {pos:5,name:"Lando Norris",team:"McLaren",color:"#FF8000",time:"+0.891s"},
+    ],
+    sprint:[
+      {pos:1,name:"George Russell",team:"Mercedes",color:"#27F4D2",gap:"Vincitore"},
+      {pos:2,name:"Charles Leclerc",team:"Ferrari",color:"#E8002D",gap:"+1.742s"},
+      {pos:3,name:"Lewis Hamilton",team:"Ferrari",color:"#E8002D",gap:"+3.218s"},
+      {pos:4,name:"Kimi Antonelli",team:"Mercedes",color:"#27F4D2",gap:"+4.501s"},
+      {pos:5,name:"Oscar Piastri",team:"McLaren",color:"#FF8000",gap:"+8.234s"},
+    ]
+  }
 };
 const CI={
-  aus:{length:"5.278",laps:58,corners:16,drs:4,lr:{t:"1:20.235",d:"Charles Leclerc",y:2022},desc:"Albert Park è un circuito semiurbano sul lago di Melbourne. Quattro zone DRS tengono il gruppo unito e favoriscono i sorpassi. La combinazione di rettilinei medi e curve veloci richiede un setup bilanciato. Con le nuove regole 2026 è stato il primo banco di prova dell'era: 120 sorpassi, 6 cambi di testa nei primi 10 giri.",tags:["4 zone DRS","Semiurbano","Setup bilanciato","Alta frequenza sorpassi"],sched:[{s:"Prove Libere 1",t:"Gio 12:30"},{s:"Prove Libere 2",t:"Gio 16:00"},{s:"Prove Libere 3",t:"Sab 12:30"},{s:"Qualifiche",t:"Sab 16:00"},{s:"Gara",t:"Dom 15:00",m:1}]},
-  chn:{length:"5.451",laps:56,corners:16,drs:2,lr:{t:"1:32.238",d:"Michael Schumacher",y:2004},desc:"Shanghai è uno dei tracciati più tecnici del calendario. Il rettilineo principale è il più lungo della stagione: con il nuovo sistema di gestione energetica del 2026 la ricarica della batteria sarà il fattore decisivo. La famosa esse del primo settore e la hairpin finale rimangono le zone di sorpasso chiave.",tags:["Rettilineo lunghissimo","Gestione batteria critica","Esse tecnica","Sprint weekend"],sched:[{s:"Prove Libere 1",t:"Ven 11:30"},{s:"Sprint Qualifiche",t:"Ven 15:00",m:1},{s:"Sprint Race",t:"Sab 11:00",m:1},{s:"Qualifiche",t:"Sab 15:00"},{s:"Gara",t:"Dom 09:00",m:1}]},
-  jpn:{length:"5.807",laps:53,corners:18,drs:1,lr:{t:"1:30.983",d:"Valtteri Bottas",y:2019},desc:"Suzuka è il tempio dell'automobilismo — l'unico circuito a figura di 8 del calendario. La celebre esse di Maggots/Becketts/Chapel ad alta velocità è la sequenza più impegnativa di tutta la stagione. Il 130R, curva a piena velocità, separa i coraggiosi dagli altri. Il tracciato premia il carico aerodinamico e punisce le macchine instabili.",tags:["Alta velocità","Esses iconiche","Figura di 8","Carico aero fondamentale"],sched:[{s:"Prove Libere 1",t:"Ven 11:30"},{s:"Prove Libere 2",t:"Ven 15:00"},{s:"Prove Libere 3",t:"Sab 11:30"},{s:"Qualifiche",t:"Sab 15:00"},{s:"Gara",t:"Dom 14:00",m:1}]},
-  bhr:{length:"5.412",laps:57,corners:15,drs:3,lr:{t:"1:31.447",d:"Pedro de la Rosa",y:2005},desc:"Sakhir è un circuito misto con tratti veloci e lenti alternati. Notoriamente duro sulle gomme posteriori per le accelerazioni ripetute in uscita dalle curve lente. Con tre zone DRS le battaglie ruota a ruota sono frequenti. La polvere del deserto migliora la traiettoria giro dopo giro.",tags:["3 zone DRS","Duro sulle gomme","Gara notturna","Degrado elevato"],sched:[{s:"Prove Libere 1",t:"Gio 17:30"},{s:"Prove Libere 2",t:"Gio 21:00"},{s:"Prove Libere 3",t:"Sab 17:30"},{s:"Qualifiche",t:"Sab 21:00"},{s:"Gara",t:"Dom 18:00",m:1}]},
-  ksa:{length:"6.174",laps:50,corners:27,drs:3,lr:{t:"1:28.225",d:"Lewis Hamilton",y:2021},desc:"Il circuito di Jeddah è il più veloce del calendario con una media superiore a 250 km/h. Tracciato cittadino ad alta velocità con muretti vicinissimi e visibilità ridotta. Tre zone DRS e lunghi rettilinei rendono i sorpassi frequenti. Il vento costiero crea condizioni variabili tra qualifica e gara.",tags:["Il più veloce del calendario","3 zone DRS","Cittadino ad alta velocità","Muretti vicinissimi"],sched:[{s:"Prove Libere 1",t:"Gio 17:30"},{s:"Prove Libere 2",t:"Gio 21:00"},{s:"Qualifiche",t:"Sab 21:00"},{s:"Gara",t:"Dom 20:00",m:1}]},
-  mia:{length:"5.412",laps:57,corners:19,drs:3,lr:{t:"1:27.241",d:"Max Verstappen",y:2023},desc:"Miami International Autodrome è un circuito permanente costruito attorno allo stadio Hard Rock. Il layout alterna rettilinei lunghi a sezioni tecniche strette. Con tre zone DRS e la tipica umidità floridiana il degrado gomme è elevato. Ospita uno dei Sprint weekend della stagione.",tags:["3 zone DRS","Sprint weekend","Umidità elevata","Circuito permanente"],sched:[{s:"Prove Libere 1",t:"Ven 19:30"},{s:"Sprint Qualifiche",t:"Ven 23:30",m:1},{s:"Sprint Race",t:"Sab 19:00",m:1},{s:"Qualifiche",t:"Dom 18:00"},{s:"Gara",t:"Dom 22:00",m:1}]},
-  can:{length:"4.361",laps:70,corners:14,drs:2,lr:{t:"1:13.078",d:"Valtteri Bottas",y:2019},desc:"Circuit Gilles Villeneuve è un classico tracciato cittadino sull'île Notre-Dame. Famoso per il muro dei campioni nell'ultima chicane — ha mangiato più di un titolo potenziale. Layout stop-and-go con lunghi rettilinei e frenate brutali. La pioggia è frequente a maggio e può capovolgere la gara in pochi giri.",tags:["Muro dei campioni","Stop-and-go","Pioggia frequente","Sprint weekend"],sched:[{s:"Prove Libere 1",t:"Ven 19:30"},{s:"Sprint Qualifiche",t:"Ven 23:30",m:1},{s:"Sprint Race",t:"Sab 18:30",m:1},{s:"Qualifiche",t:"Dom 18:00"},{s:"Gara",t:"Dom 20:00",m:1}]},
-  mon:{length:"3.337",laps:78,corners:19,drs:1,lr:{t:"1:12.909",d:"Max Verstappen",y:2023},desc:"Monaco è l'anomalia del calendario. Il tracciato più stretto, più lento, più iconico. Sorpassare è quasi impossibile — la qualifica vale come la gara. La strategia nei box e il traffico nelle corsie diventano l'intera competizione. Un anacronismo magnifico che resiste da 75 anni sul calendario.",tags:["Sorpassi quasi impossibili","Qualifica decisiva","Tunnel iconico","Strada vera"],sched:[{s:"Prove Libere 1",t:"Gio 13:30"},{s:"Prove Libere 2",t:"Gio 17:00"},{s:"Prove Libere 3",t:"Sab 12:30"},{s:"Qualifiche",t:"Sab 16:00"},{s:"Gara",t:"Dom 15:00",m:1}]},
-  esp:{length:"4.657",laps:66,corners:16,drs:2,lr:{t:"1:16.330",d:"Max Verstappen",y:2023},desc:"L'ultimo GP di Spagna a Barcellona prima del trasferimento a Madrid. Il Circuit de Barcelona-Catalunya è storica sede dei test invernali — i team conoscono ogni millimetro dell'asfalto. Tracciato tecnico con diversi tipi di curva, dal veloce al lento.",tags:["Ultima edizione Barcellona","Test invernali","Tracciato tecnico","Conosciutissimo dai team"],sched:[{s:"Prove Libere 1",t:"Ven 13:30"},{s:"Prove Libere 2",t:"Ven 17:00"},{s:"Prove Libere 3",t:"Sab 12:30"},{s:"Qualifiche",t:"Sab 16:00"},{s:"Gara",t:"Dom 15:00",m:1}]},
-  aut:{length:"4.318",laps:71,corners:10,drs:3,lr:{t:"1:05.619",d:"Carlos Sainz",y:2020},desc:"Il Red Bull Ring è il circuito con meno curve del calendario — solo 10. Layout veloce e aggressivo con tre zone DRS che garantiscono sorpassi. L'altitudine (600m slm) riduce la potenza dei motori e la deportanza. I temporali pomeridiani delle Alpi stiriane possono stravolgere tutto in pochi minuti.",tags:["3 zone DRS","Solo 10 curve","600m di altitudine","Temporali alpini"],sched:[{s:"Prove Libere 1",t:"Ven 13:30"},{s:"Prove Libere 2",t:"Ven 17:00"},{s:"Prove Libere 3",t:"Sab 12:30"},{s:"Qualifiche",t:"Sab 16:00"},{s:"Gara",t:"Dom 15:00",m:1}]},
-  gbr:{length:"5.891",laps:52,corners:18,drs:2,lr:{t:"1:27.097",d:"Max Verstappen",y:2020},desc:"Silverstone è la casa del motorsport. Dal 1950 sede del primo Gran Premio del Campionato del Mondo. Il layout ad alta velocità con le famose sequenze di Maggots-Becketts-Chapel e Copse mette alla prova il coraggio dei piloti. Ospita uno Sprint weekend 2026.",tags:["Casa del motorsport","Maggots-Becketts iconiche","Sprint weekend","Alta velocità"],sched:[{s:"Prove Libere 1",t:"Ven 13:30"},{s:"Sprint Qualifiche",t:"Ven 17:30",m:1},{s:"Sprint Race",t:"Sab 12:30",m:1},{s:"Qualifiche",t:"Sab 16:00"},{s:"Gara",t:"Dom 15:00",m:1}]},
-  bel:{length:"7.004",laps:44,corners:20,drs:2,lr:{t:"1:46.286",d:"Valtteri Bottas",y:2018},desc:"Spa-Francorchamps è il circuito più lungo del calendario e uno dei più amati dai piloti. Raidillon-Eau Rouge, la combinazione di due curve in salita a piena velocità, è la selezione del coraggio. Il meteo belga cambia ogni 20 minuti. Ogni anno un temporale improvviso rimescola le strategie.",tags:["Il più lungo del calendario","Eau Rouge iconica","Meteo imprevedibile","7km di pista"],sched:[{s:"Prove Libere 1",t:"Ven 13:30"},{s:"Prove Libere 2",t:"Ven 17:00"},{s:"Prove Libere 3",t:"Sab 12:30"},{s:"Qualifiche",t:"Sab 16:00"},{s:"Gara",t:"Dom 15:00",m:1}]},
-  hun:{length:"4.381",laps:70,corners:14,drs:1,lr:{t:"1:16.627",d:"Lewis Hamilton",y:2020},desc:"L'Hungaroring è il contrario di Monza: lento, tortuoso, con pochissimi punti di sorpasso. Richiede il massimo carico aerodinamico e penalizza chi ha problemi di trazione. Il caldo di luglio a Budapest porta temperature dell'asfalto oltre i 50°C.",tags:["Carico massimo","1 solo DRS","Caldo estremo","Pochi sorpassi"],sched:[{s:"Prove Libere 1",t:"Ven 13:30"},{s:"Prove Libere 2",t:"Ven 17:00"},{s:"Prove Libere 3",t:"Sab 12:30"},{s:"Qualifiche",t:"Sab 16:00"},{s:"Gara",t:"Dom 15:00",m:1}]},
-  ned:{length:"4.259",laps:72,corners:14,drs:2,lr:{t:"1:11.097",d:"Max Verstappen",y:2021},desc:"Zandvoort ospita il suo ultimo Gran Premio nel 2026 prima di uscire dal calendario. Le dune costiere dell'Olanda del nord creano condizioni di vento uniche. Il famoso banking nelle ultime curve e la sequenza finale ad alta velocità rendono il tracciato molto diverso da tutti gli altri. Sprint weekend.",tags:["Ultimo GP a Zandvoort","Banking unico","Vento costiero","Sprint weekend"],sched:[{s:"Prove Libere 1",t:"Ven 11:30"},{s:"Sprint Qualifiche",t:"Ven 15:00",m:1},{s:"Sprint Race",t:"Sab 11:00",m:1},{s:"Qualifiche",t:"Sab 15:00"},{s:"Gara",t:"Dom 15:00",m:1}]},
-  ita:{length:"5.793",laps:53,corners:11,drs:2,lr:{t:"1:21.046",d:"Rubens Barrichello",y:2004},desc:"Monza è il Tempio della Velocità. Setup da minimo carico aerodinamico per massimizzare la velocità di punta. Le slipstream battles in qualifica sono spettacolari. La curva Parabolica e la Variante del Rettifilo sono punti di sorpasso classici. Il tifo Ferrari crea un'atmosfera unica.",tags:["Massima velocità","Minimo carico","Slipstream in qualifica","Tifosi Ferrari"],sched:[{s:"Prove Libere 1",t:"Ven 13:30"},{s:"Prove Libere 2",t:"Ven 17:00"},{s:"Prove Libere 3",t:"Sab 12:30"},{s:"Qualifiche",t:"Sab 16:00"},{s:"Gara",t:"Dom 15:00",m:1}]},
-  mad:{length:"5.474",laps:55,corners:22,drs:2,lr:{t:"—",d:"Record da stabilire",y:2026},desc:"Il Circuito de Madrid è il debutto assoluto in Formula 1. Costruito nell'area IFEMA-Valdebebas a est di Madrid, combina sezioni urbane e permanenti. Il rettilineo principale raggiunge i 340 km/h. Il settore centrale con chicane strette formerà treni di macchine simili a Suzuka. Layout ibrido sconosciuto a tutti.",tags:["Debutto assoluto","Record da stabilire","Layout ibrido","340 km/h sul rettilineo"],sched:[{s:"Prove Libere 1",t:"Ven 13:30"},{s:"Prove Libere 2",t:"Ven 17:00"},{s:"Prove Libere 3",t:"Sab 12:30"},{s:"Qualifiche",t:"Sab 16:00"},{s:"Gara",t:"Dom 15:00",m:1}]},
-  aze:{length:"6.003",laps:51,corners:20,drs:2,lr:{t:"1:43.009",d:"Charles Leclerc",y:2019},desc:"Baku City Circuit è un mash-up di circuiti: il rettilineo principale più lungo del calendario (2.2km), le stradine medievali della città vecchia con curve cieche, e il porto sullo sfondo. La Safety Car è praticamente garantita ogni anno. Gara il sabato.",tags:["Rettilineo da 2.2km","Strade medievali","Safety Car probabile","Gara il sabato"],sched:[{s:"Prove Libere 1",t:"Gio 13:30"},{s:"Prove Libere 2",t:"Gio 17:00"},{s:"Prove Libere 3",t:"Ven 12:30"},{s:"Qualifiche",t:"Ven 16:00"},{s:"Gara",t:"Sab 14:00",m:1}]},
-  sgp:{length:"5.063",laps:61,corners:23,drs:3,lr:{t:"1:35.867",d:"Lewis Hamilton",y:2023},desc:"Marina Bay è la gara notturna per eccellenza. 1600 proiettori illuminano 23 curve sulle strade di Singapore. Il calore e l'umidità tropicale portano le temperature dell'abitacolo oltre i 50°C. Safety Car statisticamente la più probabile di tutto il calendario. Sprint weekend per la prima volta.",tags:["Gara notturna","23 curve","Caldo tropicale","Sprint weekend 2026"],sched:[{s:"Prove Libere 1",t:"Ven 17:30"},{s:"Sprint Qualifiche",t:"Ven 21:30",m:1},{s:"Sprint Race",t:"Sab 17:00",m:1},{s:"Qualifiche",t:"Sab 21:00"},{s:"Gara",t:"Dom 20:00",m:1}]},
-  usa:{length:"5.513",laps:56,corners:20,drs:2,lr:{t:"1:36.169",d:"Charles Leclerc",y:2019},desc:"Circuit of the Americas è il tracciato americano per eccellenza, disegnato con le migliori curve del mondo: la curva 1 in salita è ispirata alla Roggia di Monza, le esse alla sezione di Suzuka. Pubblico texano caloroso e numeroso.",tags:["Curve da tutto il mondo","Curva 1 in salita","Texano e rumoroso","20 curve"],sched:[{s:"Prove Libere 1",t:"Ven 19:30"},{s:"Prove Libere 2",t:"Ven 23:00"},{s:"Prove Libere 3",t:"Sab 19:30"},{s:"Qualifiche",t:"Sab 23:00"},{s:"Gara",t:"Dom 21:00",m:1}]},
-  mex:{length:"4.304",laps:71,corners:17,drs:3,lr:{t:"1:17.774",d:"Valtteri Bottas",y:2021},desc:"L'Autodromo Hermanos Rodríguez è a 2200m di altitudine — la più alta del calendario. L'aria rarefatta riduce significativamente la deportanza aerodinamica e la potenza dei motori. Il Foro Sol, la tribuna che circonda la sezione finale, crea un'atmosfera unica.",tags:["2200m di altitudine","Aria rarefatta","Meno deportanza","Foro Sol iconico"],sched:[{s:"Prove Libere 1",t:"Ven 18:30"},{s:"Prove Libere 2",t:"Ven 22:00"},{s:"Prove Libere 3",t:"Sab 18:30"},{s:"Qualifiche",t:"Sab 22:00"},{s:"Gara",t:"Dom 21:00",m:1}]},
-  bra:{length:"4.309",laps:71,corners:15,drs:2,lr:{t:"1:10.540",d:"Valtteri Bottas",y:2018},desc:"Interlagos è uno dei circuiti più amati dai piloti e uno dei più caotici per meteo. La pioggia tropicale può arrivare in qualsiasi momento e capovolgere ogni previsione. Il tracciato corto e nervoso, con cambi di quota significativi, crea gare imprevedibili.",tags:["Pioggia imprevedibile","Cambi di quota","4.3km brevissimo","Storia brasiliana"],sched:[{s:"Prove Libere 1",t:"Ven 15:30"},{s:"Prove Libere 2",t:"Ven 19:00"},{s:"Prove Libere 3",t:"Sab 15:30"},{s:"Qualifiche",t:"Sab 19:00"},{s:"Gara",t:"Dom 18:00",m:1}]},
-  lv:{length:"6.201",laps:50,corners:17,drs:2,lr:{t:"1:35.490",d:"Charles Leclerc",y:2023},desc:"Las Vegas Strip Circuit è il più lungo del calendario con 6.2km. Il rettilineo principale lungo la Strip è spettacolare ma il freddo notturno di novembre crea condizioni di grip basse e temperature gomme problematiche. Gara il sabato.",tags:["Il più lungo — 6.2km","Freddo notturno","Strip di Las Vegas","Gara il sabato"],sched:[{s:"Prove Libere 1",t:"Ven 04:30"},{s:"Prove Libere 2",t:"Sab 04:00"},{s:"Qualifiche",t:"Sab 08:00"},{s:"Gara",t:"Dom 06:00",m:1}]},
-  qat:{length:"5.419",laps:57,corners:16,drs:1,lr:{t:"1:24.319",d:"Max Verstappen",y:2023},desc:"Il Lusail Circuit è stato costruito per la MotoGP e si vede: veloce, fluente, con molte curve ad alta velocità e pochissimi punti di sorpasso. Il calore del Qatar e le temperature elevate mettono gomme e piloti sotto stress estremo. Con un solo DRS le battaglie ruota a ruota richiedono coraggio.",tags:["Costruito per MotoGP","Molto fluente","1 solo DRS","Caldo estremo"],sched:[{s:"Prove Libere 1",t:"Gio 17:30"},{s:"Prove Libere 2",t:"Gio 21:00"},{s:"Qualifiche",t:"Sab 21:00"},{s:"Gara",t:"Dom 19:00",m:1}]},
-  ad:{length:"5.281",laps:58,corners:16,drs:2,lr:{t:"1:26.103",d:"Max Verstappen",y:2021},desc:"Yas Marina chiude ogni stagione con il finale sotto le luci di Abu Dhabi. Il tracciato è stato ridisegnato nel 2021 per favorire i sorpassi ed è ora significativamente più veloce. Sede tradizionale della gara finale — molti titoli sono stati decisi qui.",tags:["Finale di stagione","Ridisegnato nel 2021","Hotel sul tracciato","Gara notturna"],sched:[{s:"Prove Libere 1",t:"Gio 14:30"},{s:"Prove Libere 2",t:"Gio 18:00"},{s:"Prove Libere 3",t:"Sab 14:30"},{s:"Qualifiche",t:"Sab 18:00"},{s:"Gara",t:"Dom 17:00",m:1}]},
+  aus:{length:"5.278",laps:58,corners:16,drs:4,lr:{t:"1:20.235",d:"Charles Leclerc",y:2022},desc:"Albert Park è un circuito semiurbano sul lago di Melbourne. Quattro zone DRS tengono il gruppo unito e favoriscono i sorpassi. La combinazione di rettilinei medi e curve veloci richiede un setup bilanciato. Con le nuove regole 2026 è stato il primo banco di prova dell'era: 120 sorpassi, 6 cambi di testa nei primi 10 giri.",tags:["4 zone DRS","Semiurbano","Setup bilanciato","Alta frequenza sorpassi"],sched:[{s:"Prove Libere 1",t:"Gio 12:30"},{s:"Prove Libere 2",t:"Gio 16:00"},{s:"Prove Libere 3",t:"Sab 12:30"},{s:"Qualifiche",t:"Sab 16:00"},{s:"Gara",t:"Dom 15:00",m:1}]},
+  chn:{length:"5.451",laps:56,corners:16,drs:2,lr:{t:"1:32.238",d:"Michael Schumacher",y:2004},desc:"Shanghai è uno dei tracciati più tecnici del calendario. Il rettilineo principale è il più lungo della stagione: con il nuovo sistema di gestione energetica del 2026 la ricarica della batteria sarà il fattore decisivo. La famosa esse del primo settore e la hairpin finale rimangono le zone di sorpasso chiave.",tags:["Rettilineo lunghissimo","Gestione batteria critica","Esse tecnica","Sprint weekend"],sched:[{s:"Prove Libere 1",t:"Ven 11:30"},{s:"Sprint Qualifiche",t:"Ven 15:00",m:1},{s:"Sprint Race",t:"Sab 11:00",m:1},{s:"Qualifiche",t:"Sab 15:00"},{s:"Gara",t:"Dom 09:00",m:1}]},
+  jpn:{length:"5.807",laps:53,corners:18,drs:1,lr:{t:"1:30.983",d:"Valtteri Bottas",y:2019},desc:"Suzuka è il tempio dell'automobilismo — l'unico circuito a figura di 8 del calendario. La celebre esse di Maggots/Becketts/Chapel ad alta velocità è la sequenza più impegnativa di tutta la stagione. Il 130R, curva a piena velocità, separa i coraggiosi dagli altri. Il tracciato premia il carico aerodinamico e punisce le macchine instabili.",tags:["Alta velocità","Esses iconiche","Figura di 8","Carico aero fondamentale"],sched:[{s:"Prove Libere 1",t:"Ven 11:30"},{s:"Prove Libere 2",t:"Ven 15:00"},{s:"Prove Libere 3",t:"Sab 11:30"},{s:"Qualifiche",t:"Sab 15:00"},{s:"Gara",t:"Dom 14:00",m:1}]},
+  bhr:{length:"5.412",laps:57,corners:15,drs:3,lr:{t:"1:31.447",d:"Pedro de la Rosa",y:2005},desc:"Sakhir è un circuito misto con tratti veloci e lenti alternati. Notoriamente duro sulle gomme posteriori per le accelerazioni ripetute in uscita dalle curve lente. Con tre zone DRS le battaglie ruota a ruota sono frequenti. La polvere del deserto migliora la traiettoria giro dopo giro.",tags:["3 zone DRS","Duro sulle gomme","Gara notturna","Degrado elevato"],sched:[{s:"Prove Libere 1",t:"Gio 17:30"},{s:"Prove Libere 2",t:"Gio 21:00"},{s:"Prove Libere 3",t:"Sab 17:30"},{s:"Qualifiche",t:"Sab 21:00"},{s:"Gara",t:"Dom 18:00",m:1}]},
+  ksa:{length:"6.174",laps:50,corners:27,drs:3,lr:{t:"1:28.225",d:"Lewis Hamilton",y:2021},desc:"Il circuito di Jeddah è il più veloce del calendario con una media superiore a 250 km/h. Tracciato cittadino ad alta velocità con muretti vicinissimi e visibilità ridotta. Tre zone DRS e lunghi rettilinei rendono i sorpassi frequenti. Il vento costiero crea condizioni variabili tra qualifica e gara.",tags:["Il più veloce del calendario","3 zone DRS","Cittadino ad alta velocità","Muretti vicinissimi"],sched:[{s:"Prove Libere 1",t:"Gio 17:30"},{s:"Prove Libere 2",t:"Gio 21:00"},{s:"Qualifiche",t:"Sab 21:00"},{s:"Gara",t:"Dom 20:00",m:1}]},
+  mia:{length:"5.412",laps:57,corners:19,drs:3,lr:{t:"1:27.241",d:"Max Verstappen",y:2023},desc:"Miami International Autodrome è un circuito permanente costruito attorno allo stadio Hard Rock. Il layout alterna rettilinei lunghi a sezioni tecniche strette. Con tre zone DRS e la tipica umidità floridiana il degrado gomme è elevato. Ospita uno dei Sprint weekend della stagione.",tags:["3 zone DRS","Sprint weekend","Umidità elevata","Circuito permanente"],sched:[{s:"Prove Libere 1",t:"Ven 19:30"},{s:"Sprint Qualifiche",t:"Ven 23:30",m:1},{s:"Sprint Race",t:"Sab 19:00",m:1},{s:"Qualifiche",t:"Dom 18:00"},{s:"Gara",t:"Dom 22:00",m:1}]},
+  can:{length:"4.361",laps:70,corners:14,drs:2,lr:{t:"1:13.078",d:"Valtteri Bottas",y:2019},desc:"Circuit Gilles Villeneuve è un classico tracciato cittadino sull'île Notre-Dame. Famoso per il muro dei campioni nell'ultima chicane — ha mangiato più di un titolo potenziale. Layout stop-and-go con lunghi rettilinei e frenate brutali. La pioggia è frequente a maggio e può capovolgere la gara in pochi giri.",tags:["Muro dei campioni","Stop-and-go","Pioggia frequente","Sprint weekend"],sched:[{s:"Prove Libere 1",t:"Ven 19:30"},{s:"Sprint Qualifiche",t:"Ven 23:30",m:1},{s:"Sprint Race",t:"Sab 18:30",m:1},{s:"Qualifiche",t:"Dom 18:00"},{s:"Gara",t:"Dom 20:00",m:1}]},
+  mon:{length:"3.337",laps:78,corners:19,drs:1,lr:{t:"1:12.909",d:"Max Verstappen",y:2023},desc:"Monaco è l'anomalia del calendario. Il tracciato più stretto, più lento, più iconico. Sorpassare è quasi impossibile — la qualifica vale come la gara. La strategia nei box e il traffico nelle corsie diventano l'intera competizione. Un anacronismo magnifico che resiste da 75 anni sul calendario.",tags:["Sorpassi quasi impossibili","Qualifica decisiva","Tunnel iconico","Strada vera"],sched:[{s:"Prove Libere 1",t:"Gio 13:30"},{s:"Prove Libere 2",t:"Gio 17:00"},{s:"Prove Libere 3",t:"Sab 12:30"},{s:"Qualifiche",t:"Sab 16:00"},{s:"Gara",t:"Dom 15:00",m:1}]},
+  esp:{length:"4.657",laps:66,corners:16,drs:2,lr:{t:"1:16.330",d:"Max Verstappen",y:2023},desc:"L'ultimo GP di Spagna a Barcellona prima del trasferimento a Madrid. Il Circuit de Barcelona-Catalunya è storica sede dei test invernali — i team conoscono ogni millimetro dell'asfalto. Tracciato tecnico con diversi tipi di curva, dal veloce al lento.",tags:["Ultima edizione Barcellona","Test invernali","Tracciato tecnico","Conosciutissimo dai team"],sched:[{s:"Prove Libere 1",t:"Ven 13:30"},{s:"Prove Libere 2",t:"Ven 17:00"},{s:"Prove Libere 3",t:"Sab 12:30"},{s:"Qualifiche",t:"Sab 16:00"},{s:"Gara",t:"Dom 15:00",m:1}]},
+  aut:{length:"4.318",laps:71,corners:10,drs:3,lr:{t:"1:05.619",d:"Carlos Sainz",y:2020},desc:"Il Red Bull Ring è il circuito con meno curve del calendario — solo 10. Layout veloce e aggressivo con tre zone DRS che garantiscono sorpassi. L'altitudine (600m slm) riduce la potenza dei motori e la deportanza. I temporali pomeridiani delle Alpi stiriane possono stravolgere tutto in pochi minuti.",tags:["3 zone DRS","Solo 10 curve","600m di altitudine","Temporali alpini"],sched:[{s:"Prove Libere 1",t:"Ven 13:30"},{s:"Prove Libere 2",t:"Ven 17:00"},{s:"Prove Libere 3",t:"Sab 12:30"},{s:"Qualifiche",t:"Sab 16:00"},{s:"Gara",t:"Dom 15:00",m:1}]},
+  gbr:{length:"5.891",laps:52,corners:18,drs:2,lr:{t:"1:27.097",d:"Max Verstappen",y:2020},desc:"Silverstone è la casa del motorsport. Dal 1950 sede del primo Gran Premio del Campionato del Mondo. Il layout ad alta velocità con le famose sequenze di Maggots-Becketts-Chapel e Copse mette alla prova il coraggio dei piloti. Ospita uno Sprint weekend 2026.",tags:["Casa del motorsport","Maggots-Becketts iconiche","Sprint weekend","Alta velocità"],sched:[{s:"Prove Libere 1",t:"Ven 13:30"},{s:"Sprint Qualifiche",t:"Ven 17:30",m:1},{s:"Sprint Race",t:"Sab 12:30",m:1},{s:"Qualifiche",t:"Sab 16:00"},{s:"Gara",t:"Dom 15:00",m:1}]},
+  bel:{length:"7.004",laps:44,corners:20,drs:2,lr:{t:"1:46.286",d:"Valtteri Bottas",y:2018},desc:"Spa-Francorchamps è il circuito più lungo del calendario e uno dei più amati dai piloti. Raidillon-Eau Rouge, la combinazione di due curve in salita a piena velocità, è la selezione del coraggio. Il meteo belga cambia ogni 20 minuti. Ogni anno un temporale improvviso rimescola le strategie.",tags:["Il più lungo del calendario","Eau Rouge iconica","Meteo imprevedibile","7km di pista"],sched:[{s:"Prove Libere 1",t:"Ven 13:30"},{s:"Prove Libere 2",t:"Ven 17:00"},{s:"Prove Libere 3",t:"Sab 12:30"},{s:"Qualifiche",t:"Sab 16:00"},{s:"Gara",t:"Dom 15:00",m:1}]},
+  hun:{length:"4.381",laps:70,corners:14,drs:1,lr:{t:"1:16.627",d:"Lewis Hamilton",y:2020},desc:"L'Hungaroring è il contrario di Monza: lento, tortuoso, con pochissimi punti di sorpasso. Richiede il massimo carico aerodinamico e penalizza chi ha problemi di trazione. Il caldo di luglio a Budapest porta temperature dell'asfalto oltre i 50°C.",tags:["Carico massimo","1 solo DRS","Caldo estremo","Pochi sorpassi"],sched:[{s:"Prove Libere 1",t:"Ven 13:30"},{s:"Prove Libere 2",t:"Ven 17:00"},{s:"Prove Libere 3",t:"Sab 12:30"},{s:"Qualifiche",t:"Sab 16:00"},{s:"Gara",t:"Dom 15:00",m:1}]},
+  ned:{length:"4.259",laps:72,corners:14,drs:2,lr:{t:"1:11.097",d:"Max Verstappen",y:2021},desc:"Zandvoort ospita il suo ultimo Gran Premio nel 2026 prima di uscire dal calendario. Le dune costiere dell'Olanda del nord creano condizioni di vento uniche. Il famoso banking nelle ultime curve e la sequenza finale ad alta velocità rendono il tracciato molto diverso da tutti gli altri. Sprint weekend.",tags:["Ultimo GP a Zandvoort","Banking unico","Vento costiero","Sprint weekend"],sched:[{s:"Prove Libere 1",t:"Ven 11:30"},{s:"Sprint Qualifiche",t:"Ven 15:00",m:1},{s:"Sprint Race",t:"Sab 11:00",m:1},{s:"Qualifiche",t:"Sab 15:00"},{s:"Gara",t:"Dom 15:00",m:1}]},
+  ita:{length:"5.793",laps:53,corners:11,drs:2,lr:{t:"1:21.046",d:"Rubens Barrichello",y:2004},desc:"Monza è il Tempio della Velocità. Setup da minimo carico aerodinamico per massimizzare la velocità di punta. Le slipstream battles in qualifica sono spettacolari. La curva Parabolica e la Variante del Rettifilo sono punti di sorpasso classici. Il tifo Ferrari crea un'atmosfera unica.",tags:["Massima velocità","Minimo carico","Slipstream in qualifica","Tifosi Ferrari"],sched:[{s:"Prove Libere 1",t:"Ven 13:30"},{s:"Prove Libere 2",t:"Ven 17:00"},{s:"Prove Libere 3",t:"Sab 12:30"},{s:"Qualifiche",t:"Sab 16:00"},{s:"Gara",t:"Dom 15:00",m:1}]},
+  mad:{length:"5.474",laps:55,corners:22,drs:2,lr:{t:"—",d:"Record da stabilire",y:2026},desc:"Il Circuito de Madrid è il debutto assoluto in Formula 1. Costruito nell'area IFEMA-Valdebebas a est di Madrid, combina sezioni urbane e permanenti. Il rettilineo principale raggiunge i 340 km/h. Il settore centrale con chicane strette formerà treni di macchine simili a Suzuka. Layout ibrido sconosciuto a tutti.",tags:["Debutto assoluto","Record da stabilire","Layout ibrido","340 km/h sul rettilineo"],sched:[{s:"Prove Libere 1",t:"Ven 13:30"},{s:"Prove Libere 2",t:"Ven 17:00"},{s:"Prove Libere 3",t:"Sab 12:30"},{s:"Qualifiche",t:"Sab 16:00"},{s:"Gara",t:"Dom 15:00",m:1}]},
+  aze:{length:"6.003",laps:51,corners:20,drs:2,lr:{t:"1:43.009",d:"Charles Leclerc",y:2019},desc:"Baku City Circuit è un mash-up di circuiti: il rettilineo principale più lungo del calendario (2.2km), le stradine medievali della città vecchia con curve cieche, e il porto sullo sfondo. La Safety Car è praticamente garantita ogni anno. Gara il sabato.",tags:["Rettilineo da 2.2km","Strade medievali","Safety Car probabile","Gara il sabato"],sched:[{s:"Prove Libere 1",t:"Gio 13:30"},{s:"Prove Libere 2",t:"Gio 17:00"},{s:"Prove Libere 3",t:"Ven 12:30"},{s:"Qualifiche",t:"Ven 16:00"},{s:"Gara",t:"Sab 14:00",m:1}]},
+  sgp:{length:"5.063",laps:61,corners:23,drs:3,lr:{t:"1:35.867",d:"Lewis Hamilton",y:2023},desc:"Marina Bay è la gara notturna per eccellenza. 1600 proiettori illuminano 23 curve sulle strade di Singapore. Il calore e l'umidità tropicale portano le temperature dell'abitacolo oltre i 50°C. Safety Car statisticamente la più probabile di tutto il calendario. Sprint weekend per la prima volta.",tags:["Gara notturna","23 curve","Caldo tropicale","Sprint weekend 2026"],sched:[{s:"Prove Libere 1",t:"Ven 17:30"},{s:"Sprint Qualifiche",t:"Ven 21:30",m:1},{s:"Sprint Race",t:"Sab 17:00",m:1},{s:"Qualifiche",t:"Sab 21:00"},{s:"Gara",t:"Dom 20:00",m:1}]},
+  usa:{length:"5.513",laps:56,corners:20,drs:2,lr:{t:"1:36.169",d:"Charles Leclerc",y:2019},desc:"Circuit of the Americas è il tracciato americano per eccellenza, disegnato con le migliori curve del mondo: la curva 1 in salita è ispirata alla Roggia di Monza, le esse alla sezione di Suzuka. Pubblico texano caloroso e numeroso.",tags:["Curve da tutto il mondo","Curva 1 in salita","Texano e rumoroso","20 curve"],sched:[{s:"Prove Libere 1",t:"Ven 19:30"},{s:"Prove Libere 2",t:"Ven 23:00"},{s:"Prove Libere 3",t:"Sab 19:30"},{s:"Qualifiche",t:"Sab 23:00"},{s:"Gara",t:"Dom 21:00",m:1}]},
+  mex:{length:"4.304",laps:71,corners:17,drs:3,lr:{t:"1:17.774",d:"Valtteri Bottas",y:2021},desc:"L'Autodromo Hermanos Rodríguez è a 2200m di altitudine — la più alta del calendario. L'aria rarefatta riduce significativamente la deportanza aerodinamica e la potenza dei motori. Il Foro Sol, la tribuna che circonda la sezione finale, crea un'atmosfera unica.",tags:["2200m di altitudine","Aria rarefatta","Meno deportanza","Foro Sol iconico"],sched:[{s:"Prove Libere 1",t:"Ven 18:30"},{s:"Prove Libere 2",t:"Ven 22:00"},{s:"Prove Libere 3",t:"Sab 18:30"},{s:"Qualifiche",t:"Sab 22:00"},{s:"Gara",t:"Dom 21:00",m:1}]},
+  bra:{length:"4.309",laps:71,corners:15,drs:2,lr:{t:"1:10.540",d:"Valtteri Bottas",y:2018},desc:"Interlagos è uno dei circuiti più amati dai piloti e uno dei più caotici per meteo. La pioggia tropicale può arrivare in qualsiasi momento e capovolgere ogni previsione. Il tracciato corto e nervoso, con cambi di quota significativi, crea gare imprevedibili.",tags:["Pioggia imprevedibile","Cambi di quota","4.3km brevissimo","Storia brasiliana"],sched:[{s:"Prove Libere 1",t:"Ven 15:30"},{s:"Prove Libere 2",t:"Ven 19:00"},{s:"Prove Libere 3",t:"Sab 15:30"},{s:"Qualifiche",t:"Sab 19:00"},{s:"Gara",t:"Dom 18:00",m:1}]},
+  lv:{length:"6.201",laps:50,corners:17,drs:2,lr:{t:"1:35.490",d:"Charles Leclerc",y:2023},desc:"Las Vegas Strip Circuit è il più lungo del calendario con 6.2km. Il rettilineo principale lungo la Strip è spettacolare ma il freddo notturno di novembre crea condizioni di grip basse e temperature gomme problematiche. Gara il sabato.",tags:["Il più lungo — 6.2km","Freddo notturno","Strip di Las Vegas","Gara il sabato"],sched:[{s:"Prove Libere 1",t:"Ven 04:30"},{s:"Prove Libere 2",t:"Sab 04:00"},{s:"Qualifiche",t:"Sab 08:00"},{s:"Gara",t:"Dom 06:00",m:1}]},
+  qat:{length:"5.419",laps:57,corners:16,drs:1,lr:{t:"1:24.319",d:"Max Verstappen",y:2023},desc:"Il Lusail Circuit è stato costruito per la MotoGP e si vede: veloce, fluente, con molte curve ad alta velocità e pochissimi punti di sorpasso. Il calore del Qatar e le temperature elevate mettono gomme e piloti sotto stress estremo. Con un solo DRS le battaglie ruota a ruota richiedono coraggio.",tags:["Costruito per MotoGP","Molto fluente","1 solo DRS","Caldo estremo"],sched:[{s:"Prove Libere 1",t:"Gio 17:30"},{s:"Prove Libere 2",t:"Gio 21:00"},{s:"Qualifiche",t:"Sab 21:00"},{s:"Gara",t:"Dom 19:00",m:1}]},
+  ad:{length:"5.281",laps:58,corners:16,drs:2,lr:{t:"1:26.103",d:"Max Verstappen",y:2021},desc:"Yas Marina chiude ogni stagione con il finale sotto le luci di Abu Dhabi. Il tracciato è stato ridisegnato nel 2021 per favorire i sorpassi ed è ora significativamente più veloce. Sede tradizionale della gara finale — molti titoli sono stati decisi qui.",tags:["Finale di stagione","Ridisegnato nel 2021","Hotel sul tracciato","Gara notturna"],sched:[{s:"Prove Libere 1",t:"Gio 14:30"},{s:"Prove Libere 2",t:"Gio 18:00"},{s:"Prove Libere 3",t:"Sab 14:30"},{s:"Qualifiche",t:"Sab 18:00"},{s:"Gara",t:"Dom 17:00",m:1}]},
 };
 const RACES=[
-  {id:"aus",r:"R01",name:"GP Australia",flag:"🇦🇺",date:"8 Mar",st:"done",winner:"G. Russell"},
-  {id:"chn",r:"R02",name:"GP Cina",flag:"🇨🇳",date:"15 Mar",sprint:true,st:"done",winner:"K. Antonelli"},
-  {id:"jpn",r:"R03",name:"GP Giappone",flag:"🇯🇵",date:"29 Mar",st:"next"},
-  {id:"bhr",r:"R04",name:"GP Bahrain",flag:"🇧🇭",date:"12 Apr",st:"future"},
-  {id:"ksa",r:"R05",name:"GP Arabia Saudita",flag:"🇸🇦",date:"19 Apr",st:"future"},
-  {id:"mia",r:"R06",name:"GP Miami",flag:"🇺🇸",date:"3 Mag",sprint:true,st:"future"},
-  {id:"can",r:"R07",name:"GP Canada",flag:"🇨🇦",date:"24 Mag",sprint:true,st:"future"},
-  {id:"mon",r:"R08",name:"GP Monaco",flag:"🇲🇨",date:"7 Giu",st:"future"},
-  {id:"esp",r:"R09",name:"GP Spagna",flag:"🇪🇸",date:"14 Giu",st:"future"},
-  {id:"aut",r:"R10",name:"GP Austria",flag:"🇦🇹",date:"28 Giu",st:"future"},
-  {id:"gbr",r:"R11",name:"GP Gran Bretagna",flag:"🇬🇧",date:"5 Lug",sprint:true,st:"future"},
-  {id:"bel",r:"R12",name:"GP Belgio",flag:"🇧🇪",date:"19 Lug",st:"future"},
-  {id:"hun",r:"R13",name:"GP Ungheria",flag:"🇭🇺",date:"26 Lug",st:"future"},
-  {id:"ned",r:"R14",name:"GP Paesi Bassi",flag:"🇳🇱",date:"23 Ago",sprint:true,st:"future"},
-  {id:"ita",r:"R15",name:"GP Italia",flag:"🇮🇹",date:"6 Set",st:"future"},
-  {id:"mad",r:"R16",name:"GP Madrid",flag:"🇪🇸",date:"13 Set",st:"future"},
-  {id:"aze",r:"R17",name:"GP Azerbaigian",flag:"🇦🇿",date:"26 Set",st:"future"},
-  {id:"sgp",r:"R18",name:"GP Singapore",flag:"🇸🇬",date:"11 Ott",sprint:true,st:"future"},
-  {id:"usa",r:"R19",name:"GP USA",flag:"🇺🇸",date:"25 Ott",st:"future"},
-  {id:"mex",r:"R20",name:"GP Messico",flag:"🇲🇽",date:"1 Nov",st:"future"},
-  {id:"bra",r:"R21",name:"GP Brasile",flag:"🇧🇷",date:"8 Nov",st:"future"},
-  {id:"lv",r:"R22",name:"GP Las Vegas",flag:"🇺🇸",date:"21 Nov",st:"future"},
-  {id:"qat",r:"R23",name:"GP Qatar",flag:"🇶🇦",date:"29 Nov",st:"future"},
-  {id:"ad",r:"R24",name:"GP Abu Dhabi",flag:"🇦🇪",date:"6 Dic",st:"future"},
+  {id:"aus",r:"R01",name:"GP Australia",flag:"🇦🇺",date:"8 Mar",st:"done",winner:"G. Russell"},
+  {id:"chn",r:"R02",name:"GP Cina",flag:"🇨🇳",date:"15 Mar",sprint:true,st:"done",winner:"K. Antonelli"},
+  {id:"jpn",r:"R03",name:"GP Giappone",flag:"🇯🇵",date:"29 Mar",st:"next"},
+  {id:"bhr",r:"R04",name:"GP Bahrain",flag:"🇧🇭",date:"12 Apr",st:"future"},
+  {id:"ksa",r:"R05",name:"GP Arabia Saudita",flag:"🇸🇦",date:"19 Apr",st:"future"},
+  {id:"mia",r:"R06",name:"GP Miami",flag:"🇺🇸",date:"3 Mag",sprint:true,st:"future"},
+  {id:"can",r:"R07",name:"GP Canada",flag:"🇨🇦",date:"24 Mag",sprint:true,st:"future"},
+  {id:"mon",r:"R08",name:"GP Monaco",flag:"🇲🇨",date:"7 Giu",st:"future"},
+  {id:"esp",r:"R09",name:"GP Spagna",flag:"🇪🇸",date:"14 Giu",st:"future"},
+  {id:"aut",r:"R10",name:"GP Austria",flag:"🇦🇹",date:"28 Giu",st:"future"},
+  {id:"gbr",r:"R11",name:"GP Gran Bretagna",flag:"🇬🇧",date:"5 Lug",sprint:true,st:"future"},
+  {id:"bel",r:"R12",name:"GP Belgio",flag:"🇧🇪",date:"19 Lug",st:"future"},
+  {id:"hun",r:"R13",name:"GP Ungheria",flag:"🇭🇺",date:"26 Lug",st:"future"},
+  {id:"ned",r:"R14",name:"GP Paesi Bassi",flag:"🇳🇱",date:"23 Ago",sprint:true,st:"future"},
+  {id:"ita",r:"R15",name:"GP Italia",flag:"🇮🇹",date:"6 Set",st:"future"},
+  {id:"mad",r:"R16",name:"GP Madrid",flag:"🇪🇸",date:"13 Set",st:"future"},
+  {id:"aze",r:"R17",name:"GP Azerbaigian",flag:"🇦🇿",date:"26 Set",st:"future"},
+  {id:"sgp",r:"R18",name:"GP Singapore",flag:"🇸🇬",date:"11 Ott",sprint:true,st:"future"},
+  {id:"usa",r:"R19",name:"GP USA",flag:"🇺🇸",date:"25 Ott",st:"future"},
+  {id:"mex",r:"R20",name:"GP Messico",flag:"🇲🇽",date:"1 Nov",st:"future"},
+  {id:"bra",r:"R21",name:"GP Brasile",flag:"🇧🇷",date:"8 Nov",st:"future"},
+  {id:"lv",r:"R22",name:"GP Las Vegas",flag:"🇺🇸",date:"21 Nov",st:"future"},
+  {id:"qat",r:"R23",name:"GP Qatar",flag:"🇶🇦",date:"29 Nov",st:"future"},
+  {id:"ad",r:"R24",name:"GP Abu Dhabi",flag:"🇦🇪",date:"6 Dic",st:"future"},
 ];
 const ARTS=[
-  {id:7,img:"art7.png",title:"Antonelli fa la storia. Ferrari boccia la Macarena. Verstappen si ritira ancora.",exc:"Kimi Antonelli vince a Shanghai a 19 anni: primo italiano a trionfare dal 2006. La sua tripletta — pole, vittoria, giro veloce — non si vedeva da Alberto Ascari nel 1952. Ferrari porta e ritira la Macarena in 60 minuti. Verstappen si ferma di nuovo.",tag:"DEBRIEF",auth:"DebriF1",date:"15 Mar 2026",num:"N°08",cat:"GP Cina · Round 2/24 · Shanghai International Circuit",body:`<p class="pill"><strong>La pillola:</strong> Kimi Antonelli vince il GP della Cina a 19 anni. È il primo italiano sul gradino più alto del podio dal 2006 — Fisichella in Malesia. La sua tripletta del weekend — pole, vittoria, giro veloce — non si vedeva da un pilota italiano dal GP di Gran Bretagna 1952. Alberto Ascari. La Ferrari porta la Macarena in pista nelle prove libere, la smonta dopo 60 minuti. Verstappen si ritira per la seconda gara consecutiva. Hamilton ottiene il suo primo podio in rosso. E il gap Mercedes non si è chiuso.</p><h3>Il giro che ha cambiato la qualifica</h3><p>Q3. Primissimi secondi. Russell esce dai box, percorre pochi metri e si ferma. Cambio bloccato in prima marcia. I meccanici Mercedes lavorano freneticamente — cambiano persino il volante. Russell torna in pista per un solo tentativo, a tre minuti dalla bandiera a scacchi.</p><p>Antonelli non sa ancora che vincerà la gara. Sa solo che il suo 1'32"064 è lì, intoccato, e che il compagno di squadra ha un tentativo solo per batterlo. Russell si ferma a 222 millesimi. Pole di Antonelli.</p><p>A 19 anni, 6 mesi e 18 giorni. Il poleman più giovane nella storia della Formula 1. Batte Sebastian Vettel, che aveva 21 anni quando firmò la pole di Monza 2008. E riporta la bandiera italiana in testa alla griglia per la prima volta dal 2009 — Fisichella in Belgio.</p><h3>La Macarena: 60 minuti e basta</h3><p>Venerdì mattina, prove libere. Le due Ferrari escono in pista con l'ala Macarena montata. Il paddock si ferma. Tutti guardano le telecamere onboard. Il flap ruota. Il dato di velocità di punta sale. Sembrava il momento della verità.</p><p>Poi la Ferrari rientra ai box. La Macarena viene smontata. Non tornerà per tutto il weekend.</p><p>Vasseur ha spiegato: era un test estremo. Non era pronta per la gara. Un sistema così radicale — 270 gradi di rotazione, attuatore nascosto nelle endplate, zona grigia regolamentare — ha bisogno di dati prima di essere schierato in una Sprint Race dove hai 60 minuti di prove e poi parco chiuso.</p><p>La decisione è corretta. Ma il timing racconta qualcosa di preciso: la Ferrari ha portato a Shanghai un'arma che in galleria funzionava, e in pista ha scoperto che la perturbazione sul diffusore era ancora un problema irrisolto. Non è un fallimento. È uno step di sviluppo. Il punto è capire quanto velocemente riescono a risolvere. Perché senza la Macarena, sul rettilineo di Shanghai, la Mercedes vola e Ferrari non può fare nulla.</p><blockquote>"Mercedes è stata più veloce di noi, non ci sono problemi tra Hamilton e Leclerc." — Frédéric Vasseur, post-gara</blockquote><h3>La gara: la Safety Car che ha rimescolato tutto</h3><p>Partenza. Hamilton brucia Antonelli. Per due giri la Ferrari di Hamilton è seconda, Leclerc terza. Il paddock si sveglia. Poi le Mercedes fanno quello che fanno sempre: gestiscono l'energia meglio di tutti. Antonelli passa Hamilton al rettilineo. Russell supera Leclerc e poi Hamilton. Quattro macchine, ordine ristabilito: Mercedes, Mercedes, Ferrari, Ferrari.</p><p>Giro 10. Stroll si ferma. Safety Car. Quasi tutti ai box. Antonelli resta in testa — Mercedes ha fatto la sosta, Russell è rientrato e rimane davanti alle Ferrari grazie al pit wall timing perfetto. Quando si ripart Colapinto e Ocon — che non si erano fermati — sono davanti temporaneamente, ma Hamilton è on fire sulle hard nuove. Rimonta, supera entrambi, mette gli scarichi di Antonelli nel mirino.</p><p>Per 10 giri la gara è aperta. Hamilton attacca. Antonelli gestisce. Russell, più indietro, aspetta. Alla fine vince Kimi — con un brivido al penultimo giro quando va lungo in curva 14 e perde due secondi. Nulla di grave. Ma il momento di tensione massima per un pilota di 19 anni alla sua prima vittoria.</p><h3>Hamilton e Leclerc: una dinamica che vale più del risultato</h3><p>Terzo posto per Hamilton. Primo podio con la Ferrari. Quarto Leclerc — per la seconda gara di fila dietro al compagno di squadra. Non è un dettaglio.</p><p>Nella Sprint, Leclerc aveva fatto 2°, Hamilton 3°. In qualifica, Hamilton ha battuto Leclerc per la prima volta dopo sette GP. In gara, Hamilton ha fatto la rimonta più efficace dopo la Safety Car. La SF-26 sembra funzionare meglio con Hamilton che non con Leclerc in questo momento. Questo è un argomento che Maranello deve affrontare apertamente — non nasconderlo sotto il tappeto con dichiarazioni di facciata.</p><p>Hamilton nel post-gara ha detto la cosa più lucida del weekend: "Nel rettilineo non possiamo fare nulla con Mercedes. Nelle curve siamo forti quanto loro." È un'analisi, non una lamentela. Se la Macarena funziona, quel gap nel rettilineo si accorcia. Se non funziona, il divario rimane strutturale.</p><h3>Verstappen: secondo ritiro in due gare</h3><p>La Red Bull di Verstappen si ferma al giro 46. Secondo ritiro consecutivo dopo l'Australia. Max aveva già detto nei test che non sapeva dove fossero rispetto agli altri. A Shanghai la risposta è arrivata: lontanissimi. Il powertrain Ford non eroga in modo affidabile. Le gomme si distruggono in anticipo. La Q3 finisce a quasi un secondo dalla pole. In gara, Verstappen passa la prima metà a battagliare con piloti che non dovrebbe nemmeno vedere negli specchietti.</p><p>Il tre volte campione del mondo in carica ha vinto 8 punti in due gare. È undicesimo in classifica costruttori. Questa non è più una flessione temporanea. È una crisi strutturale che durerà tutta la stagione.</p><h3>Il record che nessuno aveva calcolato</h3><p>Pole, vittoria, giro veloce. Tripletta completa per Antonelli nel GP della Cina. L'ultimo italiano a riuscirci in un Grand Prix? Alberto Ascari. Gran Premio di Gran Bretagna. Anno: 1952. Settantaquattro anni di attesa per rivedere questa combinazione con il tricolore.</p><p>Ascari vinse quel mondiale. Antonelli è secondo in classifica, a 4 punti da Russell. La stagione è lunga 24 GP. Le variabili sono infinite. Ma quello che si è visto a Shanghai è un pilota di 19 anni che gestisce la pressione, impara dai suoi errori nelle Sprint — dove continua ad avere problemi alle partenze — e si trasforma in gara.</p><p>Toto Wolff dopo la gara: "Ha fatto capire a Russell che ne aveva ancora. Grande maturità."</p><p>Russell è ancora in testa al mondiale. Ma il margine si è assottigliato. E il compagno di squadra ha appena vinto.</p><div class="a-stats"><div class="a-stat"><span class="a-stat-v">1:32.064</span><span class="a-stat-l">Pole Antonelli — nuovo record storico</span></div><div class="a-stat"><span class="a-stat-v">19 anni</span><span class="a-stat-l">Età Antonelli — poleman più giovane di sempre</span></div><div class="a-stat"><span class="a-stat-v">1952</span><span class="a-stat-l">Ultima tripletta italiana — Ascari</span></div><div class="a-stat"><span class="a-stat-v">2006</span><span class="a-stat-l">Ultima vittoria italiana — Fisichella</span></div><div class="a-stat"><span class="a-stat-v">51–47</span><span class="a-stat-l">Classifica Russell–Antonelli</span></div><div class="a-stat"><span class="a-stat-v">2</span><span class="a-stat-l">Ritiri Verstappen in 2 gare</span></div></div>`},
-  {id:1,img:"art1.png",title:"L'ala Macarena è a Shanghai. Ferrari ha trovato il modo di battere la fisica.",exc:"Ferrari porta a Shanghai un'ala che non si era mai vista in F1. Il flap ruota 270° invece di 90°. Il monopilone centrale sparisce. La riduzione del drag è tre volte superiore.",tag:"TECNICA",auth:"DebriF1",date:"15 Mar 2026",num:"N°07",cat:"GP Cina · Aerodinamica attiva",body:`<p class="pill"><strong>La pillola:</strong> Ferrari ha spedito a Shanghai tre esemplari di un'ala posteriore che non si era mai vista in Formula 1. La chiamano Macarena — il nome viene da Vasseur, che ha paragonato il movimento dei flap alla coreografia degli anni '90. Il flap ruota 270 gradi invece di 90. Il monopilone centrale sparisce. Il drag si riduce in modo che nessuno aveva ancora tentato in Formula 1. I numeri che circolano nel paddock: 8-10 km/h in più sulla velocità di punta. Circa 7 cavalli equivalenti.</p><h3>Come funziona — la spiegazione che nessuno ha fatto davvero</h3><p>Partiamo dalla differenza fondamentale con il vecchio DRS. Il DRS era semplice: il flap superiore si alzava di 90 gradi, si apriva uno spazio tra i due elementi dell'ala, l'aria passava più facilmente. Riducevi il drag, guadagnavi velocità. Semplice, binario, prevedibile.</p><p>La Macarena fa qualcosa di completamente diverso. Il flap non si alza — <strong>si capovolge</strong>. Ruota su se stesso di 270 gradi. In configurazione aperta l'ala non è semplicemente meno resistente — genera un lieve effetto portante verso l'alto invece del normale carico verso il basso. L'aria non trova resistenza, trova quasi un invito a passare. Il risultato è una riduzione del drag tre volte superiore rispetto a un'apertura tradizionale a 90 gradi.</p><h3>Il segreto è dove hanno nascosto l'attuatore</h3><p>Nelle ali tradizionali il comando idraulico — l'attuatore — è posizionato al centro, tra i due elementi alari. È visibile, è strutturale, ed è esso stesso una fonte di drag. Ferrari lo ha rimosso dal centro e lo ha spostato all'interno delle paratie laterali — le endplate che chiudono l'ala ai lati. Due effetti simultanei: il movimento di 270 gradi diventa meccanicamente possibile, e l'attuatore stesso smette di produrre resistenza aerodinamica.</p><h3>La zona grigia regolamentare</h3><p>Il regolamento tecnico 2026 definisce con precisione due configurazioni per l'ala posteriore: massimo carico e minima resistenza. Quello che non descrive è la cinematica del passaggio tra le due — il movimento, la traiettoria, la posizione dell'ala mentre transita da una configurazione all'altra. Ferrari ha trovato in questo spazio la possibilità di far passare l'ala attraverso una posizione che in configurazione statica non sarebbe consentita. La FIA non l'ha vietato perché non l'aveva scritto. Non è una violazione. È esattamente quello che i migliori team fanno ogni stagione.</p><h3>Perché Ferrari ne aveva bisogno</h3><p>La scelta della turbina più piccola sulla SF-26 — 85mm contro i 110mm di Mercedes — è stata deliberata. Garantisce partenze fulminee, risposta immediata nei curvoni veloci, meno peso sul retrotreno. Il costo è 20-30 cavalli in meno alla massima potenza sui rettilinei. A Shanghai — con il rettilineo principale tra le curve 14 e 1, uno dei più lunghi del calendario — quel deficit si sente. La Macarena serve a compensare esattamente questa differenza. Meno drag significa meno richiesta di potenza. Meno batteria consumata significa meno lift and coast.</p><h3>Il rischio che nessuno nomina</h3><p>Durante la rotazione di 270 gradi l'ala genera una perturbazione del flusso d'aria molto più forte rispetto ai sistemi tradizionali. Quella perturbazione colpisce il diffusore posteriore — il componente che lavora sotto la macchina e genera carico attraverso l'effetto suolo. Shanghai ha il rettilineo giusto. Non tutti i circuiti del calendario ce l'hanno. La Macarena non sarà presente a Monaco. Non sarà presente a Singapore. È un'arma specifica per tracciati specifici.</p><blockquote>"Il movimento del flap mi ricorda la Macarena." — Frédéric Vasseur, giovedì di Shanghai</blockquote><div class="a-stats"><div class="a-stat"><span class="a-stat-v">270°</span><span class="a-stat-l">Rotazione flap</span></div><div class="a-stat"><span class="a-stat-v">3×</span><span class="a-stat-l">Riduzione drag</span></div><div class="a-stat"><span class="a-stat-v">8-10 km/h</span><span class="a-stat-l">Vantaggio velocità</span></div><div class="a-stat"><span class="a-stat-v">+7cv</span><span class="a-stat-l">Potenza equivalente</span></div><div class="a-stat"><span class="a-stat-v">3</span><span class="a-stat-l">Esemplari a Shanghai</span></div><div class="a-stat"><span class="a-stat-v">20-30cv</span><span class="a-stat-l">Deficit turbina Ferrari</span></div></div>`},
-  {id:2,img:"art2.png",title:"Russell ha spiegato perché partire dalla pole era uno svantaggio. Nessuno se n'era accorto.",exc:"Chi partiva dalla pole arrivava al semaforo con metà della batteria già consumata. Chi partiva dal fondo arrivava con la batteria piena. Non era casualità. Era una regola.",tag:"ANALISI",auth:"DebriF1",date:"14 Mar 2026",num:"N°06",cat:"GP Cina · Regolamento · Shanghai",body:`<p class="pill"><strong>La pillola:</strong> Il GP d'Australia aveva un segreto nascosto in bella vista. Chi partiva dalla pole arrivava al semaforo con metà della batteria già consumata. Chi partiva dal fondo arrivava con la batteria piena. Non era sfortuna. Non era un setup sbagliato. Era una regola. E quasi nessuno l'aveva capito — inclusi molti team.</p><h3>La regola che nessuno aveva letto</h3><p>Partiamo dall'inizio. In Formula 1 esiste un limite di recupero energetico per ogni giro. Non puoi ricaricare la batteria oltre una certa soglia in un singolo giro — è una regola che esiste per evitare che le squadre con il sistema ibrido più efficiente abbiano un vantaggio illimitato. Fin qui tutto noto. Il problema è quello che succede nel giro di formazione.</p><h3>Il giro di formazione conta</h3><p>Quando una macchina esce dalla pit lane per il giro di formazione, accelera, frena, ricarica la batteria. Quel recupero energetico viene conteggiato nel limite del giro. Questo lo sanno tutti. Il dettaglio che quasi nessuno aveva calcolato è <strong>quando scatta il contatore</strong>. Il contatore si azzera quando la macchina attraversa la linea del traguardo. Sembra semplice. Non lo è.</p><h3>Il problema della pole</h3><p>Chi parte dalla pole position — e dalle prime posizioni in griglia — è già oltre la linea del traguardo quando inizia il giro di formazione. Quando attraversa il traguardo durante il giro di formazione, non si azzera nulla: è già dentro il giro di gara. Tutto il recupero energetico del giro di formazione si accumula nel limite del primo giro.</p><p>Chi parte dal fondo della griglia — posizioni 15-20 — è prima della linea del traguardo. Quando la attraversa durante il giro di formazione, il contatore si azzera. Inizia il giro di gara con la batteria come se non avesse mai fatto il giro di formazione.</p><blockquote>"Ho accelerato, ho ricaricato la batteria e questo ha consumato circa il 50% del limite di recupero energia di quel giro." — George Russell, giovedì di Shanghai</blockquote><p>Russell dalla pole. A metà rettilineo — 50% del budget energetico del primo giro già consumato. Niente burnout. Niente difesa da eventuali attacchi. Partenza compromessa strutturalmente prima ancora dello spegnimento dei semafori.</p><h3>La politica dentro la fisica</h3><p>La FIA sapeva. Stava valutando di correggere la regola prima del via della stagione. Non l'ha fatto. Il motivo è quello che Russell ha detto senza troppi giri di parole: alcune squadre che partivano male — e quindi guadagnavano batteria piena al via — si sono opposte al cambiamento. E hanno avuto abbastanza influenza da bloccare la correzione.</p><p>Nel 2026 la politica sportiva non riguarda solo le gomme, le soste, il budget cap. Riguarda la fisica della batteria. Chi gestisce meglio le regole — non solo il motore, non solo l'aerodinamica — ha un vantaggio strutturale già prima di accendere il motore.</p><h3>Cosa cambia per Shanghai</h3><p>La regola è ancora lì. Invariata. Russell parte sapendo che il primo giro sarà energeticamente svantaggioso rispetto a chi parte nelle ultime posizioni. La differenza è che adesso lo sa anche il pubblico. La domanda che vale per Shanghai e per tutti i GP successivi è questa: le squadre di testa hanno trovato un modo per compensare questo svantaggio nel giro di formazione? O la pole position nel 2026 vale strutturalmente meno di quanto valesse nel 2025?</p><div class="a-stats"><div class="a-stat"><span class="a-stat-v">~50%</span><span class="a-stat-l">Budget energetico consumato da Russell</span></div><div class="a-stat"><span class="a-stat-v">100%</span><span class="a-stat-l">Vantaggio energetico dal fondo griglia</span></div><div class="a-stat"><span class="a-stat-v">2026</span><span class="a-stat-l">Anno introduzione limite recupero</span></div><div class="a-stat"><span class="a-stat-v">1</span><span class="a-stat-l">Gare già corse con questa anomalia</span></div></div>`},
-  {id:3,img:"art3.png",title:"120 sorpassi in Australia. Ma erano veri?",exc:"120 sorpassi vs 45 del 2025. Un trionfo del nuovo regolamento — o forse no. Quando il 50% della potenza è elettrica e gestita da algoritmi, il pilota sorpassa o viene sorpassato dal software?",tag:"OPINIONE",auth:"DebriF1",date:"13 Mar 2026",num:"N°05",cat:"Regolamento 2026 · Spettacolo vs sostanza",body:`<p class="pill"><strong>La pillola:</strong> Il GP d'Australia 2026 ha registrato 120 sorpassi. Il 2025 ne aveva fatti 45. Sulla carta è un trionfo del nuovo regolamento. Nel paddock e nelle redazioni la discussione è già aperta: questi sorpassi valgono quanto quelli di una volta? Quando il 50% della potenza è elettrica e gestita da algoritmi, il pilota sorpassa o viene sorpassato dal software? La domanda sembra filosofica. Non lo è.</p><h3>Il problema con i 120 sorpassi</h3><p>Partiamo dal dato. Australia 2026: 120 sorpassi. Australia 2025: 45. Un aumento del 167% in una sola stagione. La Liberty Media esulta. I numeri sono buoni. Ma i numeri raccontano sempre una versione parziale.</p><p>La domanda che si fanno i critici è questa: quanti di quei 120 sorpassi sono stati decisi da un pilota, e quanti dal momento in cui la batteria del sorpassato era scarica e quella del sorpassante carica? Perché nel 2026, con il 50% della potenza che arriva dall'elettrico, il differenziale di velocità su un rettilineo non dipende solo da chi frena più tardi. Dipende da chi ha energia nel pacco batteria in quel momento preciso.</p><h3>Il sorpasso alla Senna non esiste più</h3><p>C'è una scena che ogni appassionato di F1 conosce. Senna a Monaco 1984, sotto la pioggia, che guadagna quasi quattro secondi al giro su Prost con una macchina inferiore. O Schumacher in Spagna 1996, in condizioni impossibili, che tiene la Ferrari con una mano sola. Questi momenti esistono perché il limite tra il controllo e la perdita del controllo era fisico, immediato, assoluto. Il pilota era l'unica variabile.</p><p>Nel 2026 quella variabile è diventata una tra molte. Il software di gestione energetica decide quanta corrente erogare e quando. Il pilota preme sull'acceleratore e ottiene quello che il sistema ritiene appropriato in quel millisecondo, in funzione dello stato della batteria, della temperatura, della strategia energetica programmata dai box. Non è colpa di nessuno. È la conseguenza logica di aver triplicato la potenza elettrica senza aumentare la capacità della batteria.</p><blockquote>"Sembra Formula E sotto steroidi." — Max Verstappen, GP Australia 2026</blockquote><h3>La differenza del 2026</h3><p>La differenza tra il 2026 e le rivoluzioni precedenti è strutturale: <strong>non è mai stato così alto il peso percentuale dell'energia non controllata direttamente dal pilota</strong>. Nel 2014 l'ibrido contribuiva il 20% circa della potenza totale. Oggi è il 50%. Il pilota ha ancora un ruolo decisivo — la gestione energetica è una skill reale, e chi la domina meglio ottiene un vantaggio. Ma il margine di intervento umano puro si è ridotto.</p><p>Il problema alla partenza è il caso più evidente. In Australia diverse macchine sono rimaste piantate sulla griglia per frazioni di secondo — la potenza elettrica non è arrivata al momento giusto. Non è un errore del pilota. Non è una scelta. È un ritardo nel sistema di erogazione. In una partenza di Formula 1, dove i decimi di secondo valgono posizioni intere, questo è un problema di sicurezza oltre che di spettacolo.</p><h3>La domanda giusta</h3><p>Il DRS era artificiale e lo sapevamo tutti — era uno strumento esplicito per facilitare i sorpassi. Il 2026 è diverso: l'artificialità è nascosta dentro la fisica del sistema energetico. Il sorpasso sembra reale. La macchina accelera, quella davanti rallenta, il pubblico esulta. Ma la causa non è sempre quello che sembra.</p><p>Una cosa è certa: i piloti che capiranno prima la gestione energetica — non solo il giro secco, ma il ritmo di carica e scarica della batteria su 58 giri — saranno quelli che vinceranno il campionato. È una skill nuova. Non è più semplice di prima. È solo diversa.</p><div class="a-stats"><div class="a-stat"><span class="a-stat-v">120</span><span class="a-stat-l">Sorpassi Australia 2026</span></div><div class="a-stat"><span class="a-stat-v">45</span><span class="a-stat-l">Sorpassi Australia 2025</span></div><div class="a-stat"><span class="a-stat-v">50%</span><span class="a-stat-l">Quota potenza elettrica</span></div><div class="a-stat"><span class="a-stat-v">350kW</span><span class="a-stat-l">Potenza MGU-K 2026</span></div></div>`},
-  {id:4,img:"art4.png",title:"Newey ha attaccato Honda in pubblico. Con il presidente HRC seduto accanto.",exc:"Budget illimitato. Newey. Honda. Alonso. Sulla carta era la squadra del 2026. In Australia ha qualificato diciassettesima con quasi 4 secondi di ritardo. Alonso si è ritirato per precauzione — non c'erano pezzi di ricambio.",tag:"ESCLUSIVA",auth:"DebriF1",date:"12 Mar 2026",num:"N°04",cat:"Aston Martin · Honda · Adrian Newey",body:`<p class="pill"><strong>La pillola:</strong> Budget illimitato. Newey. Honda. Alonso. Sulla carta era la squadra del 2026. In Australia ha qualificato diciassettesima — 3 secondi e 9 decimi dalla pole. Alonso si è ritirato non per un guasto: semplicemente non c'erano pezzi di ricambio. Il giovedì di Melbourne, in conferenza stampa, Newey ha detto che il telaio vale il Q3 e non più di un secondo dai top. Con Koji Watanabe, presidente di Honda Racing, seduto alla sua destra.</p><h3>Come si arriva a questo punto</h3><p>Il 20 ottobre 2020, in piena pandemia, Honda annuncia il ritiro dalla Formula 1. Arriva come un fulmine. Nessuno se lo aspetta — Red Bull meno di tutti. La motivazione ufficiale è la transizione green. La traduzione reale: gli ingegneri migliori di Sakura vengono spostati su altri progetti. Honda non sviluppa più niente. Assembla, revisiona, spedisce. Punto.</p><p>Questo congelamento dura quattro anni. Quattro anni in cui i motoristi Honda non hanno niente da fare. Molti finiscono direttamente in Red Bull Powertrains — la divisione motori creata da Horner per rispondere all'addio di Honda. Honda ha formato i propri avversari. L'ibrido Red Bull 2026 è ancora il più efficiente in griglia. Non è un caso.</p><h3>Il ritorno. Il buco.</h3><p>Il 23 maggio 2023 Honda annuncia il ritorno. Partner esclusivo dell'Aston Martin dal 2026. Il comunicato parla di partnership storica. Tutti gli altri costruttori avevano iniziato a progettare le power unit 2026 dall'inizio del 2022. Honda era ferma. Ritardo accumulato: <strong>almeno 18 mesi</strong>. L'Aston Martin non lo sapeva.</p><h3>Il volo per Tokyo</h3><p>A un certo punto Honda comunica che sono "leggermente in ritardo". Newey e Andy Cowell — ex responsabile dei motori Mercedes campioni del mondo, ora in Aston Martin — prendono un aereo. Quello che trovano a Tokyo non è un ritardo. Gli ingegneri Honda migliori stavano progettando pannelli solari.</p><blockquote>"Il telaio ha il potenziale per il Q3. Non più di un secondo dai vertici." — Adrian Newey, giovedì di Melbourne</blockquote><p>Watanabe era seduto alla sua destra. Non ha risposto. Ha annuito. Il modo per dire con il massimo della cortesia: il problema non è mio. È il motore.</p><h3>Le vibrazioni</h3><p>Il motore Honda 2026 vibra. Non in modo accettabile — in modo distruttivo. Specchietti che si spaccano in marcia. Cavi che si scollegano. Cedimenti idraulici. Problemi al cambio. E soprattutto: i pacchi batteria vengono sistematicamente distrutti. Le batterie in F1 non sono componenti infiniti. Il budget cap limita la produzione. A Melbourne su quattro pacchi portati in Australia, <strong>due erano già compromessi prima delle prove libere</strong>. Non è un problema di performance. È un problema di sopravvivenza.</p><p>Lance Stroll non riesce a guidare per più di 15 giri consecutivi. Fernando Alonso ha dichiarato di temere danni alle mani dopo 25 giri di esposizione alle vibrazioni. Non è una lamentela. È una dichiarazione medica.</p><h3>Cosa succede adesso</h3><p>Honda dovrebbe ottenere le <strong>concessioni FIA</strong>: deficit superiore al 4% garantisce extra budget, più ore al banco prova e due nuove specifiche entro fine anno. Il fantasma è McLaren-Honda, 2015-2017. Tre anni di umiliazione, ritiri, accuse reciproche. Un Alonso che chiamava il motore "GP2 engine" via radio. Quella storia è finita con Honda che se ne andava. Questa ha la stessa dinamica, gli stessi protagonisti. E per Alonso, esattamente la stessa sensazione.</p><div class="a-stats"><div class="a-stat"><span class="a-stat-v">~18 mesi</span><span class="a-stat-l">Ritardo Honda</span></div><div class="a-stat"><span class="a-stat-v">17°</span><span class="a-stat-l">Qualifica Alonso Australia</span></div><div class="a-stat"><span class="a-stat-v">2 su 4</span><span class="a-stat-l">Batterie compromesse</span></div><div class="a-stat"><span class="a-stat-v">&gt;100cv</span><span class="a-stat-l">Perdita con mappature conservative</span></div></div>`},
-  {id:5,img:"art5.png",title:"La gara è durata 11 giri. Il resto era gestione del danno.",exc:"Russell vince. Antonelli secondo. Leclerc terzo, Hamilton quarto. La gara si decide al giro 11 con una Virtual Safety Car: Mercedes entra con entrambe le macchine, Ferrari no.",tag:"GARA",auth:"DebriF1",date:"11 Mar 2026",num:"N°03",cat:"GP Australia · Round 1/24 · Albert Park, Melbourne",body:`<p class="pill"><strong>La pillola:</strong> Russell vince. Antonelli secondo. Leclerc terzo, Hamilton quarto. La gara si decide al giro 11 quando una Virtual Safety Car offre a Mercedes la finestra perfetta per il pit stop. Ferrari resta fuori con entrambe le macchine — una scelta che Vasseur difende, che Leclerc difende, e che Hamilton critica già dalla macchina via radio. Il margine reale era molto più ampio dei 2.9 secondi sul traguardo.</p><h3>Quello che è successo davvero in 58 giri</h3><p>Cominciamo dalla fine per capire l'inizio. George Russell ha vinto il Gran Premio d'Australia 2026 con 2.9 secondi su Kimi Antonelli. Un margine che non racconta nulla di reale — Russell aveva gestito il vantaggio negli ultimi 15 giri, rallentando fino a dove era necessario. Il margine vero, in condizioni di gara aperta, era probabilmente il doppio. Forse di più.</p><h3>I 19 secondi che hanno deciso tutto</h3><p>Isack Hadjar si ferma a bordo pista. Fumo, ritiro, VSC automatica. Sono le 14:07 ora locale, giro 11 di 58. In quel momento la classifica è: Leclerc primo, Russell secondo, Antonelli terzo, Hamilton quarto. Due Ferrari davanti, due Mercedes subito dietro. Il team Mercedes non esita: doppio pit stop. Ferrari resta fuori.</p><p>La bandiera VSC era attiva da <strong>19 secondi</strong> quando Hamilton ha detto via radio "almeno uno di noi doveva rientrare". Non era frustrazione impulsiva — era l'analisi corretta di un pilota che in 7 titoli mondiali ha vissuto questo scenario centinaia di volte.</p><blockquote>"Almeno uno di noi doveva rientrare." — Lewis Hamilton, giro 11, via radio</blockquote><h3>La logica di Ferrari: sbagliata, non irrazionale</h3><p>La narrazione facile è "Ferrari ha sbagliato ancora strategia" e basta. È vera, ma è incompleta. Vasseur e Leclerc hanno spiegato il ragionamento: nel 2026, con gomme e degrado completamente sconosciuti, fermarsi al giro 11 avrebbe significato affrontare 47 giri con un set di Hard — una distanza non testata su nessun circuito con le nuove vetture.</p><p>Il problema non è la logica — è l'implementazione. <strong>Ferrari non aveva diviso la strategia tra i due piloti</strong>, strumento standard in F1 per coprire più scenari contemporaneamente. E quando la seconda VSC è arrivata con la pit lane bloccata da Bottas, non c'era piano B. Il problema Ferrari strategico non è nuovo. È sistemico.</p><h3>La gestione energetica: il vero tema del weekend</h3><p>C'è un elemento della gara australiana che verrà ricordato come il simbolo dell'era 2026: il lift and coast. I piloti tolgono il gas prima della fine dei rettilinei per ricaricare la batteria. Verstappen lo ha chiamato "Formula E sotto steroidi". Norris e Ocon hanno parlato di gara "artificiale". Vasseur ha detto l'opposto: "Non vedevo qualcosa di simile da 10 anni." Il paddock è spaccato.</p><div class="a-stats"><div class="a-stat"><span class="a-stat-v">2.97s</span><span class="a-stat-l">Gap Russell – Antonelli</span></div><div class="a-stat"><span class="a-stat-v">51s</span><span class="a-stat-l">Distacco Norris da Russell</span></div><div class="a-stat"><span class="a-stat-v">+14</span><span class="a-stat-l">Rimonta Verstappen</span></div><div class="a-stat"><span class="a-stat-v">19s</span><span class="a-stat-l">VSC attiva prima della richiesta Hamilton</span></div><div class="a-stat"><span class="a-stat-v">×6</span><span class="a-stat-l">Cambi di testa nei primi 10 giri</span></div><div class="a-stat"><span class="a-stat-v">43–27</span><span class="a-stat-l">Punti Mercedes vs Ferrari</span></div></div>`},
-  {id:6,img:"art6.png",title:"Chi ha capito il 2026 e chi no. Il verdetto dopo Melbourne.",exc:"Mercedes è davanti — probabilmente di molto. Ferrari è seconda ma con un problema strategico cronico. Red Bull affronta la stagione più difficile dell'era Verstappen. McLaren, campione in carica, sembrava distante.",tag:"VERDETTO",auth:"DebriF1",date:"10 Mar 2026",num:"N°02",cat:"Power ranking · Stagione 2026",body:`<p class="pill"><strong>La pillola:</strong> Il primo weekend del 2026 ha consegnato verdetti parziali ma già significativi. Mercedes è davanti — probabilmente di molto. Ferrari è seconda ma con un problema strategico cronico. Red Bull affronta la stagione più difficile dell'era Verstappen. McLaren, campione in carica, è sembrata distante. La gerarchia è meno stabile di quanto sembri.</p><h3>Mercedes: il ritorno che non ti aspettavi così</h3><p>Bisogna essere onesti: pochi si aspettavano Mercedes così forte già alla prima gara. Russell parte in pole, Antonelli in prima fila, e la doppietta arriva in modo quasi controllato. In qualifica il gap era di circa <strong>8 decimi</strong>. In gara, Mercedes girava 3-4 decimi più veloce di Ferrari sui tempi sul giro. Se la W17 mantiene questo livello, Russell è un candidato reale al titolo.</p><h3>Ferrari: macchina buona, muro strategico invariato</h3><p>La SF-26 non è lenta. Leclerc ha preso la testa dalla quarta posizione alla prima curva. Hamilton dal settimo al terzo nel giro iniziale. Il turbo compatto della Ferrari sembra produrre partenze eccezionali — un vantaggio strutturale. Il problema è quello che succede quando si deve prendere una decisione. Vedi il giro 11.</p><p>Il problema Ferrari strategico non è nuovo. <strong>È sistemico.</strong> Il personale tecnico è cambiato parzialmente, la cultura decisionale no. Questo è il vero problema che Maranello deve risolvere nel 2026.</p><h3>Red Bull: la scommessa più grande della stagione</h3><p>Honda ha interrotto il rapporto con Red Bull per legarsi ad Aston Martin. Red Bull ora sviluppa il proprio powertrain con Ford — prima volta in assoluto. Il risultato in Australia: qualifica disastrosa e sesto posto finale dopo una rimonta da ventesimo. Verstappen durante i test aveva già detto "non so dove siamo rispetto agli altri". In Australia la risposta è arrivata: sono terzi o quarti.</p><h3>McLaren: il campione in carica è già in difficoltà</h3><p>Il dato più sorprendente di Australia non è la vittoria Mercedes — è il distacco McLaren. Norris ha chiuso a <strong>51 secondi</strong> da Russell. Il MCL39 non ha trovato il modo di funzionare con le nuove regole di gestione energetica. Con meno downforce da fondo e più enfasi sul powertrain, il vantaggio che aveva si è dissolto. Da campioni del mondo a questo: serve una svolta radicale.</p><div class="a-stats"><div class="a-stat"><span class="a-stat-v">0.8s</span><span class="a-stat-l">Gap Mercedes in qualifica</span></div><div class="a-stat"><span class="a-stat-v">3-4 dec.</span><span class="a-stat-l">Vantaggio Mercedes in gara</span></div><div class="a-stat"><span class="a-stat-v">51s</span><span class="a-stat-l">Distacco McLaren da Russell</span></div><div class="a-stat"><span class="a-stat-v">6°</span><span class="a-stat-l">Meglio posizione Red Bull</span></div></div>`},
+  {id:7,img:"art7.png",title:"Antonelli fa la storia. Ferrari boccia la Macarena. Verstappen si ritira ancora.",exc:"Kimi Antonelli vince a Shanghai a 19 anni: primo italiano a trionfare dal 2006. La sua tripletta — pole, vittoria, giro veloce — non si vedeva da Alberto Ascari nel 1952. Ferrari porta e ritira la Macarena in 60 minuti. Verstappen si ferma di nuovo.",tag:"DEBRIEF",auth:"DebriF1",date:"15 Mar 2026",num:"N°08",cat:"GP Cina · Round 2/24 · Shanghai International Circuit",body:`<p class="pill"><strong>La pillola:</strong> Kimi Antonelli vince il GP della Cina a 19 anni. È il primo italiano sul gradino più alto del podio dal 2006 — Fisichella in Malesia. La sua tripletta del weekend — pole, vittoria, giro veloce — non si vedeva da un pilota italiano dal GP di Gran Bretagna 1952. Alberto Ascari. La Ferrari porta la Macarena in pista nelle prove libere, la smonta dopo 60 minuti. Verstappen si ritira per la seconda gara consecutiva. Hamilton ottiene il suo primo podio in rosso. E il gap Mercedes non si è chiuso.</p><h3>Il giro che ha cambiato la qualifica</h3><p>Q3. Primissimi secondi. Russell esce dai box, percorre pochi metri e si ferma. Cambio bloccato in prima marcia. I meccanici Mercedes lavorano freneticamente — cambiano persino il volante. Russell torna in pista per un solo tentativo, a tre minuti dalla bandiera a scacchi.</p><p>Antonelli non sa ancora che vincerà la gara. Sa solo che il suo 1'32"064 è lì, intoccato, e che il compagno di squadra ha un tentativo solo per batterlo. Russell si ferma a 222 millesimi. Pole di Antonelli.</p><p>A 19 anni, 6 mesi e 18 giorni. Il poleman più giovane nella storia della Formula 1. Batte Sebastian Vettel, che aveva 21 anni quando firmò la pole di Monza 2008. E riporta la bandiera italiana in testa alla griglia per la prima volta dal 2009 — Fisichella in Belgio.</p><h3>La Macarena: 60 minuti e basta</h3><p>Venerdì mattina, prove libere. Le due Ferrari escono in pista con l'ala Macarena montata. Il paddock si ferma. Tutti guardano le telecamere onboard. Il flap ruota. Il dato di velocità di punta sale. Sembrava il momento della verità.</p><p>Poi la Ferrari rientra ai box. La Macarena viene smontata. Non tornerà per tutto il weekend.</p><p>Vasseur ha spiegato: era un test estremo. Non era pronta per la gara. Un sistema così radicale — 270 gradi di rotazione, attuatore nascosto nelle endplate, zona grigia regolamentare — ha bisogno di dati prima di essere schierato in una Sprint Race dove hai 60 minuti di prove e poi parco chiuso.</p><p>La decisione è corretta. Ma il timing racconta qualcosa di preciso: la Ferrari ha portato a Shanghai un'arma che in galleria funzionava, e in pista ha scoperto che la perturbazione sul diffusore era ancora un problema irrisolto. Non è un fallimento. È uno step di sviluppo. Il punto è capire quanto velocemente riescono a risolvere. Perché senza la Macarena, sul rettilineo di Shanghai, la Mercedes vola e Ferrari non può fare nulla.</p><blockquote>"Mercedes è stata più veloce di noi, non ci sono problemi tra Hamilton e Leclerc." — Frédéric Vasseur, post-gara</blockquote><h3>La gara: la Safety Car che ha rimescolato tutto</h3><p>Partenza. Hamilton brucia Antonelli. Per due giri la Ferrari di Hamilton è seconda, Leclerc terza. Il paddock si sveglia. Poi le Mercedes fanno quello che fanno sempre: gestiscono l'energia meglio di tutti. Antonelli passa Hamilton al rettilineo. Russell supera Leclerc e poi Hamilton. Quattro macchine, ordine ristabilito: Mercedes, Mercedes, Ferrari, Ferrari.</p><p>Giro 10. Stroll si ferma. Safety Car. Quasi tutti ai box. Antonelli resta in testa — Mercedes ha fatto la sosta, Russell è rientrato e rimane davanti alle Ferrari grazie al pit wall timing perfetto. Quando si ripart Colapinto e Ocon — che non si erano fermati — sono davanti temporaneamente, ma Hamilton è on fire sulle hard nuove. Rimonta, supera entrambi, mette gli scarichi di Antonelli nel mirino.</p><p>Per 10 giri la gara è aperta. Hamilton attacca. Antonelli gestisce. Russell, più indietro, aspetta. Alla fine vince Kimi — con un brivido al penultimo giro quando va lungo in curva 14 e perde due secondi. Nulla di grave. Ma il momento di tensione massima per un pilota di 19 anni alla sua prima vittoria.</p><h3>Hamilton e Leclerc: una dinamica che vale più del risultato</h3><p>Terzo posto per Hamilton. Primo podio con la Ferrari. Quarto Leclerc — per la seconda gara di fila dietro al compagno di squadra. Non è un dettaglio.</p><p>Nella Sprint, Leclerc aveva fatto 2°, Hamilton 3°. In qualifica, Hamilton ha battuto Leclerc per la prima volta dopo sette GP. In gara, Hamilton ha fatto la rimonta più efficace dopo la Safety Car. La SF-26 sembra funzionare meglio con Hamilton che non con Leclerc in questo momento. Questo è un argomento che Maranello deve affrontare apertamente — non nasconderlo sotto il tappeto con dichiarazioni di facciata.</p><p>Hamilton nel post-gara ha detto la cosa più lucida del weekend: "Nel rettilineo non possiamo fare nulla con Mercedes. Nelle curve siamo forti quanto loro." È un'analisi, non una lamentela. Se la Macarena funziona, quel gap nel rettilineo si accorcia. Se non funziona, il divario rimane strutturale.</p><h3>Verstappen: secondo ritiro in due gare</h3><p>La Red Bull di Verstappen si ferma al giro 46. Secondo ritiro consecutivo dopo l'Australia. Max aveva già detto nei test che non sapeva dove fossero rispetto agli altri. A Shanghai la risposta è arrivata: lontanissimi. Il powertrain Ford non eroga in modo affidabile. Le gomme si distruggono in anticipo. La Q3 finisce a quasi un secondo dalla pole. In gara, Verstappen passa la prima metà a battagliare con piloti che non dovrebbe nemmeno vedere negli specchietti.</p><p>Il tre volte campione del mondo in carica ha vinto 8 punti in due gare. È undicesimo in classifica costruttori. Questa non è più una flessione temporanea. È una crisi strutturale che durerà tutta la stagione.</p><h3>Il record che nessuno aveva calcolato</h3><p>Pole, vittoria, giro veloce. Tripletta completa per Antonelli nel GP della Cina. L'ultimo italiano a riuscirci in un Grand Prix? Alberto Ascari. Gran Premio di Gran Bretagna. Anno: 1952. Settantaquattro anni di attesa per rivedere questa combinazione con il tricolore.</p><p>Ascari vinse quel mondiale. Antonelli è secondo in classifica, a 4 punti da Russell. La stagione è lunga 24 GP. Le variabili sono infinite. Ma quello che si è visto a Shanghai è un pilota di 19 anni che gestisce la pressione, impara dai suoi errori nelle Sprint — dove continua ad avere problemi alle partenze — e si trasforma in gara.</p><p>Toto Wolff dopo la gara: "Ha fatto capire a Russell che ne aveva ancora. Grande maturità."</p><p>Russell è ancora in testa al mondiale. Ma il margine si è assottigliato. E il compagno di squadra ha appena vinto.</p><div class="a-stats"><div class="a-stat"><span class="a-stat-v">1:32.064</span><span class="a-stat-l">Pole Antonelli — nuovo record storico</span></div><div class="a-stat"><span class="a-stat-v">19 anni</span><span class="a-stat-l">Età Antonelli — poleman più giovane di sempre</span></div><div class="a-stat"><span class="a-stat-v">1952</span><span class="a-stat-l">Ultima tripletta italiana — Ascari</span></div><div class="a-stat"><span class="a-stat-v">2006</span><span class="a-stat-l">Ultima vittoria italiana — Fisichella</span></div><div class="a-stat"><span class="a-stat-v">51–47</span><span class="a-stat-l">Classifica Russell–Antonelli</span></div><div class="a-stat"><span class="a-stat-v">2</span><span class="a-stat-l">Ritiri Verstappen in 2 gare</span></div></div>`},
+  {id:1,img:"art1.png",title:"L'ala Macarena è a Shanghai. Ferrari ha trovato il modo di battere la fisica.",exc:"Ferrari porta a Shanghai un'ala che non si era mai vista in F1. Il flap ruota 270° invece di 90°. Il monopilone centrale sparisce. La riduzione del drag è tre volte superiore.",tag:"TECNICA",auth:"DebriF1",date:"15 Mar 2026",num:"N°07",cat:"GP Cina · Aerodinamica attiva",body:`<p class="pill"><strong>La pillola:</strong> Ferrari ha spedito a Shanghai tre esemplari di un'ala posteriore che non si era mai vista in Formula 1. La chiamano Macarena — il nome viene da Vasseur, che ha paragonato il movimento dei flap alla coreografia degli anni '90. Il flap ruota 270 gradi invece di 90. Il monopilone centrale sparisce. Il drag si riduce in modo che nessuno aveva ancora tentato in Formula 1. I numeri che circolano nel paddock: 8-10 km/h in più sulla velocità di punta. Circa 7 cavalli equivalenti.</p><h3>Come funziona — la spiegazione che nessuno ha fatto davvero</h3><p>Partiamo dalla differenza fondamentale con il vecchio DRS. Il DRS era semplice: il flap superiore si alzava di 90 gradi, si apriva uno spazio tra i due elementi dell'ala, l'aria passava più facilmente. Riducevi il drag, guadagnavi velocità. Semplice, binario, prevedibile.</p><p>La Macarena fa qualcosa di completamente diverso. Il flap non si alza — <strong>si capovolge</strong>. Ruota su se stesso di 270 gradi. In configurazione aperta l'ala non è semplicemente meno resistente — genera un lieve effetto portante verso l'alto invece del normale carico verso il basso. L'aria non trova resistenza, trova quasi un invito a passare. Il risultato è una riduzione del drag tre volte superiore rispetto a un'apertura tradizionale a 90 gradi.</p><h3>Il segreto è dove hanno nascosto l'attuatore</h3><p>Nelle ali tradizionali il comando idraulico — l'attuatore — è posizionato al centro, tra i due elementi alari. È visibile, è strutturale, ed è esso stesso una fonte di drag. Ferrari lo ha rimosso dal centro e lo ha spostato all'interno delle paratie laterali — le endplate che chiudono l'ala ai lati. Due effetti simultanei: il movimento di 270 gradi diventa meccanicamente possibile, e l'attuatore stesso smette di produrre resistenza aerodinamica.</p><h3>La zona grigia regolamentare</h3><p>Il regolamento tecnico 2026 definisce con precisione due configurazioni per l'ala posteriore: massimo carico e minima resistenza. Quello che non descrive è la cinematica del passaggio tra le due — il movimento, la traiettoria, la posizione dell'ala mentre transita da una configurazione all'altra. Ferrari ha trovato in questo spazio la possibilità di far passare l'ala attraverso una posizione che in configurazione statica non sarebbe consentita. La FIA non l'ha vietato perché non l'aveva scritto. Non è una violazione. È esattamente quello che i migliori team fanno ogni stagione.</p><h3>Perché Ferrari ne aveva bisogno</h3><p>La scelta della turbina più piccola sulla SF-26 — 85mm contro i 110mm di Mercedes — è stata deliberata. Garantisce partenze fulminee, risposta immediata nei curvoni veloci, meno peso sul retrotreno. Il costo è 20-30 cavalli in meno alla massima potenza sui rettilinei. A Shanghai — con il rettilineo principale tra le curve 14 e 1, uno dei più lunghi del calendario — quel deficit si sente. La Macarena serve a compensare esattamente questa differenza. Meno drag significa meno richiesta di potenza. Meno potenza richiesta significa meno batteria consumata. Meno batteria consumata significa meno lift and coast.</p><h3>Il rischio che nessuno nomina</h3><p>Durante la rotazione di 270 gradi l'ala genera una perturbazione del flusso d'aria molto più forte rispetto ai sistemi tradizionali. Quella perturbazione colpisce il diffusore posteriore — il componente che lavora sotto la macchina e genera carico attraverso l'effetto suolo. Shanghai ha il rettilineo giusto. Non tutti i circuiti del calendario ce l'hanno. La Macarena non sarà presente a Monaco. Non sarà presente a Singapore. È un'arma specifica per tracciati specifici.</p><blockquote>"Il movimento del flap mi ricorda la Macarena." — Frédéric Vasseur, giovedì di Shanghai</blockquote><div class="a-stats"><div class="a-stat"><span class="a-stat-v">270°</span><span class="a-stat-l">Rotazione flap</span></div><div class="a-stat"><span class="a-stat-v">3×</span><span class="a-stat-l">Riduzione drag</span></div><div class="a-stat"><span class="a-stat-v">8-10 km/h</span><span class="a-stat-l">Vantaggio velocità</span></div><div class="a-stat"><span class="a-stat-v">+7cv</span><span class="a-stat-l">Potenza equivalente</span></div><div class="a-stat"><span class="a-stat-v">3</span><span class="a-stat-l">Esemplari a Shanghai</span></div><div class="a-stat"><span class="a-stat-v">20-30cv</span><span class="a-stat-l">Deficit turbina Ferrari</span></div></div>`},
+  {id:2,img:"art2.png",title:"Russell ha spiegato perché partire dalla pole era uno svantaggio. Nessuno se n'era accorto.",exc:"Chi partiva dalla pole arrivava al semaforo con metà della batteria già consumata. Chi partiva dal fondo arrivava con la batteria piena. Non era casualità. Era una regola.",tag:"ANALISI",auth:"DebriF1",date:"14 Mar 2026",num:"N°06",cat:"GP Cina · Regolamento · Shanghai",body:`<p class="pill"><strong>La pillola:</strong> Il GP d'Australia aveva un segreto nascosto in bella vista. Chi partiva dalla pole arrivava al semaforo con metà della batteria già consumata. Chi partiva dal fondo arrivava con la batteria piena. Non era sfortuna. Non era un setup sbagliato. Era una regola. E quasi nessuno l'aveva capito — inclusi molti team.</p><h3>La regola che nessuno aveva letto</h3><p>Partiamo dall'inizio. In Formula 1 esiste un limite di recupero energetico per ogni giro. Non puoi ricaricare la batteria oltre una certa soglia in un singolo giro — è una regola che esiste per evitare che le squadre con il sistema ibrido più efficiente abbiano un vantaggio illimitato. Fin qui tutto noto. Il problema è quello che succede nel giro di formazione.</p><h3>Il giro di formazione conta</h3><p>Quando una macchina esce dalla pit lane per il giro di formazione, accelera, frena, ricarica la batteria. Quel recupero energetico viene conteggiato nel limite del giro. Questo lo sanno tutti. Il dettaglio che quasi nessuno aveva calcolato è <strong>quando scatta il contatore</strong>. Il contatore si azzera quando la macchina attraversa la linea del traguardo. Sembra semplice. Non lo è.</p><h3>Il problema della pole</h3><p>Chi parte dalla pole position — e dalle prime posizioni in griglia — è già oltre la linea del traguardo quando inizia il giro di formazione. Quando attraversa il traguardo durante il giro di formazione, non si azzera nulla: è già dentro il giro di gara. Tutto il recupero energetico del giro di formazione si accumula nel limite del primo giro.</p><p>Chi parte dal fondo della griglia — posizioni 15-20 — è prima della linea del traguardo. Quando la attraversa durante il giro di formazione, il contatore si azzera. Inizia il giro di gara con la batteria come se non avesse mai fatto il giro di formazione.</p><blockquote>"Ho accelerato, ho ricaricato la batteria e questo ha consumato circa il 50% del limite di recupero energia di quel giro." — George Russell, giovedì di Shanghai</blockquote><p>Russell dalla pole. A metà rettilineo — 50% del budget energetico del primo giro già consumato. Niente burnout. Niente difesa da eventuali attacchi. Partenza compromessa strutturalmente prima ancora dello spegnimento dei semafori.</p><h3>La politica dentro la fisica</h3><p>La FIA sapeva. Stava valutando di correggere la regola prima del via della stagione. Non l'ha fatto. Il motivo è quello che Russell ha detto senza troppi giri di parole: alcune squadre che partivano male — e quindi guadagnavano batteria piena al via — si sono opposte al cambiamento. E hanno avuto abbastanza influenza da bloccare la correzione.</p><p>Nel 2026 la politica sportiva non riguarda solo le gomme, le soste, il budget cap. Riguarda la fisica della batteria. Chi gestisce meglio le regole — non solo il motore, non solo l'aerodinamica — ha un vantaggio strutturale già prima di accendere il motore.</p><h3>Cosa cambia per Shanghai</h3><p>La regola è ancora lì. Invariata. Russell parte sapendo che il primo giro sarà energeticamente svantaggioso rispetto a chi parte nelle ultime posizioni. La differenza è che adesso lo sa anche il pubblico. La domanda che vale per Shanghai e per tutti i GP successivi è questa: le squadre di testa hanno trovato un modo per compensare questo svantaggio nel giro di formazione? O la pole position nel 2026 vale strutturalmente meno di quanto valesse nel 2025?</p><div class="a-stats"><div class="a-stat"><span class="a-stat-v">~50%</span><span class="a-stat-l">Budget energetico consumato da Russell</span></div><div class="a-stat"><span class="a-stat-v">100%</span><span class="a-stat-l">Vantaggio energetico dal fondo griglia</span></div><div class="a-stat"><span class="a-stat-v">2026</span><span class="a-stat-l">Anno introduzione limite recupero</span></div><div class="a-stat"><span class="a-stat-v">1</span><span class="a-stat-l">Gare già corse con questa anomalia</span></div></div>`},
+  {id:3,img:"art3.png",title:"120 sorpassi in Australia. Ma erano veri?",exc:"120 sorpassi vs 45 del 2025. Un trionfo del nuovo regolamento — o forse no. Quando il 50% della potenza è elettrica e gestita da algoritmi, il pilota sorpassa o viene sorpassato dal software?",tag:"OPINIONE",auth:"DebriF1",date:"13 Mar 2026",num:"N°05",cat:"Regolamento 2026 · Spettacolo vs sostanza",body:`<p class="pill"><strong>La pillola:</strong> Il GP d'Australia 2026 ha registrato 120 sorpassi. Il 2025 ne aveva fatti 45. Sulla carta è un trionfo del nuovo regolamento. Nel paddock e nelle redazioni la discussione è già aperta: questi sorpassi valgono quanto quelli di una volta? Quando il 50% della potenza è elettrica e gestita da algoritmi, il pilota sorpassa o viene sorpassato dal software? La domanda sembra filosofica. Non lo è.</p><h3>Il problema con i 120 sorpassi</h3><p>Partiamo dal dato. Australia 2026: 120 sorpassi. Australia 2025: 45. Un aumento del 167% in una sola stagione. La Liberty Media esulta. I numeri sono buoni. Ma i numeri raccontano sempre una versione parziale.</p><p>La domanda che si fanno i critici è questa: quanti di quei 120 sorpassi sono stati decisi da un pilota, e quanti dal momento in cui la batteria del sorpassato era scarica e quella del sorpassante carica? Perché nel 2026, con il 50% della potenza che arriva dall'elettrico, il differenziale di velocità su un rettilineo non dipende solo da chi frena più tardi. Dipende da chi ha energia nel pacco batteria in quel momento preciso.</p><h3>Il sorpasso alla Senna non esiste più</h3><p>C'è una scena che ogni appassionato di F1 conosce. Senna a Monaco 1984, sotto la pioggia, che guadagna quasi quattro secondi al giro su Prost con una macchina inferiore. O Schumacher in Spagna 1996, in condizioni impossibili, che tiene la Ferrari con una mano sola. Questi momenti esistono perché il limite tra il controllo e la perdita del controllo era fisico, immediato, assoluto. Il pilota era l'unica variabile.</p><p>Nel 2026 quella variabile è diventata una tra molte. Il software di gestione energetica decide quanta corrente erogare e quando. Il pilota preme sull'acceleratore e ottiene quello che il sistema ritiene appropriato in quel millisecondo, in funzione dello stato della batteria, della temperatura, della strategia energetica programmata dai box. Non è colpa di nessuno. È la conseguenza logica di aver triplicato la potenza elettrica senza aumentare la capacità della batteria.</p><blockquote>"Sembra Formula E sotto steroidi." — Max Verstappen, GP Australia 2026</blockquote><h3>La differenza del 2026</h3><p>La differenza tra il 2026 e le rivoluzioni precedenti è strutturale: <strong>non è mai stato così alto il peso percentuale dell'energia non controllata direttamente dal pilota</strong>. Nel 2014 l'ibrido contribuiva il 20% circa della potenza totale. Oggi è il 50%. Il pilota ha ancora un ruolo decisivo — la gestione energetica è una skill reale, e chi la domina meglio ottiene un vantaggio. Ma il margine di intervento umano puro si è ridotto.</p><p>Il problema alla partenza è il caso più evidente. In Australia diverse macchine sono rimaste piantate sulla griglia per frazioni di secondo — la potenza elettrica non è arrivata al momento giusto. Non è un errore del pilota. Non è una scelta. È un ritardo nel sistema di erogazione. In una partenza di Formula 1, dove i decimi di secondo valgono posizioni intere, questo è un problema di sicurezza oltre che di spettacolo.</p><h3>La domanda giusta</h3><p>Il DRS era artificiale e lo sapevamo tutti — era uno strumento esplicito per facilitare i sorpassi. Il 2026 è diverso: l'artificialità è nascosta dentro la fisica del sistema energetico. Il sorpasso sembra reale. La macchina accelera, quella davanti rallenta, il pubblico esulta. Ma la causa non è sempre quello che sembra.</p><p>Una cosa è certa: i piloti che capiranno prima la gestione energetica — non solo il giro secco, ma il ritmo di carica e scarica della batteria su 58 giri — saranno quelli che vinceranno il campionato. È una skill nuova. Non è più semplice di prima. È solo diversa.</p><div class="a-stats"><div class="a-stat"><span class="a-stat-v">120</span><span class="a-stat-l">Sorpassi Australia 2026</span></div><div class="a-stat"><span class="a-stat-v">45</span><span class="a-stat-l">Sorpassi Australia 2025</span></div><div class="a-stat"><span class="a-stat-v">50%</span><span class="a-stat-l">Quota potenza elettrica</span></div><div class="a-stat"><span class="a-stat-v">350kW</span><span class="a-stat-l">Potenza MGU-K 2026</span></div></div>`},
+  {id:4,img:"art4.png",title:"Newey ha attaccato Honda in pubblico. Con il presidente HRC seduto accanto.",exc:"Budget illimitato. Newey. Honda. Alonso. Sulla carta era la squadra del 2026. In Australia ha qualificato diciassettesima con quasi 4 secondi di ritardo. Alonso si è ritirato per precauzione — non c'erano pezzi di ricambio.",tag:"ESCLUSIVA",auth:"DebriF1",date:"12 Mar 2026",num:"N°04",cat:"Aston Martin · Honda · Adrian Newey",body:`<p class="pill"><strong>La pillola:</strong> Budget illimitato. Newey. Honda. Alonso. Sulla carta era la squadra del 2026. In Australia ha qualificato diciassettesima — 3 secondi e 9 decimi dalla pole. Alonso si è ritirato non per un guasto: semplicemente non c'erano pezzi di ricambio. Il giovedì di Melbourne, in conferenza stampa, Newey ha detto che il telaio vale il Q3 e non più di un secondo dai top. Con Koji Watanabe, presidente di Honda Racing, seduto alla sua destra.</p><h3>Come si arriva a questo punto</h3><p>Il 2 ottobre 2020, in piena pandemia, Honda annuncia il ritiro dalla Formula 1. Arriva come un fulmine. Nessuno se lo aspetta — Red Bull meno di tutti. La motivazione ufficiale è la transizione green. La traduzione reale: gli ingegneri migliori di Sakura vengono spostati su altri progetti. Honda non sviluppa più niente. Assembla, revisiona, spedisce. Punto.</p><p>Questo congelamento dura quattro anni. Quattro anni in cui i motoristi Honda non hanno niente da fare. Molti finiscono direttamente in Red Bull Powertrains — la divisione motori creata da Horner per rispondere all'addio di Honda. Honda ha formato i propri avversari. L'ibrido Red Bull 2026 è ancora il più efficiente in griglia. Non è un caso.</p><h3>Il ritorno. Il buco.</h3><p>Il 23 maggio 2023 Honda annuncia il ritorno. Partner esclusivo dell'Aston Martin dal 2026. Il comunicato parla di partnership storica. Tutti gli altri costruttori avevano iniziato a progettare le power unit 2026 dall'inizio del 2022. Honda era ferma. Ritardo accumulato: <strong>almeno 18 mesi</strong>. L'Aston Martin non lo sapeva.</p><h3>Il volo per Tokyo</h3><p>A un certo punto Honda comunica che sono "leggermente in ritardo". Newey e Andy Cowell — ex responsabile dei motori Mercedes campioni del mondo, ora in Aston Martin — prendono un aereo. Quello che trovano a Tokyo non è un ritardo. Gli ingegneri Honda migliori stavano progettando pannelli solari.</p><blockquote>"Il telaio ha il potenziale per il Q3. Non più di un secondo dai vertici." — Adrian Newey, giovedì di Melbourne</blockquote><p>Watanabe era seduto alla sua destra. Non ha risposto. Ha annuito. Il modo per dire con il massimo della cortesia: il problema non è mio. È il motore.</p><h3>Le vibrazioni</h3><p>Il motore Honda 2026 vibra. Non in modo accettabile — in modo distruttivo. Specchietti che si spaccano in marcia. Cavi che si scollegano. Cedimenti idraulici. Problemi al cambio. E soprattutto: i pacchi batteria vengono sistematicamente distrutti. Le batterie in F1 non sono componenti infiniti. Il budget cap limita la produzione. A Melbourne su quattro pacchi portati in Australia, <strong>due erano già compromessi prima delle prove libere</strong>. Non è un problema di performance. È un problema di sopravvivenza.</p><p>Lance Stroll non riesce a guidare per più di 15 giri consecutivi. Fernando Alonso ha dichiarato di temere danni alle mani dopo 25 giri di esposizione alle vibrazioni. Non è una lamentela. È una dichiarazione medica.</p><h3>Cosa succede adesso</h3><p>Honda dovrebbe ottenere le <strong>concessioni FIA</strong>: deficit superiore al 4% garantisce extra budget, più ore al banco prova e due nuove specifiche entro fine anno. Il fantasma è McLaren-Honda, 2015-2017. Tre anni di umiliazione, ritiri, accuse reciproche. Un Alonso che chiamava il motore "GP2 engine" via radio. Quella storia è finita con Honda che se ne andava. Questa ha la stessa dinamica, gli stessi protagonisti. E per Alonso, esattamente la stessa sensazione.</p><div class="a-stats"><div class="a-stat"><span class="a-stat-v">~18 mesi</span><span class="a-stat-l">Ritardo Honda</span></div><div class="a-stat"><span class="a-stat-v">17°</span><span class="a-stat-l">Qualifica Alonso Australia</span></div><div class="a-stat"><span class="a-stat-v">2 su 4</span><span class="a-stat-l">Batterie compromesse</span></div><div class="a-stat"><span class="a-stat-v">&gt;100cv</span><span class="a-stat-l">Perdita con mappature conservative</span></div></div>`},
+  {id:5,img:"art5.png",title:"La gara è durata 11 giri. Il resto era gestione del danno.",exc:"Russell vince. Antonelli secondo. Leclerc terzo, Hamilton quarto. La gara si decide al giro 11 con una Virtual Safety Car: Mercedes entra con entrambe le macchine, Ferrari no.",tag:"GARA",auth:"DebriF1",date:"11 Mar 2026",num:"N°03",cat:"GP Australia · Round 1/24 · Albert Park, Melbourne",body:`<p class="pill"><strong>La pillola:</strong> Russell vince. Antonelli secondo. Leclerc terzo, Hamilton quarto. La gara si decide al giro 11 quando una Virtual Safety Car offre a Mercedes la finestra perfetta per il pit stop. Ferrari resta fuori con entrambe le macchine — una scelta che Vasseur difende, che Leclerc difende, e che Hamilton critica già dalla macchina via radio. Il margine reale era molto più ampio dei 2.9 secondi sul traguardo.</p><h3>Quello che è successo davvero in 58 giri</h3><p>Cominciamo dalla fine per capire l'inizio. George Russell ha vinto il Gran Premio d'Australia 2026 con 2.9 secondi su Kimi Antonelli. Un margine che non racconta nulla di reale — Russell aveva gestito il vantaggio negli ultimi 15 giri, rallentando fino a dove era necessario. Il margine vero, in condizioni di gara aperta, era probabilmente il doppio. Forse di più.</p><h3>I 19 secondi che hanno deciso tutto</h3><p>Isack Hadjar si ferma a bordo pista. Fumo, ritiro, VSC automatica. Sono le 14:07 ora locale, giro 11 di 58. In quel momento la classifica è: Leclerc primo, Russell secondo, Antonelli terzo, Hamilton quarto. Due Ferrari davanti, due Mercedes subito dietro. Il team Mercedes non esita: doppio pit stop. Ferrari resta fuori.</p><p>La bandiera VSC era attiva da <strong>19 secondi</strong> quando Hamilton ha detto via radio "almeno uno di noi doveva rientrare". Non era frustrazione impulsiva — era l'analisi corretta di un pilota che in 7 titoli mondiali ha vissuto questo scenario centinaia di volte.</p><blockquote>"Almeno uno di noi doveva rientrare." — Lewis Hamilton, giro 11, via radio</blockquote><h3>La logica di Ferrari: sbagliata, non irrazionale</h3><p>La narrazione facile è "Ferrari ha sbagliato ancora strategia" e basta. È vera, ma è incompleta. Vasseur e Leclerc hanno spiegato il ragionamento: nel 2026, con gomme e degrado completamente sconosciuti, fermarsi al giro 11 avrebbe significato affrontare 47 giri con un set di Hard — una distanza non testata su nessun circuito con le nuove vetture.</p><p>Il problema non è la logica — è l'implementazione. <strong>Ferrari non aveva diviso la strategia tra i due piloti</strong>, strumento standard in F1 per coprire più scenari contemporaneamente. E quando la seconda VSC è arrivata con la pit lane bloccata da Bottas, non c'era piano B. Il problema Ferrari strategico non è nuovo. È sistemico.</p><h3>La gestione energetica: il vero tema del weekend</h3><p>C'è un elemento della gara australiana che verrà ricordato come il simbolo dell'era 2026: il lift and coast. I piloti tolgono il gas prima della fine dei rettilinei per ricaricare la batteria. Verstappen lo ha chiamato "Formula E sotto steroidi". Norris e Ocon hanno parlato di gara "artificiale". Vasseur ha detto l'opposto: "Non vedevo qualcosa di simile da 10 anni." Il paddock è spaccato.</p><div class="a-stats"><div class="a-stat"><span class="a-stat-v">2.97s</span><span class="a-stat-l">Gap Russell – Antonelli</span></div><div class="a-stat"><span class="a-stat-v">51s</span><span class="a-stat-l">Distacco Norris da Russell</span></div><div class="a-stat"><span class="a-stat-v">+14</span><span class="a-stat-l">Rimonta Verstappen</span></div><div class="a-stat"><span class="a-stat-v">19s</span><span class="a-stat-l">VSC attiva prima della richiesta Hamilton</span></div><div class="a-stat"><span class="a-stat-v">×6</span><span class="a-stat-l">Cambi di testa nei primi 10 giri</span></div><div class="a-stat"><span class="a-stat-v">43–27</span><span class="a-stat-l">Punti Mercedes vs Ferrari</span></div></div>`},
+  {id:6,img:"art6.png",title:"Chi ha capito il 2026 e chi no. Il verdetto dopo Melbourne.",exc:"Mercedes è davanti — probabilmente di molto. Ferrari è seconda ma con un problema strategico cronico. Red Bull affronta la stagione più difficile dell'era Verstappen. McLaren, campione in carica, sembrava distante.",tag:"VERDETTO",auth:"DebriF1",date:"10 Mar 2026",num:"N°02",cat:"Power ranking · Stagione 2026",body:`<p class="pill"><strong>La pillola:</strong> Il primo weekend del 2026 ha consegnato verdetti parziali ma già significativi. Mercedes è davanti — probabilmente di molto. Ferrari è seconda ma con un problema strategico cronico. Red Bull affronta la stagione più difficile dell'era Verstappen. McLaren, campione in carica, è sembrata distante. La gerarchia è meno stabile di quanto sembri.</p><h3>Mercedes: il ritorno che non ti aspettavi così</h3><p>Bisogna essere onesti: pochi si aspettavano Mercedes così forte già alla prima gara. Russell parte in pole, Antonelli in prima fila, e la doppietta arriva in modo quasi controllato. In qualifica il gap era di circa <strong>8 decimi</strong>. In gara, Mercedes girava 3-4 decimi più veloce di Ferrari sui tempi sul giro. Se la W17 mantiene questo livello, Russell è un candidato reale al titolo.</p><h3>Ferrari: macchina buona, muro strategico invariato</h3><p>La SF-26 non è lenta. Leclerc ha preso la testa dalla quarta posizione alla prima curva. Hamilton dal settimo al terzo nel giro iniziale. Il turbo compatto della Ferrari sembra produrre partenze eccezionali — un vantaggio strutturale. Il problema è quello che succede quando si deve prendere una decisione. Vedi il giro 11.</p><p>Il problema Ferrari strategico non è nuovo. <strong>È sistemico.</strong> Il personale tecnico è cambiato parzialmente, la cultura decisionale no. Questo è il vero problema che Maranello deve risolvere nel 2026.</p><h3>Red Bull: la scommessa più grande della stagione</h3><p>Honda ha interrotto il rapporto con Red Bull per legarsi ad Aston Martin. Red Bull ora sviluppa il proprio powertrain con Ford — prima volta in assoluto. Il risultato in Australia: qualifica disastrosa e sesto posto finale dopo una rimonta da ventesimo. Verstappen durante i test aveva già detto "non so dove siamo rispetto agli altri". In Australia la risposta è arrivata: sono terzi o quarti.</p><h3>McLaren: il campione in carica è già in difficoltà</h3><p>Il dato più sorprendente di Australia non è la vittoria Mercedes — è il distacco McLaren. Norris ha chiuso a <strong>51 secondi</strong> da Russell. Il MCL39 non ha trovato il modo di funzionare con le nuove regole di gestione energetica. Con meno downforce da fondo e più enfasi sul powertrain, il vantaggio che aveva si è dissolto. Con meno downforce da fondo e più enfasi sul powertrain, il vantaggio che aveva si è dissolto. Da campioni del mondo a questo: serve una svolta radicale.</p><div class="a-stats"><div class="a-stat"><span class="a-stat-v">0.8s</span><span class="a-stat-l">Gap Mercedes in qualifica</span></div><div class="a-stat"><span class="a-stat-v">3-4 dec.</span><span class="a-stat-l">Vantaggio Mercedes in gara</span></div><div class="a-stat"><span class="a-stat-v">51s</span><span class="a-stat-l">Distacco McLaren da Russell</span></div><div class="a-stat"><span class="a-stat-v">6°</span><span class="a-stat-l">Meglio posizione Red Bull</span></div></div>`},
 
 ];
 
 /* ━━━ STANDINGS ━━━ */
 let cTab='drivers',cGP='season';
 function onGpChange(){
-  cGP=document.getElementById('gp-sel').value;
-  const mw=document.getElementById('st-more-wrap');
-  if(mw) mw.style.display='none';
-  stExpanded=false;
-  renderSt(cTab);
+  cGP=document.getElementById('gp-sel').value;
+  const mw=document.getElementById('st-more-wrap');
+  if(mw) mw.style.display='none';
+  stExpanded=false;
+  renderSt(cTab);
 }
 let stExpanded=false;
 function stRow(r,i,tab,data){
-  const isDnf=typeof r.pos!=='number';
-  const pc=r.pos===1?'p1':r.pos===2?'p2':r.pos===3?'p3':'pm';
-  if(tab==='drivers'){
-    return `<div class="st-row ${r.pos===1?'winner-row':''} rv" style="transition-delay:${i*30}ms">
-      <div class="tcol" style="background:${r.color}"></div>
-      <div class="d-info"><span class="pos ${pc}" ${isDnf?'style="font-size:13px"':''}>${r.pos}</span>
-        <div><div class="d-name">${r.name}${r.fl?' <span style="font-size:11px;color:var(--red)">⚡FL</span>':''}</div><div class="d-team">${r.team}</div></div></div>
-      <div class="gap-v">${r.gap||r.pts+' PTS'}</div></div>`;
-  }else{
-    const mp=data[0].pts||1;
-    return `<div class="st-row rv" style="transition-delay:${i*30}ms">
-      <div class="tcol" style="background:${r.color}"></div>
-      <div class="d-info"><span class="pos ${pc}">${r.pos}</span><span>${r.flag}</span><div class="d-name">${r.name}</div></div>
-      <div class="pts-area"><div class="pts-bg"><div class="pts-bar" style="width:${mp>0?Math.round(r.pts/mp*100):0}%;background:${r.color}"></div></div><div class="pts">${r.pts}<span>PTS</span></div></div></div>`;
-  }
+  const isDnf=typeof r.pos!=='number';
+  const pc=r.pos===1?'p1':r.pos===2?'p2':r.pos===3?'p3':'pm';
+  if(tab==='drivers'){
+    return `<div class="st-row ${r.pos===1?'winner-row':''} rv" style="transition-delay:${i*30}ms">
+      <div class="tcol" style="background:${r.color}"></div>
+      <div class="d-info"><span class="pos ${pc}" ${isDnf?'style="font-size:13px"':''}>${r.pos}</span>
+        <div><div class="d-name">${r.name}${r.fl?' <span style="font-size:11px;color:var(--red)">⚡FL</span>':''}</div><div class="d-team">${r.team}</div></div></div>
+      <div class="gap-v">${r.gap||r.pts+' PTS'}</div></div>`;
+  }else{
+    const mp=data[0].pts||1;
+    return `<div class="st-row rv" style="transition-delay:${i*30}ms">
+      <div class="tcol" style="background:${r.color}"></div>
+      <div class="d-info"><span class="pos ${pc}">${r.pos}</span><span>${r.flag}</span><div class="d-name">${r.name}</div></div>
+      <div class="pts-area"><div class="pts-bg"><div class="pts-bar" style="width:${mp>0?Math.round(r.pts/mp*100):0}%;background:${r.color}"></div></div><div class="pts">${r.pts}<span>PTS</span></div></div></div>`;
+  }
 }
 function renderSt(tab){
-  cTab=tab;
-  stExpanded=false;
-  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));
-  const c=document.getElementById('st-list');
-  if(cGP!=='season'){
-    const g=GPR[cGP],d=tab==='drivers'?g.drivers:g.constructors;
-    function miniRows(rows,isTime){
-      return rows.map((r,i)=>{
-        const pc=r.pos===1?'p1':r.pos===2?'p2':r.pos===3?'p3':'';
-        return `<div class="st-row rv" style="transition-delay:${i*25}ms">
-          <div class="tcol" style="background:${r.color}"></div>
-          <div class="d-info"><span class="pos ${pc}">${r.pos}</span>
-            <div><div class="d-name">${r.name}</div><div class="d-team">${r.team}</div></div></div>
-          <div class="gap-v">${isTime?r.time:r.gap}</div></div>`;
-      }).join('');
-    }
-    if(tab==='drivers'){
-      const gridClass='st-gp-grid'+(g.sprint?' has-sprint':g.quali?' has-extras':'');
-      // Race column
-      let raceCol=`<div class="st-section-label">🏁 Gara</div>`;
-      raceCol+=d.map((r,i)=>{
-        const isDnf=typeof r.pos!=='number';
-        const pc=r.pos===1?'p1':r.pos===2?'p2':r.pos===3?'p3':'pm';
-        return `<div class="st-row ${r.pos===1?'winner-row':''} rv" style="transition-delay:${i*25}ms">
-          <div class="tcol" style="background:${r.color}"></div>
-          <div class="d-info"><span class="pos ${pc}" ${isDnf?'style="font-size:12px"':''}>${r.pos}</span>
-            <div><div class="d-name">${r.name}${r.fl?' <span style="font-size:10px;color:var(--red)">⚡</span>':''}</div><div class="d-team">${r.team}</div></div></div>
-          <div class="gap-v">${r.gap}</div></div>`;
-      }).join('');
-      // Sprint column
-      let sprintCol='';
-      if(g.sprint){
-        sprintCol=`<div class="st-mini"><div class="st-section-label">⚡ Sprint — Top 5</div>`+miniRows(g.sprint,false)+`</div>`;
-      }
-      // Quali column
-      let qualiCol='';
-      if(g.quali){
-        qualiCol=`<div class="st-mini"><div class="st-section-label">🟡 Qualifiche — Top 5</div>`+miniRows(g.quali,true)+`</div>`;
-      }
-      // Extra columns stacked if sprint+quali
-      let extras='';
-      if(g.sprint&&g.quali){
-        extras=`<div style="display:flex;flex-direction:column;gap:16px">${sprintCol}${qualiCol}</div>`;
-      } else {
-        extras=sprintCol+qualiCol;
-      }
-      c.innerHTML=`<div class="${gridClass}"><div class="st-gp-col">${raceCol}</div>${extras}</div>`;
-    }else{
-      const mp=d[0].pts||1;
-      c.innerHTML=d.map((r,i)=>{
-        const pc=r.pos===1?'p1':r.pos===2?'p2':r.pos===3?'p3':'pm';
-        return `<div class="st-row rv" style="transition-delay:${i*30}ms">
-          <div class="tcol" style="background:${r.color}"></div>
-          <div class="d-info"><span class="pos ${pc}">${r.pos}</span><span>${r.flag}</span><div class="d-name">${r.name}</div></div>
-          <div class="pts-area"><div class="pts-bg"><div class="pts-bar" style="width:${mp>0?Math.round(r.pts/mp*100):0}%;background:${r.color}"></div></div><div class="pts">${r.pts}<span>PTS</span></div></div></div>`;
-      }).join('');
-    }
-  }else{
-    const d=tab==='drivers'?DS:CS;
-    const mp=d[0].pts||1;
-    const visible=d.slice(0,10);
-    const hidden=d.slice(10);
-    c.innerHTML=visible.map((r,i)=>{
-      const pClass=i===0?'p1':i===1?'p2':i===2?'p3':'';
-      return `<div class="st-row rv" style="transition-delay:${i*30}ms">
-        <div class="tcol" style="background:${r.color}"></div>
-        <div class="d-info"><span class="pos ${pClass}">${r.pos}</span><span class="d-flag">${r.flag}</span>
-          <div><div class="d-name">${r.name}</div>${tab==='drivers'?`<div class="d-team">${r.team}</div>`:''}</div></div>
-        <div class="pts-area"><div class="pts-bg"><div class="pts-bar" style="width:${mp>0?Math.round(r.pts/mp*100):0}%;background:${r.color}"></div></div><div class="pts">${r.pts}<span>PTS</span></div></div></div>`;
-    }).join('');
-    const moreWrap=document.getElementById('st-more-wrap');
-    if(hidden.length>0){
-      moreWrap.style.display='flex';
-      document.getElementById('st-more-btn').textContent=`Vedi altri ${hidden.length} piloti ↓`;
-    } else {
-      moreWrap.style.display='none';
-    }
-  }
-  obs();
+  cTab=tab;
+  stExpanded=false;
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));
+  const c=document.getElementById('st-list');
+  if(cGP!=='season'){
+    const g=GPR[cGP],d=tab==='drivers'?g.drivers:g.constructors;
+    function miniRows(rows,isTime){
+      return rows.map((r,i)=>{
+        const pc=r.pos===1?'p1':r.pos===2?'p2':r.pos===3?'p3':'';
+        return `<div class="st-row rv" style="transition-delay:${i*25}ms">
+          <div class="tcol" style="background:${r.color}"></div>
+          <div class="d-info"><span class="pos ${pc}">${r.pos}</span>
+            <div><div class="d-name">${r.name}</div><div class="d-team">${r.team}</div></div></div>
+          <div class="gap-v">${isTime?r.time:r.gap}</div></div>`;
+      }).join('');
+    }
+    if(tab==='drivers'){
+      const gridClass='st-gp-grid'+(g.sprint?' has-sprint':g.quali?' has-extras':'');
+      // Race column
+      let raceCol=`<div class="st-section-label">🏁 Gara</div>`;
+      raceCol+=d.map((r,i)=>{
+        const isDnf=typeof r.pos!=='number';
+        const pc=r.pos===1?'p1':r.pos===2?'p2':r.pos===3?'p3':'pm';
+        return `<div class="st-row ${r.pos===1?'winner-row':''} rv" style="transition-delay:${i*25}ms">
+          <div class="tcol" style="background:${r.color}"></div>
+          <div class="d-info"><span class="pos ${pc}" ${isDnf?'style="font-size:12px"':''}>${r.pos}</span>
+            <div><div class="d-name">${r.name}${r.fl?' <span style="font-size:10px;color:var(--red)">⚡</span>':''}</div><div class="d-team">${r.team}</div></div></div>
+          <div class="gap-v">${r.gap}</div></div>`;
+      }).join('');
+      // Sprint column
+      let sprintCol='';
+      if(g.sprint){
+        sprintCol=`<div class="st-mini"><div class="st-section-label">⚡ Sprint — Top 5</div>`+miniRows(g.sprint,false)+`</div>`;
+      }
+      // Quali column
+      let qualiCol='';
+      if(g.quali){
+        qualiCol=`<div class="st-mini"><div class="st-section-label">🟡 Qualifiche — Top 5</div>`+miniRows(g.quali,true)+`</div>`;
+      }
+      // Extra columns stacked if sprint+quali
+      let extras='';
+      if(g.sprint&&g.quali){
+        extras=`<div style="display:flex;flex-direction:column;gap:16px">${sprintCol}${qualiCol}</div>`;
+      } else {
+        extras=sprintCol+qualiCol;
+      }
+      c.innerHTML=`<div class="${gridClass}"><div class="st-gp-col">${raceCol}</div>${extras}</div>`;
+    }else{
+      const mp=d[0].pts||1;
+      c.innerHTML=d.map((r,i)=>{
+        const pc=r.pos===1?'p1':r.pos===2?'p2':r.pos===3?'p3':'pm';
+        return `<div class="st-row rv" style="transition-delay:${i*30}ms">
+          <div class="tcol" style="background:${r.color}"></div>
+          <div class="d-info"><span class="pos ${pc}">${r.pos}</span><span>${r.flag}</span><div class="d-name">${r.name}</div></div>
+          <div class="pts-area"><div class="pts-bg"><div class="pts-bar" style="width:${mp>0?Math.round(r.pts/mp*100):0}%;background:${r.color}"></div></div><div class="pts">${r.pts}<span>PTS</span></div></div></div>`;
+      }).join('');
+    }
+  }else{
+    const d=tab==='drivers'?DS:CS;
+    const mp=d[0].pts||1;
+    const visible=d.slice(0,10);
+    const hidden=d.slice(10);
+    c.innerHTML=visible.map((r,i)=>{
+      const pClass=i===0?'p1':i===1?'p2':i===2?'p3':'';
+      return `<div class="st-row rv" style="transition-delay:${i*30}ms">
+        <div class="tcol" style="background:${r.color}"></div>
+        <div class="d-info"><span class="pos ${pClass}">${r.pos}</span><span class="d-flag">${r.flag}</span>
+          <div><div class="d-name">${r.name}</div>${tab==='drivers'?`<div class="d-team">${r.team}</div>`:''}</div></div>
+        <div class="pts-area"><div class="pts-bg"><div class="pts-bar" style="width:${mp>0?Math.round(r.pts/mp*100):0}%;background:${r.color}"></div></div><div class="pts">${r.pts}<span>PTS</span></div></div></div>`;
+    }).join('');
+    const moreWrap=document.getElementById('st-more-wrap');
+    if(hidden.length>0){
+      moreWrap.style.display='flex';
+      document.getElementById('st-more-btn').textContent=`Vedi altri ${hidden.length} piloti ↓`;
+    } else {
+      moreWrap.style.display='none';
+    }
+  }
+  obs();
 }
 function toggleMoreSt(){
-  const c=document.getElementById('st-list');
-  const d=cTab==='drivers'?DS:CS;
-  const mp=d[0].pts||1;
-  const hidden=d.slice(10);
-  if(!stExpanded){
-    hidden.forEach((r,ii)=>{
-      const i=ii+10;
-      const pClass=i===0?'p1':i===1?'p2':i===2?'p3':'';
-      const div=document.createElement('div');
-      div.innerHTML=`<div class="st-row rv" style="transition-delay:${ii*30}ms">
-        <div class="tcol" style="background:${r.color}"></div>
-        <div class="d-info"><span class="pos ${pClass}">${r.pos}</span><span class="d-flag">${r.flag}</span>
-          <div><div class="d-name">${r.name}</div>${cTab==='drivers'?`<div class="d-team">${r.team}</div>`:''}</div></div>
-        <div class="pts-area"><div class="pts-bg"><div class="pts-bar" style="width:${mp>0?Math.round(r.pts/mp*100):0}%;background:${r.color}"></div></div><div class="pts">${r.pts}<span>PTS</span></div></div></div>`;
-      const row=div.firstElementChild;
-      c.appendChild(row);
-      setTimeout(()=>{
-        const io=new IntersectionObserver(entries=>{
-          entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target);}});
-        },{threshold:.1});
-        io.observe(row);
-      },50);
-    });
-    stExpanded=true;
-    document.getElementById('st-more-btn').textContent='Vedi meno ↑';
-  } else {
-    const rows=c.querySelectorAll('.st-row');
-    for(let i=10;i<rows.length;i++) rows[i].remove();
-    stExpanded=false;
-    document.getElementById('st-more-btn').textContent=`Vedi altri ${hidden.length} piloti ↓`;
-  }
+  const c=document.getElementById('st-list');
+  const d=cTab==='drivers'?DS:CS;
+  const mp=d[0].pts||1;
+  const hidden=d.slice(10);
+  if(!stExpanded){
+    hidden.forEach((r,ii)=>{
+      const i=ii+10;
+      const pClass=i===0?'p1':i===1?'p2':i===2?'p3':'';
+      const div=document.createElement('div');
+      div.innerHTML=`<div class="st-row rv" style="transition-delay:${ii*30}ms">
+        <div class="tcol" style="background:${r.color}"></div>
+        <div class="d-info"><span class="pos ${pClass}">${r.pos}</span><span class="d-flag">${r.flag}</span>
+          <div><div class="d-name">${r.name}</div>${cTab==='drivers'?`<div class="d-team">${r.team}</div>`:''}</div></div>
+        <div class="pts-area"><div class="pts-bg"><div class="pts-bar" style="width:${mp>0?Math.round(r.pts/mp*100):0}%;background:${r.color}"></div></div><div class="pts">${r.pts}<span>PTS</span></div></div></div>`;
+      const row=div.firstElementChild;
+      c.appendChild(row);
+      setTimeout(()=>{
+        const io=new IntersectionObserver(entries=>{
+          entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target);}});
+        },{threshold:.1});
+        io.observe(row);
+      },50);
+    });
+    stExpanded=true;
+    document.getElementById('st-more-btn').textContent='Vedi meno ↑';
+  } else {
+    const rows=c.querySelectorAll('.st-row');
+    for(let i=10;i<rows.length;i++) rows[i].remove();
+    stExpanded=false;
+    document.getElementById('st-more-btn').textContent=`Vedi altri ${hidden.length} piloti ↓`;
+  }
 }
 
 /* ━━━ CALENDAR ━━━ */
 function renderCal(){
-  document.getElementById('cal-grid').innerHTML=RACES.map(r=>`
-    <div class="race-item ${r.st==='next'?'nxt':''} ${r.st==='done'?'done':''} rv" onclick="openGP('${r.id}')">
-      <span class="r-flag">${r.flag}</span>
-      <div class="r-info">
-        <div class="r-name">${r.name}${r.sprint?' <span style="font-size:10px;color:#F5A623;font-weight:700;margin-left:4px">SPRINT</span>':''}</div>
-        <div class="r-date">${r.date} 2026</div>
-        ${r.winner?`<div class="r-winner">🏆 ${r.winner}</div>`:''}
-      </div>
-      <span class="r-status ${r.st==='done'?'rs-done':r.st==='next'?'rs-nxt':'rs-up'}">${r.st==='done'?'✓':r.st==='next'?'●':''}</span>
-    </div>`).join('');
-  obs();
+  document.getElementById('cal-grid').innerHTML=RACES.map(r=>`
+    <div class="race-item ${r.st==='next'?'nxt':''} ${r.st==='done'?'done':''} rv" onclick="openGP('${r.id}')">
+      <span class="r-flag">${r.flag}</span>
+      <div class="r-info">
+        <div class="r-name">${r.name}${r.sprint?' <span style="font-size:10px;color:#F5A623;font-weight:700;margin-left:4px">SPRINT</span>':''}</div>
+        <div class="r-date">${r.date} 2026</div>
+        ${r.winner?`<div class="r-winner">🏆 ${r.winner}</div>`:''}
+      </div>
+      <span class="r-status ${r.st==='done'?'rs-done':r.st==='next'?'rs-nxt':'rs-up'}">${r.st==='done'?'✓':r.st==='next'?'●':''}</span>
+    </div>`).join('');
+  obs();
 }
 
 /* ━━━ GP PANEL ━━━ */
 function openGP(id){
-  const race=RACES.find(r=>r.id===id);if(!race)return;
-  const ci=CI[id],gr=GPR[id];
-  document.getElementById('pn-round').textContent=`${race.r} · Stagione 2026`;
-  document.getElementById('pn-ttl').textContent=`${race.flag} ${race.name}`;
-  document.getElementById('pn-sub').textContent=ci?`${ci.length}km · ${ci.laps} giri · ${race.date} 2026`:`${race.date} 2026`;
-  let html='';
-  if(race.st==='done'&&gr) html=buildRace(gr,ci);
-  else if(ci) html=buildCirc(ci,race);
-  else html='<p style="color:var(--gray);font-size:14px">Informazioni disponibili avvicinandosi al weekend.</p>';
-  document.getElementById('pn-body').innerHTML=html;
-  document.getElementById('gp-ov').classList.add('open');
-  document.getElementById('gp-pn').classList.add('open');
-  document.body.style.overflow='hidden';
+  const race=RACES.find(r=>r.id===id);if(!race)return;
+  const ci=CI[id],gr=GPR[id];
+  document.getElementById('pn-round').textContent=`${race.r} · Stagione 2026`;
+  document.getElementById('pn-ttl').textContent=`${race.flag} ${race.name}`;
+  document.getElementById('pn-sub').textContent=ci?`${ci.length}km · ${ci.laps} giri · ${race.date} 2026`:`${race.date} 2026`;
+  let html='';
+  if(race.st==='done'&&gr) html=buildRace(gr,ci);
+  else if(ci) html=buildCirc(ci,race);
+  else html='<p style="color:var(--gray);font-size:14px">Informazioni disponibili avvicinandosi al weekend.</p>';
+  document.getElementById('pn-body').innerHTML=html;
+  document.getElementById('gp-ov').classList.add('open');
+  document.getElementById('gp-pn').classList.add('open');
+  document.body.style.overflow='hidden';
 }
 function closeGP(){
-  document.getElementById('gp-ov').classList.remove('open');
-  document.getElementById('gp-pn').classList.remove('open');
-  document.body.style.overflow='';
+  document.getElementById('gp-ov').classList.remove('open');
+  document.getElementById('gp-pn').classList.remove('open');
+  document.body.style.overflow='';
 }
 function buildRace(g,ci){
-  const h=g.hero;
-  let s=`<div class="res-hero">
-    <div class="res-stat"><div class="res-stat-l">Vincitore</div><div class="res-stat-v">${h.V}</div></div>
-    <div class="res-stat"><div class="res-stat-l">Pole</div><div class="res-stat-v">${h.P}</div></div>
-    <div class="res-stat"><div class="res-stat-l">Giro Veloce</div><div class="res-stat-v r">${h.FL}</div></div>
-    <div class="res-stat"><div class="res-stat-l">Giri</div><div class="res-stat-v">${h.giri}</div></div>
-    <div class="res-stat"><div class="res-stat-l">Sorpassi</div><div class="res-stat-v">${h.sor}</div></div>
-    <div class="res-stat"><div class="res-stat-l">Chiave</div><div class="res-stat-v r" style="font-size:13px">${h.chiave}</div></div>
-  </div>`;
-  s+=`<div class="pn-sec">Classifica completa</div><table class="res-tbl"><thead><tr><th>Pos</th><th>Pilota</th><th style="text-align:right">Gap</th></tr></thead><tbody>`;
-  g.drivers.forEach(r=>{
-    const dn=typeof r.pos!=='number';
-    const pc=r.pos===1?'rp1':r.pos===2?'rp2':r.pos===3?'rp3':'rpm';
-    s+=`<tr class="${dn?'dnf':''}"><td><span class="r-pos ${pc}">${r.pos}</span></td><td><span class="tbar" style="background:${r.color}"></span>${r.name}<span style="font-size:11px;color:var(--gray);display:block;margin-top:1px">${r.team}</span></td><td class="r-gap">${r.gap}${r.fl?'<span class="r-fl">⚡ FL</span>':''}</td></tr>`;
-  });
-  s+=`</tbody></table>`;
-  s+=`<div class="pn-sec">Il momento chiave</div><p class="ci-desc">${g.key}</p>`;
-  if(ci){
-    s+=`<div class="pn-sec">Il circuito</div><div class="ci-grid">
-      <div class="ci-stat"><div class="ci-stat-l">Lunghezza</div><div class="ci-stat-v">${ci.length}<span class="ci-stat-u">km</span></div></div>
-      <div class="ci-stat"><div class="ci-stat-l">Giri</div><div class="ci-stat-v">${ci.laps}</div></div>
-      <div class="ci-stat"><div class="ci-stat-l">Curve</div><div class="ci-stat-v">${ci.corners}</div></div>
-      <div class="ci-stat"><div class="ci-stat-l">Zone DRS</div><div class="ci-stat-v">${ci.drs}</div></div></div>`;
-  }
-  return s;
+  const h=g.hero;
+  let s=`<div class="res-hero">
+    <div class="res-stat"><div class="res-stat-l">Vincitore</div><div class="res-stat-v">${h.V}</div></div>
+    <div class="res-stat"><div class="res-stat-l">Pole</div><div class="res-stat-v">${h.P}</div></div>
+    <div class="res-stat"><div class="res-stat-l">Giro Veloce</div><div class="res-stat-v r">${h.FL}</div></div>
+    <div class="res-stat"><div class="res-stat-l">Giri</div><div class="res-stat-v">${h.giri}</div></div>
+    <div class="res-stat"><div class="res-stat-l">Sorpassi</div><div class="res-stat-v">${h.sor}</div></div>
+    <div class="res-stat"><div class="res-stat-l">Chiave</div><div class="res-stat-v r" style="font-size:13px">${h.chiave}</div></div>
+  </div>`;
+  s+=`<div class="pn-sec">Classifica completa</div><table class="res-tbl"><thead><tr><th>Pos</th><th>Pilota</th><th style="text-align:right">Gap</th></tr></thead><tbody>`;
+  g.drivers.forEach(r=>{
+    const dn=typeof r.pos!=='number';
+    const pc=r.pos===1?'rp1':r.pos===2?'rp2':r.pos===3?'rp3':'rpm';
+    s+=`<tr class="${dn?'dnf':''}"><td><span class="r-pos ${pc}">${r.pos}</span></td><td><span class="tbar" style="background:${r.color}"></span>${r.name}<span style="font-size:11px;color:var(--gray);display:block;margin-top:1px">${r.team}</span></td><td class="r-gap">${r.gap}${r.fl?'<span class="r-fl">⚡ FL</span>':''}</td></tr>`;
+  });
+  s+=`</tbody></table>`;
+  s+=`<div class="pn-sec">Il momento chiave</div><p class="ci-desc">${g.key}</p>`;
+  if(ci){
+    s+=`<div class="pn-sec">Il circuito</div><div class="ci-grid">
+      <div class="ci-stat"><div class="ci-stat-l">Lunghezza</div><div class="ci-stat-v">${ci.length}<span class="ci-stat-u">km</span></div></div>
+      <div class="ci-stat"><div class="ci-stat-l">Giri</div><div class="ci-stat-v">${ci.laps}</div></div>
+      <div class="ci-stat"><div class="ci-stat-l">Curve</div><div class="ci-stat-v">${ci.corners}</div></div>
+      <div class="ci-stat"><div class="ci-stat-l">Zone DRS</div><div class="ci-stat-v">${ci.drs}</div></div></div>`;
+  }
+  return s;
 }
 function buildCirc(ci,race){
-  const tags=ci.tags.map(t=>`<span class="ci-tag">${t}</span>`).join('');
-  const sched=ci.sched.map(s=>`<div class="sched-row ${s.m?'main':''}"><span class="sched-s">${s.s}</span><span class="sched-t">${s.t}</span></div>`).join('');
-  return `<div class="ci-grid">
-    <div class="ci-stat"><div class="ci-stat-l">Lunghezza</div><div class="ci-stat-v">${ci.length}<span class="ci-stat-u">km</span></div></div>
-    <div class="ci-stat"><div class="ci-stat-l">Giri</div><div class="ci-stat-v">${ci.laps}</div></div>
-    <div class="ci-stat"><div class="ci-stat-l">Curve</div><div class="ci-stat-v">${ci.corners}</div></div>
-    <div class="ci-stat"><div class="ci-stat-l">Zone DRS</div><div class="ci-stat-v">${ci.drs}</div></div></div>
-  <div class="pn-sec">Il circuito</div><p class="ci-desc">${ci.desc}</p>
-  <div class="ci-tags">${tags}</div>
-  <div class="pn-sec">Record sul giro</div>
-  <p class="lap-rec"><strong style="color:var(--white);font-size:16px">${ci.lr.t}</strong> · ${ci.lr.d} · ${ci.lr.y}</p>
-  <div class="pn-sec">Programma weekend${race.sprint?' (Sprint)':''}</div>
-  <div class="sched-list">${sched}</div>`;
+  const tags=ci.tags.map(t=>`<span class="ci-tag">${t}</span>`).join('');
+  const sched=ci.sched.map(s=>`<div class="sched-row ${s.m?'main':''}"><span class="sched-s">${s.s}</span><span class="sched-t">${s.t}</span></div>`).join('');
+  return `<div class="ci-grid">
+    <div class="ci-stat"><div class="ci-stat-l">Lunghezza</div><div class="ci-stat-v">${ci.length}<span class="ci-stat-u">km</span></div></div>
+    <div class="ci-stat"><div class="ci-stat-l">Giri</div><div class="ci-stat-v">${ci.laps}</div></div>
+    <div class="ci-stat"><div class="ci-stat-l">Curve</div><div class="ci-stat-v">${ci.corners}</div></div>
+    <div class="ci-stat"><div class="ci-stat-l">Zone DRS</div><div class="ci-stat-v">${ci.drs}</div></div></div>
+  <div class="pn-sec">Il circuito</div><p class="ci-desc">${ci.desc}</p>
+  <div class="ci-tags">${tags}</div>
+  <div class="pn-sec">Record sul giro</div>
+  <p class="lap-rec"><strong style="color:var(--white);font-size:16px">${ci.lr.t}</strong> · ${ci.lr.d} · ${ci.lr.y}</p>
+  <div class="pn-sec">Programma weekend${race.sprint?' (Sprint)':''}</div>
+  <div class="sched-list">${sched}</div>`;
 }
 
 /* ━━━ ARTICLES ━━━ */
 function artCard(a){
-  return `<div class="art-card rv" onclick="openArt(${a.id})">
-    <div class="art-img"><span class="art-tag">${a.tag}</span><img src="${a.img}" alt="${a.title}" loading="lazy" onerror="this.style.display='none'"></div>
-    <div class="art-body">
-      <h3 class="art-ttl">${a.title}</h3>
-      <p class="art-exc">${a.exc}</p>
-      <div class="art-meta"><span class="art-auth">${a.auth}</span><span class="art-date">${a.date}</span></div>
-    </div></div>`;
+  return `<div class="art-card rv" onclick="openArt(${a.id})">
+    <div class="art-img"><span class="art-tag">${a.tag}</span><img src="${a.img}" alt="${a.title}" loading="lazy" onerror="this.style.display='none'"></div>
+    <div class="art-body">
+      <h3 class="art-ttl">${a.title}</h3>
+      <p class="art-exc">${a.exc}</p>
+      <div class="art-meta"><span class="art-auth">${a.auth}</span><span class="art-date">${a.date}</span></div>
+    </div></div>`;
 }
 let artsExpanded=false;
 function renderArts(){
-  const grid=document.getElementById('art-grid');
-  const visible=ARTS.slice(0,6);
-  const hidden=ARTS.slice(6);
-  grid.innerHTML=visible.map(artCard).join('');
-  // more button
-  const wrap=document.getElementById('art-more-wrap');
-  if(hidden.length>0){
-    wrap.style.display='flex';
-    document.getElementById('art-more-btn').textContent=`Vedi altri ${hidden.length} articoli ↓`;
-  } else {
-    wrap.style.display='none';
-  }
-  obs();
+  const grid=document.getElementById('art-grid');
+  const visible=ARTS.slice(0,6);
+  const hidden=ARTS.slice(6);
+  grid.innerHTML=visible.map(artCard).join('');
+  // more button
+  const wrap=document.getElementById('art-more-wrap');
+  if(hidden.length>0){
+    wrap.style.display='flex';
+    document.getElementById('art-more-btn').textContent=`Vedi altri ${hidden.length} articoli ↓`;
+  } else {
+    wrap.style.display='none';
+  }
+  obs();
 }
 function toggleMoreArts(){
-  const grid=document.getElementById('art-grid');
-  const hidden=ARTS.slice(6);
-  if(!artsExpanded){
-    hidden.forEach(a=>{
-      const div=document.createElement('div');
-      div.innerHTML=artCard(a);
-      const card=div.firstElementChild;
-      grid.appendChild(card);
-      // trigger reveal after short delay
-      setTimeout(()=>{ card.classList.add('ob'); 
-        const io=new IntersectionObserver(entries=>{
-          entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target);}});
-        },{threshold:.1});
-        io.observe(card);
-      },50);
-    });
-    artsExpanded=true;
-    document.getElementById('art-more-btn').textContent='Vedi meno ↑';
-  } else {
-    // remove extra cards
-    const cards=grid.querySelectorAll('.art-card');
-    for(let i=6;i<cards.length;i++) cards[i].remove();
-    artsExpanded=false;
-    document.getElementById('art-more-btn').textContent=`Vedi altri ${hidden.length} articoli ↓`;
-  }
+  const grid=document.getElementById('art-grid');
+  const hidden=ARTS.slice(6);
+  if(!artsExpanded){
+    hidden.forEach(a=>{
+      const div=document.createElement('div');
+      div.innerHTML=artCard(a);
+      const card=div.firstElementChild;
+      grid.appendChild(card);
+      // trigger reveal after short delay
+      setTimeout(()=>{ card.classList.add('ob'); 
+        const io=new IntersectionObserver(entries=>{
+          entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target);}});
+        },{threshold:.1});
+        io.observe(card);
+      },50);
+    });
+    artsExpanded=true;
+    document.getElementById('art-more-btn').textContent='Vedi meno ↑';
+  } else {
+    // remove extra cards
+    const cards=grid.querySelectorAll('.art-card');
+    for(let i=6;i<cards.length;i++) cards[i].remove();
+    artsExpanded=false;
+    document.getElementById('art-more-btn').textContent=`Vedi altri ${hidden.length} articoli ↓`;
+  }
 }
 function openArt(id){
-  const a=ARTS.find(x=>x.id===id);if(!a)return;
-  document.getElementById('a-modal').innerHTML=`
-    <div class="a-ov" onclick="closeArt()"></div>
-    <div class="a-box">
-      <button class="a-close" onclick="closeArt()">✕</button>
-      <div class="a-hdr"><span class="a-tag">${a.tag}</span><span class="a-num">${a.num}</span></div>
-      <div class="a-cat">${a.cat}</div>
-      <h2 class="a-ttl">${a.title}</h2>
-      <div class="a-meta"><span>${a.auth}</span><span>·</span><span>${a.date}</span></div>
-      <div class="a-body">${a.body}</div>
-      <div class="a-ft"><span style="font-size:13px;color:var(--gray)">Fonte: DebriF1 — La strategia che non vedi</span></div>
-    </div>`;
-  document.getElementById('a-modal').classList.add('open');
-  document.body.style.overflow='hidden';
+  const a=ARTS.find(x=>x.id===id);if(!a)return;
+  document.getElementById('a-modal').innerHTML=`
+    <div class="a-ov" onclick="closeArt()"></div>
+    <div class="a-box">
+      <button class="a-close" onclick="closeArt()">✕</button>
+      <div class="a-hdr"><span class="a-tag">${a.tag}</span><span class="a-num">${a.num}</span></div>
+      <div class="a-cat">${a.cat}</div>
+      <h2 class="a-ttl">${a.title}</h2>
+      <div class="a-meta"><span>${a.auth}</span><span>·</span><span>${a.date}</span></div>
+      <div class="a-body">${a.body}</div>
+      <div class="a-ft"><span style="font-size:13px;color:var(--gray)">Fonte: DebriF1 — La strategia che non vedi</span></div>
+    </div>`;
+  document.getElementById('a-modal').classList.add('open');
+  document.body.style.overflow='hidden';
 }
 function closeArt(){document.getElementById('a-modal').classList.remove('open');document.body.style.overflow='';}
 
 /* ━━━ COUNTDOWN ━━━ */
 function tick(){
-  const t=new Date('2026-03-29T14:00:00+09:00')-new Date();
-  if(t<=0){document.getElementById('countdown').innerHTML='<div class="cd-unit"><div class="cd-val" style="font-size:16px">IN CORSO</div></div>';return;}
-  const d=Math.floor(t/864e5),h=Math.floor((t%864e5)/36e5),m=Math.floor((t%36e5)/6e4),s=Math.floor((t%6e4)/1e3);
-  document.getElementById('countdown').innerHTML=`
-    <div class="cd-unit"><div class="cd-val">${d}</div><div class="cd-lbl">Giorni</div></div>
-    <div class="cd-unit"><div class="cd-val">${String(h).padStart(2,'0')}</div><div class="cd-lbl">Ore</div></div>
-    <div class="cd-unit"><div class="cd-val">${String(m).padStart(2,'0')}</div><div class="cd-lbl">Min</div></div>
-    <div class="cd-unit"><div class="cd-val">${String(s).padStart(2,'0')}</div><div class="cd-lbl">Sec</div></div>`;
+  const t=new Date('2026-03-29T14:00:00+09:00')-new Date();
+  if(t<=0){document.getElementById('countdown').innerHTML='<div class="cd-unit"><div class="cd-val" style="font-size:16px">IN CORSO</div></div>';return;}
+  const d=Math.floor(t/864e5),h=Math.floor((t%864e5)/36e5),m=Math.floor((t%36e5)/6e4),s=Math.floor((t%6e4)/1e3);
+  document.getElementById('countdown').innerHTML=`
+    <div class="cd-unit"><div class="cd-val">${d}</div><div class="cd-lbl">Giorni</div></div>
+    <div class="cd-unit"><div class="cd-val">${String(h).padStart(2,'0')}</div><div class="cd-lbl">Ore</div></div>
+    <div class="cd-unit"><div class="cd-val">${String(m).padStart(2,'0')}</div><div class="cd-lbl">Min</div></div>
+    <div class="cd-unit"><div class="cd-val">${String(s).padStart(2,'0')}</div><div class="cd-lbl">Sec</div></div>`;
 }
 
 /* ━━━ REVEAL ━━━ */
 function obs(){
-  const els=document.querySelectorAll('.rv:not(.ob)');
-  const io=new IntersectionObserver(entries=>{
-    entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('vis'),i*60);io.unobserve(e.target);}});
-  },{threshold:.1});
-  els.forEach(el=>{el.classList.add('ob');io.observe(el);});
+  const els=document.querySelectorAll('.rv:not(.ob)');
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('vis'),i*60);io.unobserve(e.target);}});
+  },{threshold:.1});
+  els.forEach(el=>{el.classList.add('ob');io.observe(el);});
 }
 
 /* ━━━ MISC ━━━ */
 function showToast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2600);}
 /* newsletter handled by Substack */
 function mobNav(page){
-  if(window.innerWidth>768) return;
-  const pages=['home','st','art','cal','nl'];
-  pages.forEach(p=>{
-    const el=document.getElementById('mob-page-'+p);
-    if(el) el.classList.toggle('active', p===page);
-    const btn=document.getElementById('mbn-'+p);
-    if(btn) btn.classList.toggle('active', p===page);
-  });
-  window.scrollTo({top:0,behavior:'smooth'});
-  // re-trigger reveals for newly visible section
-  obs();
+  if(window.innerWidth>768) return;
+  const pages=['home','st','art','cal','nl'];
+  pages.forEach(p=>{
+    const el=document.getElementById('mob-page-'+p);
+    if(el) el.classList.toggle('active', p===page);
+    const btn=document.getElementById('mbn-'+p);
+    if(btn) btn.classList.toggle('active', p===page);
+  });
+  window.scrollTo({top:0,behavior:'smooth'});
+  // re-trigger reveals for newly visible section
+  obs();
 }
 function toggleMobSection(bodyId,iconId){
-  if(window.innerWidth>768) return;
-  const body=document.getElementById(bodyId);
-  const icon=document.getElementById(iconId);
-  if(!body) return;
-  const isOpen=body.classList.contains('open');
-  body.classList.toggle('open',!isOpen);
-  if(icon) icon.style.transform=isOpen?'':'rotate(180deg)';
+  if(window.innerWidth>768) return;
+  const body=document.getElementById(bodyId);
+  const icon=document.getElementById(iconId);
+  if(!body) return;
+  const isOpen=body.classList.contains('open');
+  body.classList.toggle('open',!isOpen);
+  if(icon) icon.style.transform=isOpen?'':'rotate(180deg)';
 }
 document.getElementById('ham').addEventListener('click',()=>document.getElementById('nav-ul').classList.toggle('open'));
 document.querySelectorAll('.tab-btn').forEach(b=>b.addEventListener('click',()=>renderSt(b.dataset.tab)));
