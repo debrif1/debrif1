@@ -17,7 +17,7 @@
 }
 html{scroll-behavior:smooth}
 body{font-family:var(--f);background:var(--bg);color:var(--white);-webkit-font-smoothing:antialiased;overflow-x:hidden;line-height:1.5;padding-top:var(--nav)}
-nav:not(.mob-bottom-nav){position:fixed;top:0;left:0;right:0;height:var(--nav);background:rgba(10,10,10,.78);backdrop-filter:saturate(180%) blur(20px);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,4vw,48px);z-index:1000;border-bottom:1px solid rgba(255,255,255,.06)}
+nav{position:fixed;top:0;left:0;right:0;height:var(--nav);background:rgba(10,10,10,.78);backdrop-filter:saturate(180%) blur(20px);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,4vw,48px);z-index:1000;border-bottom:1px solid rgba(255,255,255,.06)}
 .nav-logo{font-size:20px;font-weight:800;letter-spacing:2px;color:var(--white);text-decoration:none}
 .nav-logo span{color:var(--red)}
 .nav-ul{display:flex;gap:32px;list-style:none}
@@ -461,7 +461,7 @@ footer{background:var(--card);padding:60px 24px 36px;border-top:1px solid rgba(2
 <div id="a-modal"></div>
 <div id="toast"></div>
 
-<nav class="mob-bottom-nav">
+<div class="mob-bottom-nav">
   <button class="mob-nav-item active" id="mbn-home" onclick="mobNav('home')">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H5a1 1 0 01-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>
     Home
