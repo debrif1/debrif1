@@ -261,24 +261,25 @@ footer{background:var(--card);padding:60px 24px 36px;border-top:1px solid rgba(2
 @media(max-width:768px){
   /* ── BOTTOM NAV ── */
   .mob-bottom-nav{
-    position:fixed;bottom:0;left:0;right:0;height:60px;
+    position:fixed;bottom:0;left:0;right:0;height:56px;
     background:rgba(10,10,10,.97);
-    border-top:1px solid rgba(255,255,255,.08);
+    border-top:1px solid rgba(255,255,255,.1);
     display:flex;align-items:stretch;
     z-index:1100;
     backdrop-filter:blur(20px);
   }
   .mob-nav-item{
-    flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
-    gap:3px;cursor:pointer;border:none;background:none;
-    color:var(--gray);font-family:var(--f);font-size:9px;font-weight:600;
+    flex:1;display:flex;flex-direction:row;align-items:center;justify-content:center;
+    gap:5px;cursor:pointer;border:none;background:none;
+    color:var(--gray);font-family:var(--f);font-size:10px;font-weight:600;
     letter-spacing:.04em;text-transform:uppercase;
-    transition:color .2s;padding:8px 0;
+    transition:color .2s,border-bottom .2s;padding:0 4px;
+    border-bottom:2px solid transparent;
   }
-  .mob-nav-item.active{color:var(--red)}
-  .mob-nav-item svg{width:20px;height:20px;stroke-width:1.8}
+  .mob-nav-item.active{color:var(--white);border-bottom:2px solid var(--red)}
+  .mob-nav-item svg{width:14px;height:14px;stroke-width:2;flex-shrink:0}
   /* ── MOBILE PAGE SYSTEM ── */
-  body{padding-bottom:60px}
+  body{padding-bottom:56px}
   .mob-page{display:none}
   .mob-page.active{display:block}
   /* On mobile, hero section IS the home page */
@@ -293,7 +294,7 @@ footer{background:var(--card);padding:60px 24px 36px;border-top:1px solid rgba(2
   .mob-page-nl.active .nl-sec{display:block}
   .mob-page-nl.active footer{display:block}
   /* restore section padding on mobile pages */
-  .mob-page-st.active .st-sec{padding:24px 16px 32px}
+  .mob-page-st.active .st-sec{padding:24px 16px 48px}
   .mob-page-art.active .art-sec{padding:24px 16px 32px}
   .mob-page-cal.active .cal-sec{padding:24px 16px 32px}
   .mob-page-nl.active .nl-sec{padding:40px 16px 40px}
@@ -324,8 +325,8 @@ footer{background:var(--card);padding:60px 24px 36px;border-top:1px solid rgba(2
   <h1>La strategia che <span class="acc">non vedi.</span></h1>
   <p class="hero-sub">Classifiche aggiornate dopo il GP di Cina, analisi dal paddock e calendario completo 2026. Il retroscena che non ti raccontano.</p>
   <div class="hero-cta-row">
-    <a href="#standings" class="btn-p">Classifiche live</a>
-    <a href="#articles" class="btn-g">Ultime news</a>
+    <a href="#standings" class="btn-p" onclick="if(window.innerWidth<=768){event.preventDefault();mobNav('st')}">Classifiche live</a>
+    <a href="#articles" class="btn-g" onclick="if(window.innerWidth<=768){event.preventDefault();mobNav('art')}">Ultime news</a>
   </div>
   <div class="ngp">
     <span class="ngp-flag">🇯🇵</span>
