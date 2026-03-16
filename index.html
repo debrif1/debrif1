@@ -85,6 +85,22 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav);background:rgba(10,10,
 .gap-v{font-size:13px;color:var(--gray);white-space:nowrap;text-align:right;min-width:100px}
 .art-sec{background:var(--surface);padding:100px 24px}
 .art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;max-width:1100px;margin:0 auto}
+.st-gp-grid{display:grid;grid-template-columns:1fr;gap:16px}
+.st-gp-grid.has-extras{grid-template-columns:1.6fr 1fr}
+.st-gp-grid.has-sprint{grid-template-columns:1.6fr 1fr 1fr}
+.st-gp-col{}
+.st-section-label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gray);padding:0 0 8px;border-bottom:1px solid rgba(255,255,255,.06);margin-bottom:6px}
+.st-gp-col .st-row{padding:9px 12px;border-radius:6px}
+.st-gp-col .d-name{font-size:13px}
+.st-gp-col .d-team{font-size:10px}
+.st-gp-col .pos{font-size:14px}
+.st-gp-col .gap-v{font-size:11px;min-width:60px}
+.st-mini .st-row{padding:7px 10px}
+.st-mini .d-name{font-size:12px}
+.st-mini .d-team{font-size:10px}
+.st-mini .pos{font-size:13px}
+.st-mini .gap-v{font-size:11px;min-width:52px}
+@media(max-width:600px){.st-gp-grid.has-extras,.st-gp-grid.has-sprint{grid-template-columns:1fr}}
 .btn-more{background:transparent;color:var(--white);border:1.5px solid rgba(255,255,255,.2);border-radius:980px;padding:13px 32px;font-size:14px;font-weight:600;font-family:var(--f);cursor:pointer;transition:border-color .2s,background .2s,transform .15s}
 .btn-more:hover{border-color:var(--red);color:var(--red);transform:scale(1.03);background:rgba(225,6,0,.05)}
 .art-card{background:var(--card);border-radius:var(--r);overflow:hidden;cursor:pointer;transition:transform .3s,box-shadow .3s;border:1px solid rgba(255,255,255,.04)}
@@ -409,6 +425,13 @@ const GPR={
       {pos:3,name:"McLaren",flag:"🇬🇧",pts:10,color:"#FF8000"},
       {pos:4,name:"Red Bull",flag:"🇦🇹",pts:8,color:"#3671C6"},
       {pos:5,name:"Haas",flag:"🇺🇸",pts:6,color:"#B6BABD"},
+    ],
+    quali:[
+      {pos:1,name:"George Russell",team:"Mercedes",color:"#27F4D2",time:"1:15.096"},
+      {pos:2,name:"Kimi Antonelli",team:"Mercedes",color:"#27F4D2",time:"+0.293s"},
+      {pos:3,name:"Charles Leclerc",team:"Ferrari",color:"#E8002D",time:"+0.448s"},
+      {pos:4,name:"Lewis Hamilton",team:"Ferrari",color:"#E8002D",time:"+0.712s"},
+      {pos:5,name:"Lando Norris",team:"McLaren",color:"#FF8000",time:"+0.891s"},
     ]
   },
   chn:{label:"R02 · GP Cina",hero:{V:"ANT",P:"RUS",FL:"RUS",giri:56,sor:89,chiave:"Sprint weekend"},key:"Antonelli vince il suo primo GP a 18 anni. Russell dalla pole gestisce ma non contiene il compagno nelle fasi finali. Ferrari perde terreno.",
@@ -430,6 +453,20 @@ const GPR={
       {pos:3,name:"Haas",flag:"🇺🇸",pts:11,color:"#B6BABD"},
       {pos:4,name:"Alpine",flag:"🇫🇷",pts:8,color:"#FF87BC"},
       {pos:5,name:"McLaren",flag:"🇬🇧",pts:5,color:"#FF8000"},
+    ],
+    quali:[
+      {pos:1,name:"Kimi Antonelli",team:"Mercedes",color:"#27F4D2",time:"1:32.064"},
+      {pos:2,name:"George Russell",team:"Mercedes",color:"#27F4D2",time:"+0.222s"},
+      {pos:3,name:"Charles Leclerc",team:"Ferrari",color:"#E8002D",time:"+0.477s"},
+      {pos:4,name:"Lewis Hamilton",team:"Ferrari",color:"#E8002D",time:"+0.614s"},
+      {pos:5,name:"Lando Norris",team:"McLaren",color:"#FF8000",time:"+0.891s"},
+    ],
+    sprint:[
+      {pos:1,name:"George Russell",team:"Mercedes",color:"#27F4D2",gap:"Vincitore"},
+      {pos:2,name:"Charles Leclerc",team:"Ferrari",color:"#E8002D",gap:"+1.742s"},
+      {pos:3,name:"Lewis Hamilton",team:"Ferrari",color:"#E8002D",gap:"+3.218s"},
+      {pos:4,name:"Kimi Antonelli",team:"Mercedes",color:"#27F4D2",gap:"+4.501s"},
+      {pos:5,name:"Oscar Piastri",team:"McLaren",color:"#FF8000",gap:"+8.234s"},
     ]
   }
 };
@@ -500,6 +537,9 @@ const ARTS=[
 let cTab='drivers',cGP='season';
 function onGpChange(){
   cGP=document.getElementById('gp-sel').value;
+  const mw=document.getElementById('st-more-wrap');
+  if(mw) mw.style.display='none';
+  stExpanded=false;
   renderSt(cTab);
 }
 let stExpanded=false;
@@ -527,23 +567,57 @@ function renderSt(tab){
   const c=document.getElementById('st-list');
   if(cGP!=='season'){
     const g=GPR[cGP],d=tab==='drivers'?g.drivers:g.constructors;
-    c.innerHTML=d.map((r,i)=>{
-      const isDnf=typeof r.pos!=='number';
-      const pc=r.pos===1?'p1':r.pos===2?'p2':r.pos===3?'p3':'pm';
-      if(tab==='drivers'){
-        return `<div class="st-row ${r.pos===1?'winner-row':''} rv" style="transition-delay:${i*40}ms">
+    function miniRows(rows,isTime){
+      return rows.map((r,i)=>{
+        const pc=r.pos===1?'p1':r.pos===2?'p2':r.pos===3?'p3':'';
+        return `<div class="st-row rv" style="transition-delay:${i*25}ms">
           <div class="tcol" style="background:${r.color}"></div>
-          <div class="d-info"><span class="pos ${pc}" ${isDnf?'style="font-size:13px"':''}>${r.pos}</span>
-            <div><div class="d-name">${r.name}${r.fl?' <span style="font-size:11px;color:var(--red)">⚡FL</span>':''}</div><div class="d-team">${r.team}</div></div></div>
+          <div class="d-info"><span class="pos ${pc}">${r.pos}</span>
+            <div><div class="d-name">${r.name}</div><div class="d-team">${r.team}</div></div></div>
+          <div class="gap-v">${isTime?r.time:r.gap}</div></div>`;
+      }).join('');
+    }
+    if(tab==='drivers'){
+      const gridClass='st-gp-grid'+(g.sprint?' has-sprint':g.quali?' has-extras':'');
+      // Race column
+      let raceCol=`<div class="st-section-label">🏁 Gara</div>`;
+      raceCol+=d.map((r,i)=>{
+        const isDnf=typeof r.pos!=='number';
+        const pc=r.pos===1?'p1':r.pos===2?'p2':r.pos===3?'p3':'pm';
+        return `<div class="st-row ${r.pos===1?'winner-row':''} rv" style="transition-delay:${i*25}ms">
+          <div class="tcol" style="background:${r.color}"></div>
+          <div class="d-info"><span class="pos ${pc}" ${isDnf?'style="font-size:12px"':''}>${r.pos}</span>
+            <div><div class="d-name">${r.name}${r.fl?' <span style="font-size:10px;color:var(--red)">⚡</span>':''}</div><div class="d-team">${r.team}</div></div></div>
           <div class="gap-v">${r.gap}</div></div>`;
-      }else{
-        const mp=d[0].pts;
-        return `<div class="st-row rv" style="transition-delay:${i*40}ms">
+      }).join('');
+      // Sprint column
+      let sprintCol='';
+      if(g.sprint){
+        sprintCol=`<div class="st-mini"><div class="st-section-label">⚡ Sprint — Top 5</div>`+miniRows(g.sprint,false)+`</div>`;
+      }
+      // Quali column
+      let qualiCol='';
+      if(g.quali){
+        qualiCol=`<div class="st-mini"><div class="st-section-label">🟡 Qualifiche — Top 5</div>`+miniRows(g.quali,true)+`</div>`;
+      }
+      // Extra columns stacked if sprint+quali
+      let extras='';
+      if(g.sprint&&g.quali){
+        extras=`<div style="display:flex;flex-direction:column;gap:16px">${sprintCol}${qualiCol}</div>`;
+      } else {
+        extras=sprintCol+qualiCol;
+      }
+      c.innerHTML=`<div class="${gridClass}"><div class="st-gp-col">${raceCol}</div>${extras}</div>`;
+    }else{
+      const mp=d[0].pts||1;
+      c.innerHTML=d.map((r,i)=>{
+        const pc=r.pos===1?'p1':r.pos===2?'p2':r.pos===3?'p3':'pm';
+        return `<div class="st-row rv" style="transition-delay:${i*30}ms">
           <div class="tcol" style="background:${r.color}"></div>
           <div class="d-info"><span class="pos ${pc}">${r.pos}</span><span>${r.flag}</span><div class="d-name">${r.name}</div></div>
           <div class="pts-area"><div class="pts-bg"><div class="pts-bar" style="width:${mp>0?Math.round(r.pts/mp*100):0}%;background:${r.color}"></div></div><div class="pts">${r.pts}<span>PTS</span></div></div></div>`;
-      }
-    }).join('');
+      }).join('');
+    }
   }else{
     const d=tab==='drivers'?DS:CS;
     const mp=d[0].pts||1;
