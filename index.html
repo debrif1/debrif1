@@ -232,6 +232,30 @@ footer{background:var(--card);padding:60px 24px 36px;border-top:1px solid rgba(2
   .a-box{padding:28px 22px}
   .ci-grid{grid-template-columns:1fr 1fr}
   .res-hero{grid-template-columns:1fr 1fr}
+  .st-gp-grid.has-extras,.st-gp-grid.has-sprint{grid-template-columns:1fr}
+
+  /* ── MOBILE SECTION TOGGLES ── */
+  .mob-section-toggle{display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:0;user-select:none}
+  .mob-section-toggle h2{font-size:22px}
+  .mob-toggle-icon{font-size:18px;color:var(--red);transition:transform .3s;flex-shrink:0}
+  .mob-collapsible{overflow:hidden;transition:max-height .4s cubic-bezier(.4,0,.2,1),opacity .3s;max-height:0;opacity:0}
+  .mob-collapsible.open{max-height:9999px;opacity:1}
+
+  /* On mobile, hide default s-hdr and use toggle header instead */
+  .st-sec .s-hdr,.art-sec .s-hdr,.cal-sec .s-hdr{display:none}
+  .st-sec,.art-sec,.cal-sec{padding:0 24px}
+  .mob-sec-wrap{padding:0}
+
+  /* reduce section vertical padding on mobile */
+  .st-sec{padding-top:0;padding-bottom:0}
+  .art-sec{padding-top:0;padding-bottom:0;background:var(--surface)}
+  .cal-sec{padding-top:0;padding-bottom:0}
+
+  .mob-sections-wrap{padding:16px 0 32px}
+}
+@media(min-width:769px){
+  .mob-section-toggle{display:none!important}
+  .mob-collapsible{max-height:none!important;opacity:1!important;overflow:visible!important}
 }
   </style>
 </head>
@@ -289,7 +313,12 @@ footer{background:var(--card);padding:60px 24px 36px;border-top:1px solid rgba(2
     <h2 class="s-ttl rv">La corsa al titolo.</h2>
     <p class="s-sub rv">Scegli la vista: stagione cumulativa o ogni singolo Gran Premio.</p>
   </div>
-  <div class="st-ctrl rv">
+  <div class="mob-section-toggle" onclick="toggleMobSection('standings-body','standings-icon')">
+    <h2 class="s-ttl" style="font-size:22px">🏆 Classifiche</h2>
+    <span class="mob-toggle-icon" id="standings-icon">▼</span>
+  </div>
+  <div class="mob-collapsible" id="standings-body">
+  <div class="st-ctrl rv" style="padding-top:20px">
     <select class="gp-sel" id="gp-sel" onchange="onGpChange()">
       <option value="season">Stagione 2026 — Cumulativo</option>
       <option value="aus">R01 · GP Australia</option>
@@ -304,6 +333,7 @@ footer{background:var(--card);padding:60px 24px 36px;border-top:1px solid rgba(2
   <div id="st-more-wrap" style="display:none;justify-content:center;margin-top:32px;">
     <button id="st-more-btn" onclick="toggleMoreSt()" class="btn-more">Vedi altri piloti ↓</button>
   </div>
+  </div><!-- /mob-collapsible standings -->
 </section>
 
 <section class="art-sec" id="articles">
@@ -312,10 +342,16 @@ footer{background:var(--card);padding:60px 24px 36px;border-top:1px solid rgba(2
     <h2 class="s-ttl rv">Dal paddock al mondo.</h2>
     <p class="s-sub rv">Analisi, retroscena e breaking news dal circus della Formula 1.</p>
   </div>
-  <div class="art-grid" id="art-grid"></div>
+  <div class="mob-section-toggle" onclick="toggleMobSection('articles-body','articles-icon')">
+    <h2 class="s-ttl" style="font-size:22px">📰 News</h2>
+    <span class="mob-toggle-icon" id="articles-icon">▼</span>
+  </div>
+  <div class="mob-collapsible open" id="articles-body">
+  <div class="art-grid" id="art-grid" style="padding-top:16px"></div>
   <div id="art-more-wrap" style="display:none;justify-content:center;margin-top:40px;">
     <button id="art-more-btn" onclick="toggleMoreArts()" class="btn-more">Vedi altri articoli ↓</button>
   </div>
+  </div><!-- /mob-collapsible articles -->
 </section>
 
 <section class="cal-sec" id="calendar">
@@ -324,7 +360,13 @@ footer{background:var(--card);padding:60px 24px 36px;border-top:1px solid rgba(2
     <h2 class="s-ttl rv">Tutte le tappe del mondiale.</h2>
     <p class="s-sub rv">24 Gran Premi · Clicca su ogni gara per info circuito e risultati.</p>
   </div>
-  <div class="cal-grid" id="cal-grid"></div>
+  <div class="mob-section-toggle" onclick="toggleMobSection('calendar-body','calendar-icon')">
+    <h2 class="s-ttl" style="font-size:22px">📅 Calendario</h2>
+    <span class="mob-toggle-icon" id="calendar-icon">▼</span>
+  </div>
+  <div class="mob-collapsible" id="calendar-body">
+  <div class="cal-grid" id="cal-grid" style="padding-top:16px"></div>
+  </div><!-- /mob-collapsible calendar -->
 </section>
 
 <section class="nl-sec" id="newsletter">
@@ -849,6 +891,15 @@ function obs(){
 /* ━━━ MISC ━━━ */
 function showToast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2600);}
 /* newsletter handled by Substack */
+function toggleMobSection(bodyId,iconId){
+  if(window.innerWidth>768) return;
+  const body=document.getElementById(bodyId);
+  const icon=document.getElementById(iconId);
+  if(!body) return;
+  const isOpen=body.classList.contains('open');
+  body.classList.toggle('open',!isOpen);
+  if(icon) icon.style.transform=isOpen?'':'rotate(180deg)';
+}
 document.getElementById('ham').addEventListener('click',()=>document.getElementById('nav-ul').classList.toggle('open'));
 document.querySelectorAll('.tab-btn').forEach(b=>b.addEventListener('click',()=>renderSt(b.dataset.tab)));
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeArt();closeGP();}});
