@@ -219,26 +219,20 @@ footer{background:var(--card);padding:60px 24px 36px;border-top:1px solid rgba(2
 .rv.vis{opacity:1;transform:translateY(0)}
 #toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);background:rgba(20,20,22,.95);color:var(--white);padding:14px 28px;border-radius:980px;font-size:15px;font-weight:500;backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1);opacity:0;transition:opacity .3s,transform .3s;z-index:9999;pointer-events:none}
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-
 @media(max-width:768px){
-  nav {
-    /* FIX: Rimuoviamo il backdrop-filter e modifichiamo lo sfondo per eliminare il bug di ancoraggio */
-    backdrop-filter: none;
-    background: rgba(10,10,10, 0.98);
-  }
   .nav-ul{display:none}
   .nav-ul.open {
     display: flex;
     flex-direction: column;
     position: fixed;
     top: auto;
-    bottom: 60px; /* Ora funziona correttamente staccato dal fondo */
+    bottom: 60px;
     left: 0;
     right: 0;
     background: rgba(10,10,10,.95);
     padding: 24px;
     gap: 20px;
-    border-top: 1px solid rgba(255,255,255,.08);
+    border-top: 1px solid rgba(255,255,255,.06);
     border-bottom: none;
     backdrop-filter: blur(20px);
     z-index: 1050;
@@ -262,13 +256,16 @@ footer{background:var(--card);padding:60px 24px 36px;border-top:1px solid rgba(2
   .mob-collapsible{overflow:hidden;transition:max-height .4s cubic-bezier(.4,0,.2,1),opacity .3s;max-height:0;opacity:0}
   .mob-collapsible.open{max-height:9999px;opacity:1}
 
+  /* On mobile, hide default s-hdr and use toggle header instead */
   .st-sec .s-hdr,.art-sec .s-hdr,.cal-sec .s-hdr{display:none}
   .st-sec,.art-sec,.cal-sec{padding:0 24px}
   .mob-sec-wrap{padding:0}
 
+  /* reduce section vertical padding on mobile */
   .st-sec{padding-top:0;padding-bottom:0}
   .art-sec{padding-top:0;padding-bottom:0;background:var(--surface)}
   .cal-sec{padding-top:0;padding-bottom:0}
+
   .mob-sections-wrap{padding:16px 0 32px}
 }
 @media(min-width:769px){
@@ -295,25 +292,29 @@ footer{background:var(--card);padding:60px 24px 36px;border-top:1px solid rgba(2
   }
   .mob-nav-item.active{color:var(--red)}
   .mob-nav-item svg{width:20px;height:20px;stroke-width:1.8}
-  
   /* ── MOBILE PAGE SYSTEM ── */
   body{padding-bottom:60px}
   .mob-page{display:none}
   .mob-page.active{display:block}
+  /* On mobile, hero section IS the home page */
   .hero,.mq{display:none}
   .mob-home-page.active .hero{display:flex}
   .mob-home-page.active .mq{display:block}
+  /* sections become pages */
   .st-sec,.art-sec,.cal-sec,.nl-sec,footer{display:none}
   .mob-page-st.active .st-sec{display:block}
   .mob-page-art.active .art-sec{display:block}
   .mob-page-cal.active .cal-sec{display:block}
   .mob-page-nl.active .nl-sec{display:block}
   .mob-page-nl.active footer{display:block}
+  /* restore section padding on mobile pages */
   .mob-page-st.active .st-sec{padding:24px 16px 32px}
   .mob-page-art.active .art-sec{padding:24px 16px 32px}
   .mob-page-cal.active .cal-sec{padding:24px 16px 32px}
   .mob-page-nl.active .nl-sec{padding:40px 16px 40px}
+  /* show s-hdr again on mobile pages */
   .st-sec .s-hdr,.art-sec .s-hdr,.cal-sec .s-hdr{display:block}
+  /* hide collapsible toggles — not needed in page mode */
   .mob-section-toggle{display:none!important}
   .mob-collapsible{max-height:none!important;opacity:1!important;overflow:visible!important}
 }
@@ -324,10 +325,10 @@ footer{background:var(--card);padding:60px 24px 36px;border-top:1px solid rgba(2
 <nav>
   <a class="nav-logo" href="#">DEBRI<span>F1</span></a>
   <ul class="nav-ul" id="nav-ul">
-    <li><a href="#standings" onclick="if(window.innerWidth<=768){ mobNav('st'); document.getElementById('nav-ul').classList.remove('open'); return false; }">Classifiche</a></li>
-    <li><a href="#articles" onclick="if(window.innerWidth<=768){ mobNav('art'); document.getElementById('nav-ul').classList.remove('open'); return false; }">News</a></li>
-    <li><a href="#calendar" onclick="if(window.innerWidth<=768){ mobNav('cal'); document.getElementById('nav-ul').classList.remove('open'); return false; }">Calendario</a></li>
-    <li><a href="#newsletter" onclick="if(window.innerWidth<=768){ mobNav('nl'); document.getElementById('nav-ul').classList.remove('open'); return false; }">Contatti</a></li>
+    <li><a href="#standings">Classifiche</a></li>
+    <li><a href="#articles">News</a></li>
+    <li><a href="#calendar">Calendario</a></li>
+    <li><a href="#newsletter">Contatti</a></li>
   </ul>
   <a href="https://debrif1.substack.com/subscribe" target="_blank" rel="noopener" class="nav-cta">Iscriviti</a>
   <button class="ham" id="ham" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -366,9 +367,7 @@ footer{background:var(--card);padding:60px 24px 36px;border-top:1px solid rgba(2
     <span class="mq-i"><span>🏎️</span>Contenuti per veri fan</span>
   </div>
 </div>
-</div>
-
-<div class="mob-page mob-page-st" id="mob-page-st">
+</div><div class="mob-page mob-page-st" id="mob-page-st">
 <section class="st-sec" id="standings">
   <div class="s-hdr">
     <span class="s-lbl rv">Classifiche 2026</span>
@@ -395,11 +394,8 @@ footer{background:var(--card);padding:60px 24px 36px;border-top:1px solid rgba(2
   <div id="st-more-wrap" style="display:none;justify-content:center;margin-top:32px;">
     <button id="st-more-btn" onclick="toggleMoreSt()" class="btn-more">Vedi altri piloti ↓</button>
   </div>
-  </div>
-</section>
-</div>
-
-<div class="mob-page mob-page-art" id="mob-page-art">
+  </div></section>
+</div><div class="mob-page mob-page-art" id="mob-page-art">
 <section class="art-sec" id="articles">
   <div class="s-hdr">
     <span class="s-lbl rv">Ultime notizie</span>
@@ -415,11 +411,8 @@ footer{background:var(--card);padding:60px 24px 36px;border-top:1px solid rgba(2
   <div id="art-more-wrap" style="display:none;justify-content:center;margin-top:40px;">
     <button id="art-more-btn" onclick="toggleMoreArts()" class="btn-more">Vedi altri articoli ↓</button>
   </div>
-  </div>
-</section>
-</div>
-
-<div class="mob-page mob-page-cal" id="mob-page-cal">
+  </div></section>
+</div><div class="mob-page mob-page-cal" id="mob-page-cal">
 <section class="cal-sec" id="calendar">
   <div class="s-hdr">
     <span class="s-lbl rv">Calendario 2026</span>
@@ -432,11 +425,8 @@ footer{background:var(--card);padding:60px 24px 36px;border-top:1px solid rgba(2
   </div>
   <div class="mob-collapsible" id="calendar-body">
   <div class="cal-grid" id="cal-grid" style="padding-top:16px"></div>
-  </div>
-</section>
-</div>
-
-<div class="mob-page mob-page-nl" id="mob-page-nl">
+  </div></section>
+</div><div class="mob-page mob-page-nl" id="mob-page-nl">
 <section class="nl-sec" id="newsletter">
   <span class="s-lbl rv">Resta in pole position</span>
   <h2 class="s-ttl rv">Non perderti nulla.</h2>
@@ -459,9 +449,7 @@ footer{background:var(--card);padding:60px 24px 36px;border-top:1px solid rgba(2
     <div class="ft-soc"><a href="#">𝕏</a><a href="#">📷</a><a href="#">▶</a></div>
   </div>
 </footer>
-</div>
-
-<div id="gp-ov" onclick="closeGP()"></div>
+</div><div id="gp-ov" onclick="closeGP()"></div>
 <div id="gp-pn">
   <div class="pn-hdr">
     <button class="pn-close" onclick="closeGP()">✕</button>
@@ -713,6 +701,7 @@ function renderSt(tab){
     }
     if(tab==='drivers'){
       const gridClass='st-gp-grid'+(g.sprint?' has-sprint':g.quali?' has-extras':'');
+      // Race column
       let raceCol=`<div class="st-section-label">🏁 Gara</div>`;
       raceCol+=d.map((r,i)=>{
         const isDnf=typeof r.pos!=='number';
@@ -723,14 +712,17 @@ function renderSt(tab){
             <div><div class="d-name">${r.name}${r.fl?' <span style="font-size:10px;color:var(--red)">⚡</span>':''}</div><div class="d-team">${r.team}</div></div></div>
           <div class="gap-v">${r.gap}</div></div>`;
       }).join('');
+      // Sprint column
       let sprintCol='';
       if(g.sprint){
         sprintCol=`<div class="st-mini"><div class="st-section-label">⚡ Sprint — Top 5</div>`+miniRows(g.sprint,false)+`</div>`;
       }
+      // Quali column
       let qualiCol='';
       if(g.quali){
         qualiCol=`<div class="st-mini"><div class="st-section-label">🟡 Qualifiche — Top 5</div>`+miniRows(g.quali,true)+`</div>`;
       }
+      // Extra columns stacked if sprint+quali
       let extras='';
       if(g.sprint&&g.quali){
         extras=`<div style="display:flex;flex-direction:column;gap:16px">${sprintCol}${qualiCol}</div>`;
@@ -805,6 +797,7 @@ function toggleMoreSt(){
   }
 }
 
+/* ━━━ CALENDAR ━━━ */
 function renderCal(){
   document.getElementById('cal-grid').innerHTML=RACES.map(r=>`
     <div class="race-item ${r.st==='next'?'nxt':''} ${r.st==='done'?'done':''} rv" onclick="openGP('${r.id}')">
@@ -819,6 +812,7 @@ function renderCal(){
   obs();
 }
 
+/* ━━━ GP PANEL ━━━ */
 function openGP(id){
   const race=RACES.find(r=>r.id===id);if(!race)return;
   const ci=CI[id],gr=GPR[id];
@@ -882,6 +876,7 @@ function buildCirc(ci,race){
   <div class="sched-list">${sched}</div>`;
 }
 
+/* ━━━ ARTICLES ━━━ */
 function artCard(a){
   return `<div class="art-card rv" onclick="openArt(${a.id})">
     <div class="art-img"><span class="art-tag">${a.tag}</span><img src="${a.img}" alt="${a.title}" loading="lazy" onerror="this.style.display='none'"></div>
@@ -897,6 +892,7 @@ function renderArts(){
   const visible=ARTS.slice(0,6);
   const hidden=ARTS.slice(6);
   grid.innerHTML=visible.map(artCard).join('');
+  // more button
   const wrap=document.getElementById('art-more-wrap');
   if(hidden.length>0){
     wrap.style.display='flex';
@@ -915,6 +911,7 @@ function toggleMoreArts(){
       div.innerHTML=artCard(a);
       const card=div.firstElementChild;
       grid.appendChild(card);
+      // trigger reveal after short delay
       setTimeout(()=>{ card.classList.add('ob'); 
         const io=new IntersectionObserver(entries=>{
           entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target);}});
@@ -925,6 +922,7 @@ function toggleMoreArts(){
     artsExpanded=true;
     document.getElementById('art-more-btn').textContent='Vedi meno ↑';
   } else {
+    // remove extra cards
     const cards=grid.querySelectorAll('.art-card');
     for(let i=6;i<cards.length;i++) cards[i].remove();
     artsExpanded=false;
@@ -949,6 +947,7 @@ function openArt(id){
 }
 function closeArt(){document.getElementById('a-modal').classList.remove('open');document.body.style.overflow='';}
 
+/* ━━━ COUNTDOWN ━━━ */
 function tick(){
   const t=new Date('2026-03-29T14:00:00+09:00')-new Date();
   if(t<=0){document.getElementById('countdown').innerHTML='<div class="cd-unit"><div class="cd-val" style="font-size:16px">IN CORSO</div></div>';return;}
@@ -960,6 +959,7 @@ function tick(){
     <div class="cd-unit"><div class="cd-val">${String(s).padStart(2,'0')}</div><div class="cd-lbl">Sec</div></div>`;
 }
 
+/* ━━━ REVEAL ━━━ */
 function obs(){
   const els=document.querySelectorAll('.rv:not(.ob)');
   const io=new IntersectionObserver(entries=>{
@@ -968,8 +968,9 @@ function obs(){
   els.forEach(el=>{el.classList.add('ob');io.observe(el);});
 }
 
+/* ━━━ MISC ━━━ */
 function showToast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2600);}
-
+/* newsletter handled by Substack */
 function mobNav(page){
   if(window.innerWidth>768) return;
   const pages=['home','st','art','cal','nl'];
@@ -980,6 +981,7 @@ function mobNav(page){
     if(btn) btn.classList.toggle('active', p===page);
   });
   window.scrollTo({top:0,behavior:'smooth'});
+  // re-trigger reveals for newly visible section
   obs();
 }
 function toggleMobSection(bodyId,iconId){
@@ -991,11 +993,11 @@ function toggleMobSection(bodyId,iconId){
   body.classList.toggle('open',!isOpen);
   if(icon) icon.style.transform=isOpen?'':'rotate(180deg)';
 }
-
 document.getElementById('ham').addEventListener('click',()=>document.getElementById('nav-ul').classList.toggle('open'));
 document.querySelectorAll('.tab-btn').forEach(b=>b.addEventListener('click',()=>renderSt(b.dataset.tab)));
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeArt();closeGP();}});
 
+/* ━━━ INIT ━━━ */
 renderSt('drivers');renderArts();renderCal();tick();setInterval(tick,1000);obs();
 </script>
 </body>
